@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Contact · NN Construction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="assets/logo-mark.svg">
+<link rel="stylesheet" href="css/site.css">
+<script src="js/data.js"></script>
+</head>
+<body data-screen-label="08 Contact">
+
+<div data-slot="nav"></div>
+
+<main>
+  <section class="nn-page-head">
+    <div class="nn-container">
+      <div class="nn-page-eyebrow">
+        <img src="assets/icons/tape.svg" alt="">
+        <span class="nn-mono">06</span>
+        <span class="nn-label">Contact</span>
+      </div>
+      <h1 class="nn-page-title">Start with<br>a walk-through.</h1>
+      <p class="nn-page-lead">Free, in-person, typically within a week. Written estimate inside five business days.</p>
+    </div>
+  </section>
+
+  <section class="nn-section">
+    <div class="nn-container nn-contact-grid">
+
+      <form class="nn-contact-form" data-contact-form>
+        <div data-form-inner style="display:contents;">
+          <div class="nn-field">
+            <label>Name</label>
+            <input required type="text" value="Maya Reyes">
+          </div>
+          <div class="nn-field">
+            <label>Email</label>
+            <input required type="email" value="maya.reyes@example.com">
+          </div>
+          <div class="nn-field">
+            <label>Phone</label>
+            <input type="tel" value="(240) 555-0166">
+          </div>
+          <div class="nn-field">
+            <label>Service</label>
+            <select>
+              <option>Roofing — repair</option>
+              <option>Roofing — full replacement</option>
+              <option>Interior renovation</option>
+              <option>Exterior / siding</option>
+              <option>Addition / framing</option>
+              <option>Commercial tenant build-out</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="nn-field nn-field-full">
+            <label>Project notes</label>
+            <textarea rows="5">1928 colonial in Chevy Chase. Looking at standing-seam metal for the front dormer and repair on the rear slope. Free to walk the property any weekday morning.</textarea>
+          </div>
+          <div class="nn-form-actions">
+            <button class="nn-btn nn-btn-primary nn-btn-lg" type="submit">Send request →</button>
+          </div>
+        </div>
+        <div data-form-sent class="nn-sent" style="display:none;">
+          <div class="nn-eyebrow">Received</div>
+          <h3 style="font: 500 36px/1.15 var(--ff-sans); letter-spacing: -0.012em; margin: 16px 0 0;">We'll be in touch within one business day.</h3>
+          <p class="nn-lead" style="margin-top: 20px;">Request #<span data-request-id class="nn-mono" style="color: var(--nn-copper);">NN-0000</span></p>
+          <p style="color: var(--fg-2); margin-top: 16px; max-width: 560px;">You'll receive a confirmation email within a few minutes. If your project is roofing-related and urgent (active leak, storm damage), please also call the office.</p>
+        </div>
+      </form>
+
+      <aside class="nn-contact-aside">
+        <div class="nn-contact-aside-block">
+          <div class="nn-eyebrow">Office</div>
+          <div class="nn-contact-mono">
+            8420 Georgia Ave<br>
+            Silver Spring, MD 20910<br>
+            (301) 555-0142<br>
+            hello@nnconstruction.co
+          </div>
+        </div>
+
+        <div class="nn-contact-aside-block">
+          <div class="nn-eyebrow">Service area</div>
+          <div class="nn-cities">
+            <span class="nn-city">Bethesda</span>
+            <span class="nn-city">Silver Spring</span>
+            <span class="nn-city">Rockville</span>
+            <span class="nn-city">Arlington</span>
+            <span class="nn-city">McLean</span>
+            <span class="nn-city">Chevy Chase</span>
+            <span class="nn-city">Alexandria</span>
+            <span class="nn-city">Takoma Park</span>
+          </div>
+        </div>
+
+        <div class="nn-contact-aside-block">
+          <div class="nn-eyebrow">Licensure</div>
+          <div class="nn-contact-mono" style="color: var(--fg-2);">
+            MHIC #132-8847<br>
+            DC BBL-200489<br>
+            VA 2705-189-332
+          </div>
+        </div>
+
+        <div class="nn-contact-aside-block">
+          <div class="nn-eyebrow">Hours</div>
+          <div class="nn-contact-mono" style="color: var(--fg-2);">
+            Mon–Fri · 7:00 – 18:00<br>
+            Sat · 8:00 – 13:00<br>
+            Sun · emergency only
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<div data-slot="footer"></div>
+<script src="js/site.js"></script>
+</body>
+</html>
