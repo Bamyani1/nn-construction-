@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NN Construction — Your dream, our hardwork.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="assets/logo-mark.svg">
+<link rel="stylesheet" href="css/site.css">
+<script src="js/data.js"></script>
+</head>
+<body data-screen-label="01 Home">
+
+<div data-slot="nav"></div>
+
+<main>
+  <!-- ============ HERO : draftsman's page ============ -->
+  <section class="nn-hero nn-hero-draft">
+    <div class="nn-hero-bg">
+
+      <!-- dot grid field — extremely faint, like blueprint paper tooth -->
+      <svg class="nn-hero-grid" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <pattern id="heroDots2" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="1" fill="#C97B3F" fill-opacity="0.05"/>
+          </pattern>
+        </defs>
+        <rect x="0" y="0" width="1440" height="900" fill="url(#heroDots2)"/>
+      </svg>
+
+      <!-- sparse architectural measurement annotations -->
+      <svg class="nn-hero-draft-marks" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+        <g stroke="#C97B3F" fill="none" stroke-width="1" vector-effect="non-scaling-stroke" stroke-linecap="square">
+
+          <!-- TOP horizontal dimension line with tick marks -->
+          <g opacity="0.55">
+            <!-- extension ticks (short verticals flanking the dim line) -->
+            <line x1="200" y1="104" x2="200" y2="128"/>
+            <line x1="1240" y1="104" x2="1240" y2="128"/>
+            <!-- main dimension line with arrow ends -->
+            <line x1="200" y1="116" x2="1240" y2="116"/>
+            <!-- arrowhead ticks (diagonal slashes, architect's style) -->
+            <line x1="194" y1="110" x2="206" y2="122"/>
+            <line x1="1234" y1="110" x2="1246" y2="122"/>
+            <!-- interior tick marks along the line -->
+            <line x1="460" y1="113" x2="460" y2="119"/>
+            <line x1="720" y1="113" x2="720" y2="119"/>
+            <line x1="980" y1="113" x2="980" y2="119"/>
+          </g>
+          <!-- label sits in a break in the line -->
+          <rect x="684" y="108" width="72" height="16" fill="#0B0D0F"/>
+          <text x="720" y="120" fill="#C97B3F" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" letter-spacing="3" opacity="0.75">1240 mm</text>
+
+          <!-- LEFT vertical measurement line -->
+          <g opacity="0.5">
+            <line x1="88" y1="220" x2="88" y2="720"/>
+            <!-- extension ticks -->
+            <line x1="76" y1="220" x2="100" y2="220"/>
+            <line x1="76" y1="720" x2="100" y2="720"/>
+            <!-- arrow slashes -->
+            <line x1="82" y1="214" x2="94" y2="226"/>
+            <line x1="82" y1="714" x2="94" y2="726"/>
+            <!-- interior ticks -->
+            <line x1="85" y1="345" x2="91" y2="345"/>
+            <line x1="85" y1="470" x2="91" y2="470"/>
+            <line x1="85" y1="595" x2="91" y2="595"/>
+          </g>
+          <!-- vertical label (rotated) in a break -->
+          <rect x="80" y="456" width="16" height="44" fill="#0B0D0F"/>
+          <text x="88" y="478" fill="#C97B3F" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" letter-spacing="3" opacity="0.75" transform="rotate(-90 88 478)">900 mm</text>
+
+          <!-- RIGHT corner registration cross (architect's mark) -->
+          <g opacity="0.5" transform="translate(1352 128)">
+            <circle cx="0" cy="0" r="12" stroke-width="1"/>
+            <line x1="-18" y1="0" x2="18" y2="0"/>
+            <line x1="0" y1="-18" x2="0" y2="18"/>
+          </g>
+          <text x="1352" y="170" fill="#C97B3F" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" letter-spacing="3" opacity="0.55">A · 01</text>
+
+          <!-- DIAGONAL elevation callout, lower-left area near CTAs -->
+          <g opacity="0.55">
+            <!-- leader line: starts with a small circle (point being called out), angles up-right -->
+            <circle cx="340" cy="760" r="3" fill="#C97B3F" stroke="none"/>
+            <line x1="340" y1="760" x2="420" y2="712"/>
+            <line x1="420" y1="712" x2="560" y2="712"/>
+          </g>
+          <text x="568" y="716" fill="#C97B3F" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing="3" opacity="0.75">EL. +0'-0" · GRADE</text>
+
+          <!-- BOTTOM-RIGHT corner reference tick cluster (section key) -->
+          <g opacity="0.45" transform="translate(1320 808)">
+            <line x1="-40" y1="0" x2="40" y2="0"/>
+            <line x1="-40" y1="-8" x2="-40" y2="8"/>
+            <line x1="40" y1="-8" x2="40" y2="8"/>
+            <line x1="0" y1="-8" x2="0" y2="8"/>
+          </g>
+          <text x="1320" y="836" fill="#C97B3F" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" letter-spacing="3" opacity="0.5">SCALE 1:50</text>
+
+        </g>
+      </svg>
+
+    </div>
+
+    <!-- top meta -->
+    <div class="nn-hero-meta">
+      <div class="nn-hero-meta-inner">
+        <span>Est. 2009 · Silver Spring, MD</span>
+        <span>MHIC #132-8847</span>
+      </div>
+    </div>
+
+    <!-- copy -->
+    <div class="nn-hero-copy">
+      <div class="nn-hero-copy-inner">
+        <div class="nn-eyebrow">Residential &amp; Commercial · Roofing specialty</div>
+        <h1 class="nn-display">Your dream,<br>our hardwork.</h1>
+        <p class="nn-lead">Full-service construction — interior, exterior, and a proven specialty in roofing. Built true to plumb, backed by a 25-year workmanship warranty.</p>
+        <div class="nn-hero-cta">
+          <a class="nn-btn nn-btn-primary nn-btn-lg" href="contact.html">Request an estimate →</a>
+          <a class="nn-btn nn-btn-ghost" href="portfolio.html">See recent work</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ FOUR PILLARS ============ -->
+  <section class="nn-section-sm" style="padding-top: 96px; padding-bottom: 96px;">
+    <div class="nn-container">
+      <div class="nn-eyebrow" style="margin-bottom: 32px;">Four pillars</div>
+      <div class="nn-pillars">
+        <div class="nn-pillar">
+          <div class="nn-pillar-n">01</div>
+          <h3 class="nn-pillar-title">Quality workmanship</h3>
+          <p class="nn-pillar-desc">Tight miters. Consistent reveal. Plumb to the foundation.</p>
+        </div>
+        <div class="nn-pillar">
+          <div class="nn-pillar-n">02</div>
+          <h3 class="nn-pillar-title">Expert consultation</h3>
+          <p class="nn-pillar-desc">Free walk-through. Written estimate in five days. No pressure.</p>
+        </div>
+        <div class="nn-pillar">
+          <div class="nn-pillar-n">03</div>
+          <h3 class="nn-pillar-title">Timely completion</h3>
+          <p class="nn-pillar-desc">Schedules met. Permit timelines built in honestly, up front.</p>
+        </div>
+        <div class="nn-pillar">
+          <div class="nn-pillar-n">04</div>
+          <h3 class="nn-pillar-title">Customer satisfaction</h3>
+          <p class="nn-pillar-desc">Clean punch list. 25-year workmanship warranty. Reachable directly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="nn-rule" style="max-width: 1240px; margin: 0 auto;">
+
+  <!-- ============ STATS ============ -->
+  <section class="nn-section">
+    <div class="nn-container nn-stats">
+      <div class="nn-stat">
+        <div class="nn-eyebrow">Established</div>
+        <div class="nn-stat-num">2009</div>
+        <div class="nn-stat-unit">17 years on</div>
+      </div>
+      <div class="nn-stat">
+        <div class="nn-eyebrow">Projects</div>
+        <div class="nn-stat-num">612</div>
+        <div class="nn-stat-unit">completed</div>
+      </div>
+      <div class="nn-stat">
+        <div class="nn-eyebrow">Roofs</div>
+        <div class="nn-stat-num">1.4M</div>
+        <div class="nn-stat-unit">sqft installed</div>
+      </div>
+      <div class="nn-stat">
+        <div class="nn-eyebrow">Warranty</div>
+        <div class="nn-stat-num">25</div>
+        <div class="nn-stat-unit">years, workmanship</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDITORIAL SPLIT : the work ============ -->
+  <section class="nn-section nn-section-elev">
+    <div class="nn-container nn-editorial">
+      <div class="nn-editorial-img">
+        <img src="assets/img/stairs.svg" alt="">
+        <div class="nn-editorial-tag">Jefferson Stair · 2024</div>
+      </div>
+      <div>
+        <div class="nn-chapter">
+          <img src="assets/icons/level.svg" alt="">
+          <span class="nn-chapter-n">01</span>
+          <span class="nn-chapter-label">The work</span>
+        </div>
+        <h2 class="nn-section-title">Built true<br>to plumb.</h2>
+        <div class="nn-prose" style="margin-top: 40px;">
+          <p>We are a twelve-person shop running framing, finish, and roofing out of Silver Spring. One project manager, one crew, one warranty — start to finish.</p>
+          <p><strong>No subcontractor shuffle.</strong> The people who bid your project are the people who show up. Change orders are written, signed, and priced before work proceeds. Permits handled. Receipts on request.</p>
+        </div>
+        <div style="margin-top: 40px;">
+          <a class="nn-btn nn-btn-ghost" href="about.html">Read about us →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES PREVIEW ============ -->
+  <section class="nn-section">
+    <div class="nn-container">
+      <div class="nn-section-head">
+        <div class="nn-chapter">
+          <img src="assets/icons/hammer.svg" alt="">
+          <span class="nn-chapter-n">02</span>
+          <span class="nn-chapter-label">Services</span>
+        </div>
+        <h2 class="nn-section-title">Every surface considered.<br>Every line true.</h2>
+        <p class="nn-section-lead">Eight core disciplines, one crew. Interior, exterior, and a proven roofing specialty.</p>
+      </div>
+
+      <div class="nn-service-grid" style="margin-top: 72px;">
+
+        <a class="nn-service-card" href="services-interior.html">
+          <div class="nn-service-head">
+            <img src="assets/icons/trowel.svg" alt="">
+            <span class="nn-service-n">01</span>
+          </div>
+          <h3 class="nn-service-title">Kitchen &amp; bath</h3>
+          <p class="nn-service-desc">Custom cabinetry, stone counters, tile set true. Appliances, lighting, plumbing finished to spec.</p>
+          <div class="nn-service-foot">
+            <span class="nn-service-from">$38/sqft</span>
+            <span class="nn-service-more">Interior →</span>
+          </div>
+        </a>
+
+        <a class="nn-service-card" href="services-interior.html">
+          <div class="nn-service-head">
+            <img src="assets/icons/hammer.svg" alt="">
+            <span class="nn-service-n">04</span>
+          </div>
+          <h3 class="nn-service-title">Framing &amp; structural</h3>
+          <p class="nn-service-desc">New builds, additions, load-bearing work. Engineered to county code, plumb to the foundation.</p>
+          <div class="nn-service-foot">
+            <span class="nn-service-from">$42/sqft</span>
+            <span class="nn-service-more">Interior →</span>
+          </div>
+        </a>
+
+        <a class="nn-service-card" href="services-exterior.html">
+          <div class="nn-service-head">
+            <img src="assets/icons/saw.svg" alt="">
+            <span class="nn-service-n">05</span>
+          </div>
+          <h3 class="nn-service-title">Siding &amp; trim</h3>
+          <p class="nn-service-desc">Fiber-cement, cedar lap, stucco. Tight mitered corners, consistent reveal top to bottom.</p>
+          <div class="nn-service-foot">
+            <span class="nn-service-from">$12/sqft</span>
+            <span class="nn-service-more">Exterior →</span>
+          </div>
+        </a>
+
+        <a class="nn-service-card featured" href="services-exterior.html">
+          <div class="nn-service-head">
+            <img src="assets/icons/hammer.svg" alt="">
+            <span class="nn-service-n">08 · Featured</span>
+          </div>
+          <h3 class="nn-service-title">Roofing</h3>
+          <p class="nn-service-desc">Asphalt, metal standing-seam, slate repair. Full tear-off or overlay, ice-shield to ridge cap. Our specialty.</p>
+          <div class="nn-service-foot">
+            <span class="nn-service-from">$8/sqft</span>
+            <span class="nn-service-more">Specialty →</span>
+          </div>
+        </a>
+
+      </div>
+
+      <div style="margin-top: 56px; display: flex; gap: 32px; flex-wrap: wrap;">
+        <a class="nn-btn nn-btn-ghost" href="services-interior.html">All interior services →</a>
+        <a class="nn-btn nn-btn-ghost" href="services-exterior.html">All exterior services →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PORTFOLIO PREVIEW ============ -->
+  <section class="nn-section nn-section-elev">
+    <div class="nn-container">
+      <div class="nn-section-head">
+        <div class="nn-chapter">
+          <img src="assets/icons/square.svg" alt="">
+          <span class="nn-chapter-n">03</span>
+          <span class="nn-chapter-label">Portfolio</span>
+        </div>
+        <h2 class="nn-section-title">Recent work,<br>appraised in low light.</h2>
+      </div>
+
+      <div class="nn-project-grid" style="margin-top: 64px;">
+        <a class="nn-project-card" href="portfolio.html">
+          <div class="nn-project-img"><img src="assets/img/roof.svg" alt=""></div>
+          <div class="nn-project-meta">
+            <span class="nn-eyebrow">Roofing</span>
+            <span class="nn-project-year">2025</span>
+          </div>
+          <h3 class="nn-project-title">Glendale Standing-Seam</h3>
+          <div class="nn-project-sub">
+            <span>Chevy Chase, MD</span>
+            <span class="nn-project-area">3,400 sqft</span>
+          </div>
+        </a>
+
+        <a class="nn-project-card" href="portfolio.html">
+          <div class="nn-project-img"><img src="assets/img/kitchen.svg" alt=""></div>
+          <div class="nn-project-meta">
+            <span class="nn-eyebrow">Interior</span>
+            <span class="nn-project-year">2025</span>
+          </div>
+          <h3 class="nn-project-title">Oak Ridge Kitchen</h3>
+          <div class="nn-project-sub">
+            <span>Bethesda, MD</span>
+            <span class="nn-project-area">640 sqft</span>
+          </div>
+        </a>
+
+        <a class="nn-project-card" href="portfolio.html">
+          <div class="nn-project-img"><img src="assets/img/stairs.svg" alt=""></div>
+          <div class="nn-project-meta">
+            <span class="nn-eyebrow">Interior</span>
+            <span class="nn-project-year">2024</span>
+          </div>
+          <h3 class="nn-project-title">Jefferson Stair</h3>
+          <div class="nn-project-sub">
+            <span>Silver Spring, MD</span>
+            <span class="nn-project-area">21 risers</span>
+          </div>
+        </a>
+      </div>
+
+      <div style="margin-top: 56px;">
+        <a class="nn-btn nn-btn-ghost" href="portfolio.html">See full portfolio →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIAL LEAD ============ -->
+  <section class="nn-section">
+    <div class="nn-container">
+      <div class="nn-section-head">
+        <div class="nn-chapter">
+          <img src="assets/icons/pencil.svg" alt="">
+          <span class="nn-chapter-n">04</span>
+          <span class="nn-chapter-label">Clients</span>
+        </div>
+      </div>
+      <div class="nn-pull-quote">
+        <p class="nn-pull-quote-text">"They showed up on the days they said they would, for the number they quoted. After two other contractors ghosted us, that alone was a revelation. The work itself is beautiful."</p>
+        <div class="nn-pull-quote-cap">Eleanor Park · Bethesda, MD · Oak Ridge Kitchen</div>
+      </div>
+      <div style="margin-top: 48px;">
+        <a class="nn-btn nn-btn-ghost" href="testimonials.html">More from our clients →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section class="nn-cta-band">
+    <div class="nn-container nn-cta-inner">
+      <div>
+        <div class="nn-eyebrow">Accepting projects · Summer '26</div>
+        <h2 class="nn-cta-title">Start with a free walk-through.</h2>
+      </div>
+      <a class="nn-btn nn-btn-primary nn-btn-lg" href="contact.html">Request estimate →</a>
+    </div>
+  </section>
+</main>
+
+<div data-slot="footer"></div>
+
+<script src="js/site.js"></script>
+</body>
+</html>
