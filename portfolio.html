@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Portfolio · NN Construction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="assets/logo-mark.svg">
+<link rel="stylesheet" href="css/site.css">
+<script src="js/data.js"></script>
+<style>
+  .nn-modal { position: fixed; inset: 0; background: rgba(11,13,15,0.86); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 100; padding: 40px; }
+  .nn-modal-inner { background: var(--nn-graphite); max-width: 960px; width: 100%; max-height: 92vh; overflow: auto; position: relative; border: 1px solid var(--line-strong); }
+  .nn-modal-close { position: absolute; right: 16px; top: 16px; z-index: 2; background: rgba(11,13,15,0.8); border: 1px solid var(--line-strong); color: var(--fg-1); font: 500 11px/1 var(--ff-sans); letter-spacing: .18em; text-transform: uppercase; padding: 10px 14px; cursor: pointer; }
+</style>
+</head>
+<body data-screen-label="05 Portfolio">
+
+<div data-slot="nav"></div>
+
+<main>
+  <section class="nn-page-head">
+    <div class="nn-container">
+      <div class="nn-page-eyebrow">
+        <img src="assets/icons/square.svg" alt="">
+        <span class="nn-mono">03</span>
+        <span class="nn-label">Portfolio</span>
+      </div>
+      <h1 class="nn-page-title">Recent work.</h1>
+      <p class="nn-page-lead">Selected residential and commercial projects from 2023 onward. Click any project for scope, materials, and timeline.</p>
+      <div class="nn-tabs" style="margin-top: 48px;">
+        <button class="nn-tab active" data-portfolio-tab="All">All</button>
+        <button class="nn-tab" data-portfolio-tab="Roofing">Roofing</button>
+        <button class="nn-tab" data-portfolio-tab="Interior">Interior</button>
+        <button class="nn-tab" data-portfolio-tab="Exterior">Exterior</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="nn-section">
+    <div class="nn-container">
+      <div class="nn-project-grid">
+
+        <a class="nn-project-card" href="#" data-portfolio-card data-cat="Roofing" data-project-open="glendale-standing-seam">
+          <div class="nn-project-img"><img src="assets/img/roof.svg" alt=""></div>
+          <div class="nn-project-meta">
+            <span class="nn-eyebrow">Roofing</span>
+            <span class="nn-project-year">2025</span>
+          </div>
+          <h3 class="nn-project-title">Glendale Standing-Seam</h3>
+          <div class="nn-project-sub"><span>Chevy Chase, MD</span><span class="nn-project-area">3,400 sqft</span></div>
+        </a>
+
+        <a class="nn-project-card" href="#" data-portfolio-card data-cat="Interior" data-project-open="oak-ridge-kitchen">
+          <div class="nn-project-img"><img src="assets/img/kitchen.svg" alt=""></div>
+          <div class="nn-project-meta">
+            <span class="nn-eyebrow">Interior</span>
+            <span class="nn-project-year">2025</span>
+          </div>
+          <h3 class="nn-project-title">Oak Ridge Kitchen</h3>
+          <div class="nn-project-sub"><span>Bethesda, MD</span><span class="nn-project-area">640 sqft</span></div>
+        </a>
+
+        <a class="nn-project-card" href="#" data-portfolio-card data-cat="Interior" data-project-open="jefferson-stair">
+          <div class="nn-project-img"><img src="assets/img/stairs.svg" alt=""></div>
+          <div class="nn-project-meta">
+            <span class="nn-eyebrow">Interior</span>
+            <span class="nn-project-year">2024</span>
+          </div>
+          <h3 class="nn-project-title">Jefferson Stair</h3>
+          <div class="nn-project-sub"><span>Silver Spring, MD</span><span class="nn-project-area">21 risers</span></div>
+        </a>
+
+        <a class="nn-project-card" href="#" data-portfolio-card data-cat="Exterior" data-project-open="fairmount-facade">
+          <div class="nn-project-img"><img src="assets/img/exterior.svg" alt=""></div>
+          <div class="nn-project-meta">
+            <span class="nn-eyebrow">Exterior</span>
+            <span class="nn-project-year">2024</span>
+          </div>
+          <h3 class="nn-project-title">Fairmount Facade</h3>
+          <div class="nn-project-sub"><span>Arlington, VA</span><span class="nn-project-area">4,200 sqft</span></div>
+        </a>
+
+        <a class="nn-project-card" href="#" data-portfolio-card data-cat="Exterior" data-project-open="brookside-addition">
+          <div class="nn-project-img"><img src="assets/img/roof.svg" alt=""></div>
+          <div class="nn-project-meta">
+            <span class="nn-eyebrow">Exterior</span>
+            <span class="nn-project-year">2023</span>
+          </div>
+          <h3 class="nn-project-title">Brookside Addition</h3>
+          <div class="nn-project-sub"><span>Takoma Park, MD</span><span class="nn-project-area">820 sqft</span></div>
+        </a>
+
+        <a class="nn-project-card" href="#" data-portfolio-card data-cat="Interior" data-project-open="congressional-bath">
+          <div class="nn-project-img"><img src="assets/img/kitchen.svg" alt=""></div>
+          <div class="nn-project-meta">
+            <span class="nn-eyebrow">Interior</span>
+            <span class="nn-project-year">2023</span>
+          </div>
+          <h3 class="nn-project-title">Congressional Bath</h3>
+          <div class="nn-project-sub"><span>Rockville, MD</span><span class="nn-project-area">160 sqft</span></div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="nn-modal" data-modal>
+    <div class="nn-modal-inner">
+      <button class="nn-modal-close" data-modal-close>Close ×</button>
+      <div data-modal-body></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="nn-cta-band">
+    <div class="nn-container nn-cta-inner">
+      <div>
+        <div class="nn-eyebrow">Your project next</div>
+        <h2 class="nn-cta-title">Let's walk your site.</h2>
+      </div>
+      <a class="nn-btn nn-btn-primary nn-btn-lg" href="contact.html">Request estimate →</a>
+    </div>
+  </section>
+</main>
+
+<div data-slot="footer"></div>
+<script src="js/site.js"></script>
+</body>
+</html>
