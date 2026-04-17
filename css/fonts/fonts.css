@@ -1,0 +1,15 @@
+/* NN Construction — one modern geometric sans across the entire system.
+ *
+ * Primary: "Sohne" / "Neue Haas Grotesk" were referenced as spiritual leads,
+ * but we fall back to Inter Tight + Space Grotesk via Google Fonts as an
+ * open-source geometric sans with a neutral architectural voice.
+ *
+ * Tabular figures ride on JetBrains Mono for spec-sheet numerals (years,
+ * square footage, project counts).
+ *
+ * FLAG: these are substitutions. If you have the real "Söhne" or
+ * "Neue Haas Unica" licensed .woff2 files, drop them into /fonts/
+ * and replace the @import below with @font-face blocks.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
