@@ -1,0 +1,727 @@
+/* NN Construction — marketing site
+ * Builds on colors_and_type.css tokens. Adds page-specific styling.
+ */
+
+@import url("colors_and_type.css");
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--nn-black); color: var(--fg-1); }
+html { scroll-behavior: smooth; }
+img, svg { display: block; max-width: 100%; }
+button { font-family: inherit; }
+
+.nn-container { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+.nn-section { padding: 120px 0; }
+.nn-section-sm { padding: 80px 0; }
+.nn-section-elev { background: var(--nn-graphite); }
+.nn-section-charcoal { background: var(--nn-charcoal); }
+
+/* =============================================================
+ * Nav
+ * ============================================================= */
+.nn-nav {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(11,13,15,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line-quiet);
+}
+.nn-nav-inner {
+  max-width: 1240px; margin: 0 auto;
+  padding: 18px 48px;
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: center; gap: 48px;
+}
+.nn-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nn-brand::after { display: none; }
+.nn-brand-mark { width: 26px; height: 26px; }
+.nn-brand-word { font: 500 13px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-1); }
+.nn-brand-tag  { font: 400 10px/1 var(--ff-sans); letter-spacing: .2em;  text-transform: uppercase; color: var(--fg-3); margin-top: 4px; }
+.nn-nav-links { display: flex; gap: 32px; justify-content: center; }
+.nn-nav-link {
+  font: 500 12px/1 var(--ff-sans); letter-spacing: .18em; text-transform: uppercase;
+  color: var(--fg-2); text-decoration: none;
+  position: relative; padding-bottom: 6px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nn-nav-link::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: 0;
+  height: 1px; background: var(--nn-copper);
+  transition: right var(--dur-mid) var(--ease-out);
+}
+.nn-nav-link:hover { color: var(--fg-1); }
+.nn-nav-link:hover::after { right: 0; }
+.nn-nav-link.active { color: var(--nn-bone); }
+.nn-nav-link.active::after { right: 0; }
+
+/* =============================================================
+ * Buttons
+ * ============================================================= */
+.nn-btn {
+  font: 500 12px/1 var(--ff-sans); letter-spacing: .18em; text-transform: uppercase;
+  padding: 14px 20px; border: 0; cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  text-decoration: none; display: inline-block;
+}
+.nn-btn::after { display: none; }
+.nn-btn-primary { background: var(--nn-copper); color: var(--nn-black); }
+.nn-btn-primary:hover { background: var(--nn-copper-deep); color: var(--nn-black); }
+.nn-btn-outline { background: transparent; color: var(--fg-1); border: 1px solid var(--line-strong); }
+.nn-btn-outline:hover { border-color: var(--nn-copper); color: var(--nn-copper); }
+.nn-btn-ghost {
+  background: transparent; color: var(--fg-1);
+  padding: 14px 0; position: relative;
+}
+.nn-btn-ghost::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 8px;
+  height: 1px; background: var(--line-strong);
+}
+.nn-btn-ghost::after {
+  display: block !important;
+  content: ""; position: absolute; left: 0; right: 100%; bottom: 8px;
+  height: 1px; background: var(--nn-copper);
+  transition: right var(--dur-mid) var(--ease-out);
+}
+.nn-btn-ghost:hover::after { right: 0; }
+.nn-btn-lg { padding: 18px 28px; font-size: 13px; }
+
+/* =============================================================
+ * Hero — build sequence
+ * ============================================================= */
+.nn-hero {
+  position: relative; height: 92vh; min-height: 760px; overflow: hidden;
+  background: var(--nn-black);
+  border-bottom: 1px solid var(--line-quiet);
+}
+.nn-hero-bg { position: absolute; inset: 0; }
+.nn-hero-grid { position: absolute; inset: 0; width: 100%; height: 100%; }
+.nn-hero-draft-marks { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* Stacked 3-band composition */
+.nn-hero-band {
+  position: absolute; left: 0; right: 0;
+  overflow: hidden;
+  transition: transform 900ms var(--ease-out), opacity 900ms var(--ease-out);
+  will-change: transform, opacity;
+}
+.nn-hero-band > svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.nn-hero-band-tag {
+  position: absolute; left: 48px; bottom: 14px;
+  display: inline-flex; align-items: center; gap: 10px;
+  font: 500 10px/1 var(--ff-mono); color: var(--nn-copper);
+  letter-spacing: .24em; text-transform: uppercase;
+  padding: 8px 12px; background: rgba(11,13,15,0.55);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line-quiet);
+  z-index: 2;
+}
+.nn-copper-tick {
+  display: inline-block; width: 8px; height: 8px;
+  background: var(--nn-copper);
+}
+.nn-hero-band-foundation {
+  bottom: 0; height: 26%;
+  opacity: 0.95;
+}
+.nn-hero-band-framing {
+  bottom: 26%; height: 38%;
+  opacity: 0.85;
+}
+.nn-hero-band-finish {
+  top: 0; height: 36%;
+  opacity: 0.92;
+}
+.nn-hero-band-finish .nn-hero-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  filter: saturate(0.85) contrast(1.02);
+  transition: opacity 900ms var(--ease-out), filter 900ms var(--ease-out), transform 900ms var(--ease-out);
+}
+.nn-hero-band-finish .nn-hero-band-tint {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(201,123,63,0.05) 0%, rgba(11,13,15,0.2) 55%, rgba(11,13,15,0.65) 100%);
+}
+.nn-hero-seam {
+  position: absolute; left: 0; right: 0; height: 1px;
+  background: var(--nn-copper); opacity: 0.5;
+  pointer-events: none; z-index: 1;
+}
+.nn-hero-seam-1 { bottom: 26%; }
+.nn-hero-seam-2 { bottom: 64%; }
+
+.nn-hero-vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(201,123,63,0.08) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(11,13,15,0.1) 0%, rgba(11,13,15,0.35) 55%, rgba(11,13,15,0.92) 100%);
+}
+.nn-hero-tool {
+  position: absolute; width: 56px; height: 56px;
+  transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out);
+  filter: drop-shadow(0 0 20px rgba(201,123,63,0.45));
+}
+
+.nn-hero-copy {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 0 48px 140px;
+}
+.nn-hero-copy-inner { max-width: 1240px; margin: 0 auto; }
+.nn-hero-copy .nn-display {
+  margin: 24px 0 0;
+  font-size: 96px; line-height: 1.0;
+  max-width: 880px;
+}
+.nn-hero-copy .nn-lead { margin-top: 32px; max-width: 560px; color: var(--fg-2); }
+.nn-hero-cta { display: flex; gap: 28px; margin-top: 44px; align-items: center; flex-wrap: wrap; }
+
+.nn-hero-meta {
+  position: absolute; top: 48px; left: 0; right: 0;
+  padding: 0 48px;
+}
+.nn-hero-meta-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  color: var(--fg-3);
+  font: 500 11px/1 var(--ff-mono); letter-spacing: .2em; text-transform: uppercase;
+}
+
+.nn-hero-scrub {
+  position: absolute; right: 48px; bottom: 60px;
+  display: flex; align-items: center; gap: 18px;
+  background: rgba(11,13,15,0.7);
+  backdrop-filter: blur(12px);
+  padding: 14px 18px; border: 1px solid var(--line-quiet);
+}
+.nn-hero-stage {
+  color: var(--nn-copper); letter-spacing: .22em;
+  font: 500 11px/1 var(--ff-mono); text-transform: uppercase;
+  min-width: 140px;
+}
+.nn-scrub {
+  width: 220px; accent-color: var(--nn-copper);
+  background: transparent;
+}
+.nn-scrub-play {
+  background: transparent; border: 1px solid var(--line-strong);
+  color: var(--nn-copper);
+  width: 32px; height: 32px; cursor: pointer;
+  font-family: var(--ff-mono); font-size: 12px;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.nn-scrub-play:hover { border-color: var(--nn-copper); }
+
+/* =============================================================
+ * Four pillars — quiet row
+ * ============================================================= */
+.nn-pillars {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--nn-copper);
+}
+.nn-pillar {
+  padding: 48px 36px 48px 0;
+  border-left: 1px solid var(--line-mid);
+}
+.nn-pillar:first-child { border-left: 0; padding-left: 0; }
+.nn-pillar:not(:first-child) { padding-left: 36px; }
+.nn-pillar-n {
+  font: 500 11px/1 var(--ff-mono); color: var(--nn-copper);
+  letter-spacing: .22em;
+}
+.nn-pillar-title {
+  font: 500 22px/1.2 var(--ff-sans); color: var(--fg-1);
+  margin: 18px 0 10px; letter-spacing: -0.005em;
+}
+.nn-pillar-desc { font: 400 14px/1.55 var(--ff-sans); color: var(--fg-2); max-width: 220px; }
+
+/* =============================================================
+ * Stats
+ * ============================================================= */
+.nn-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.nn-stat { padding: 0 32px; border-left: 1px solid var(--line-mid); }
+.nn-stat:first-child { padding-left: 0; border-left: 0; }
+.nn-stat-num { font: 500 56px/1 var(--ff-mono); font-variant-numeric: tabular-nums; color: var(--fg-1); margin-top: 12px; letter-spacing: -0.01em; }
+.nn-stat-unit { font: 400 13px/1.5 var(--ff-sans); color: var(--fg-3); margin-top: 10px; letter-spacing: 0.04em; }
+
+/* =============================================================
+ * Section heads — chapter marks
+ * ============================================================= */
+.nn-section-head { margin-bottom: 48px; }
+.nn-chapter {
+  display: inline-flex; align-items: center; gap: 16px;
+  padding-bottom: 20px; margin-bottom: 28px;
+  border-bottom: 1px solid var(--nn-copper);
+  min-width: 280px;
+}
+.nn-chapter img { width: 28px; height: 28px; flex: 0 0 auto; }
+.nn-chapter-n { font: 500 14px/1 var(--ff-mono); color: var(--nn-copper); letter-spacing: .2em; }
+.nn-chapter-label { font: 500 12px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-2); }
+.nn-section-title { font: var(--fw-h1) 56px/1.08 var(--ff-sans); letter-spacing: -0.015em; color: var(--fg-1); max-width: 820px; margin: 0; text-wrap: pretty; }
+.nn-section-lead  { font: var(--fw-lead) 22px/1.45 var(--ff-sans); color: var(--fg-2); max-width: 640px; margin: 24px 0 0; text-wrap: pretty; }
+
+/* =============================================================
+ * Service cards
+ * ============================================================= */
+.nn-service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid var(--line-mid); }
+.nn-service-card {
+  padding: 48px 48px;
+  border-bottom: 1px solid var(--line-mid);
+  border-left: 1px solid var(--line-mid);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+  position: relative;
+  text-decoration: none;
+  display: block;
+}
+.nn-service-card::after { display: none; }
+.nn-service-card:first-child,
+.nn-service-card:nth-child(2n+1) { border-left: 0; }
+.nn-service-card:hover { background: rgba(201,123,63,0.04); }
+.nn-service-card.featured {
+  background: rgba(201,123,63,0.06);
+}
+.nn-service-card.featured::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--nn-copper);
+}
+.nn-service-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 32px;
+}
+.nn-service-head img { width: 40px; height: 40px; }
+.nn-service-n { font: 500 13px/1 var(--ff-mono); color: var(--nn-copper); letter-spacing: .22em; }
+.nn-service-title { font: 500 30px/1.15 var(--ff-sans); letter-spacing: -0.012em; margin: 0 0 18px; color: var(--fg-1); }
+.nn-service-desc { font: 400 15px/1.6 var(--ff-sans); color: var(--fg-2); margin: 0 0 36px; max-width: 440px; }
+.nn-service-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 22px; border-top: 1px solid var(--line-quiet);
+}
+.nn-service-from { font: 500 13px/1 var(--ff-mono); color: var(--nn-copper); letter-spacing: .15em; }
+.nn-service-more { font: 500 11px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-2); }
+.nn-service-card:hover .nn-service-more { color: var(--nn-copper); }
+
+/* =============================================================
+ * Projects
+ * ============================================================= */
+.nn-project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
+.nn-project-card { cursor: pointer; text-decoration: none; display: block; }
+.nn-project-card::after { display: none; }
+.nn-project-img {
+  aspect-ratio: 4/3; overflow: hidden;
+  background: var(--nn-graphite);
+  margin-bottom: 22px;
+  position: relative;
+}
+.nn-project-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 900ms var(--ease-out);
+}
+.nn-project-card:hover .nn-project-img img { transform: scale(1.04); }
+.nn-project-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.nn-project-year { font: 500 12px/1 var(--ff-mono); color: var(--fg-3); letter-spacing: .12em; }
+.nn-project-title { font: 500 24px/1.2 var(--ff-sans); letter-spacing: -0.008em; color: var(--fg-1); margin: 0 0 8px; }
+.nn-project-sub { display: flex; justify-content: space-between; color: var(--fg-3); font-size: 13px; }
+.nn-project-area { font: 500 12px/1 var(--ff-mono); letter-spacing: .08em; color: var(--fg-3); }
+
+/* =============================================================
+ * Testimonials
+ * ============================================================= */
+.nn-testimonial {
+  margin: 0; padding: 56px 0;
+  border-bottom: 1px solid var(--line-quiet);
+  display: grid; grid-template-columns: 120px 1fr; gap: 32px;
+}
+.nn-testimonial:first-child { padding-top: 0; }
+.nn-testimonial-idx { font: 500 12px/1 var(--ff-mono); color: var(--nn-copper); letter-spacing: .22em; padding-top: 8px; }
+.nn-testimonial-rule { width: 48px; height: 1px; background: var(--nn-copper); margin-bottom: 28px; }
+.nn-testimonial-quote { font: 400 28px/1.35 var(--ff-sans); letter-spacing: -0.008em; color: var(--fg-1); margin: 0 0 32px; max-width: 820px; text-wrap: pretty; }
+.nn-testimonial-cap { display: block; font-style: normal; }
+.nn-testimonial-name { font-weight: 500; color: var(--fg-1); font-size: 15px; }
+.nn-testimonial-role { font-size: 13px; color: var(--fg-3); margin-top: 4px; }
+.nn-testimonial-proj {
+  margin-top: 8px;
+  font: 500 11px/1 var(--ff-mono); color: var(--nn-copper);
+  letter-spacing: .18em; text-transform: uppercase;
+}
+
+/* =============================================================
+ * FAQ
+ * ============================================================= */
+.nn-faq { border-bottom: 1px solid var(--line-mid); cursor: pointer; padding: 28px 0; }
+.nn-faq-row {
+  display: grid; grid-template-columns: 80px 1fr 40px;
+  align-items: center; gap: 24px;
+}
+.nn-faq-n { font: 500 13px/1 var(--ff-mono); color: var(--nn-copper); letter-spacing: .18em; }
+.nn-faq-q { font: 500 22px/1.3 var(--ff-sans); letter-spacing: -0.008em; color: var(--fg-1); }
+.nn-faq-toggle { color: var(--nn-copper); font-size: 22px; text-align: right; font-family: var(--ff-mono); }
+.nn-faq-a {
+  margin-top: 24px; padding-left: 104px;
+  color: var(--fg-2); font: 400 16px/1.65 var(--ff-sans);
+  max-width: 820px;
+  animation: nn-fade-up 500ms var(--ease-out);
+}
+.nn-faq[aria-expanded="false"] .nn-faq-a { display: none; }
+
+@keyframes nn-fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =============================================================
+ * CTA band
+ * ============================================================= */
+.nn-cta-band {
+  background: var(--nn-charcoal);
+  border-top: 1px solid var(--nn-copper);
+  border-bottom: 1px solid var(--line-quiet);
+  padding: 96px 0;
+}
+.nn-cta-inner {
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 56px;
+}
+.nn-cta-title { font: 500 52px/1.08 var(--ff-sans); letter-spacing: -0.018em; margin: 16px 0 0; color: var(--fg-1); max-width: 720px; text-wrap: pretty; }
+
+/* =============================================================
+ * Footer
+ * ============================================================= */
+.nn-footer { background: var(--nn-graphite); border-top: 1px solid var(--line-quiet); padding: 96px 0 0; }
+.nn-footer-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 48px 72px;
+  display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.6fr; gap: 48px;
+}
+.nn-footer-brand img { width: 220px; }
+.nn-footer-blurb { font: 400 13px/1.65 var(--ff-sans); color: var(--fg-2); margin-top: 20px; max-width: 280px; }
+.nn-footer-list { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 12px; }
+.nn-footer-list a {
+  font: 400 14px/1 var(--ff-sans); color: var(--fg-2); text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nn-footer-list a::after { display: none; }
+.nn-footer-list a:hover { color: var(--nn-copper); }
+.nn-footer-office {
+  font: 400 13px/1.8 var(--ff-mono); color: var(--fg-2);
+  margin-top: 16px;
+}
+.nn-footer-base {
+  border-top: 1px solid var(--line-quiet);
+  padding: 24px 48px; max-width: 1240px; margin: 0 auto;
+  display: flex; justify-content: space-between;
+  color: var(--fg-3); font-size: 12px;
+  font-family: var(--ff-mono); letter-spacing: .1em;
+}
+
+/* =============================================================
+ * Page head
+ * ============================================================= */
+.nn-page-head { padding: 140px 0 72px; border-bottom: 1px solid var(--line-quiet); }
+.nn-page-eyebrow {
+  display: flex; align-items: center; gap: 16px;
+  padding-bottom: 20px; border-bottom: 1px solid var(--nn-copper);
+  max-width: 300px; margin-bottom: 36px;
+}
+.nn-page-eyebrow img { width: 26px; height: 26px; }
+.nn-page-eyebrow .nn-mono { font: 500 13px/1 var(--ff-mono); color: var(--nn-copper); letter-spacing: .22em; }
+.nn-page-eyebrow .nn-label { font: 500 12px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-2); }
+.nn-page-title { font: 500 84px/1.02 var(--ff-sans); letter-spacing: -0.025em; margin: 0; max-width: 1040px; text-wrap: pretty; }
+.nn-page-lead { font: 400 24px/1.5 var(--ff-sans); color: var(--fg-2); margin-top: 32px; max-width: 720px; text-wrap: pretty; }
+
+/* =============================================================
+ * Tabs
+ * ============================================================= */
+.nn-tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+.nn-tab {
+  font: 500 11px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase;
+  padding: 12px 18px; border: 1px solid var(--line-strong);
+  color: var(--fg-2); cursor: pointer; background: transparent;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+.nn-tab:hover { color: var(--nn-copper); border-color: var(--nn-cedar); }
+.nn-tab.active { color: var(--nn-copper); border-color: var(--nn-copper); }
+
+/* =============================================================
+ * About / two-col / principles / team
+ * ============================================================= */
+.nn-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+.nn-two-col-narrow { grid-template-columns: 1.2fr 1fr; }
+.nn-principle-list { list-style: none; padding: 0; margin: 32px 0 0; display: flex; flex-direction: column; gap: 24px; }
+.nn-principle-list li {
+  padding: 22px 0 22px 28px;
+  border-left: 1px solid var(--nn-copper);
+  font: 400 15px/1.6 var(--ff-sans); color: var(--fg-2);
+}
+.nn-principle-list strong {
+  color: var(--fg-1); font-weight: 500; display: block; margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.nn-team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.nn-team-card {
+  padding: 32px 28px; background: var(--nn-black);
+  border: 1px solid var(--line-quiet);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.nn-team-card:hover { border-color: var(--nn-cedar); }
+.nn-team-avatar {
+  width: 56px; height: 56px; border: 1px solid var(--nn-copper);
+  display: flex; align-items: center; justify-content: center;
+  font: 500 14px/1 var(--ff-mono); letter-spacing: .1em;
+  color: var(--nn-copper); margin-bottom: 24px;
+}
+.nn-team-name { font: 500 18px/1.2 var(--ff-sans); margin: 0 0 4px; color: var(--fg-1); }
+.nn-team-role { font: 400 13px/1.5 var(--ff-sans); color: var(--fg-3); margin: 0; }
+.nn-team-tenure {
+  font: 500 11px/1 var(--ff-mono); color: var(--nn-copper);
+  margin-top: 12px; letter-spacing: .14em; text-transform: uppercase;
+}
+
+/* =============================================================
+ * Roofing feature
+ * ============================================================= */
+.nn-roofing-feature {
+  background: linear-gradient(180deg, var(--nn-black) 0%, var(--nn-charcoal) 100%);
+  padding: 140px 0;
+  position: relative;
+}
+.nn-roof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 72px; }
+.nn-roof-cell { padding: 48px 36px; border-left: 1px solid var(--line-mid); }
+.nn-roof-cell:first-child { border-left: 0; padding-left: 0; }
+.nn-roof-n { font: 500 13px/1 var(--ff-mono); color: var(--nn-copper); letter-spacing: .22em; margin-bottom: 28px; }
+.nn-roof-title { font: 500 24px/1.2 var(--ff-sans); margin: 0 0 14px; color: var(--fg-1); letter-spacing: -0.008em; }
+.nn-roof-desc { font: 400 15px/1.65 var(--ff-sans); color: var(--fg-2); }
+
+/* Roofing spec sheet */
+.nn-spec-sheet {
+  margin-top: 96px;
+  border-top: 1px solid var(--nn-copper);
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+}
+.nn-spec-row {
+  display: grid; grid-template-columns: 160px 1fr;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line-quiet);
+  gap: 32px;
+}
+.nn-spec-cell {
+  border-right: 1px solid var(--line-quiet);
+  padding: 36px 32px;
+}
+.nn-spec-cell:last-child { border-right: 0; }
+.nn-spec-label { font: 500 11px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 14px; }
+.nn-spec-val { font: 500 22px/1.25 var(--ff-mono); color: var(--fg-1); letter-spacing: -0.005em; }
+.nn-spec-unit { display: block; font: 400 12px/1.4 var(--ff-sans); color: var(--fg-3); margin-top: 8px; letter-spacing: .04em; }
+
+/* =============================================================
+ * Contact
+ * ============================================================= */
+.nn-contact-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 96px; align-items: start; }
+.nn-contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 28px; }
+.nn-field { display: flex; flex-direction: column; }
+.nn-field-full { grid-column: span 2; }
+.nn-field label {
+  font: 500 10px/1 var(--ff-sans); letter-spacing: .24em; text-transform: uppercase;
+  color: var(--nn-copper); margin-bottom: 12px;
+}
+.nn-field input, .nn-field textarea, .nn-field select {
+  background: transparent; border: 0;
+  border-bottom: 1px solid var(--line-strong);
+  color: var(--fg-1);
+  font: 400 16px/1.5 var(--ff-sans);
+  padding: 12px 0; outline: 0;
+  transition: border-color var(--dur-fast) var(--ease-out);
+  font-family: var(--ff-sans);
+}
+.nn-field select {
+  background: var(--nn-black);
+  appearance: none;
+  -webkit-appearance: none;
+}
+.nn-field input:focus, .nn-field textarea:focus, .nn-field select:focus { border-bottom-color: var(--nn-copper); }
+.nn-field textarea { resize: vertical; min-height: 120px; }
+.nn-form-actions { grid-column: span 2; justify-self: start; margin-top: 16px; }
+.nn-sent {
+  grid-column: span 2;
+  padding: 48px 36px;
+  border: 1px solid var(--nn-copper);
+  background: rgba(201,123,63,0.04);
+}
+
+.nn-contact-aside {
+  background: var(--nn-graphite);
+  padding: 48px 40px;
+  border-top: 1px solid var(--nn-copper);
+}
+.nn-contact-aside-block + .nn-contact-aside-block { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--line-quiet); }
+.nn-cities { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.nn-city {
+  font: 500 11px/1 var(--ff-sans); letter-spacing: .14em; text-transform: uppercase;
+  padding: 8px 12px; border: 1px solid var(--line-strong); color: var(--fg-2);
+}
+.nn-contact-mono { font: 400 13px/1.8 var(--ff-mono); color: var(--fg-2); margin-top: 14px; }
+
+/* =============================================================
+ * Quote — pull quote
+ * ============================================================= */
+.nn-pull-quote {
+  padding: 80px 0;
+  border-top: 1px solid var(--line-mid);
+  border-bottom: 1px solid var(--line-mid);
+  text-align: left;
+  max-width: 880px; margin: 0 auto;
+}
+.nn-pull-quote-text {
+  font: 400 36px/1.35 var(--ff-sans);
+  letter-spacing: -0.015em; color: var(--fg-1);
+  margin: 0; text-wrap: pretty;
+}
+.nn-pull-quote-cap {
+  margin-top: 28px;
+  font: 500 12px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase;
+  color: var(--nn-copper);
+}
+
+/* =============================================================
+ * Manifesto / body prose
+ * ============================================================= */
+.nn-prose p { font: 400 17px/1.7 var(--ff-sans); color: var(--fg-2); margin: 0 0 20px; max-width: 640px; }
+.nn-prose p:last-child { margin-bottom: 0; }
+.nn-prose strong { color: var(--fg-1); font-weight: 500; }
+
+/* =============================================================
+ * Process — numbered list
+ * ============================================================= */
+.nn-process {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; border-top: 1px solid var(--nn-copper);
+}
+.nn-process-step {
+  padding: 44px 28px 44px 0;
+  border-left: 1px solid var(--line-mid);
+  padding-left: 28px;
+}
+.nn-process-step:first-child { border-left: 0; padding-left: 0; }
+.nn-process-n { font: 500 13px/1 var(--ff-mono); color: var(--nn-copper); letter-spacing: .22em; }
+.nn-process-title { font: 500 20px/1.2 var(--ff-sans); margin: 20px 0 12px; color: var(--fg-1); }
+.nn-process-desc { font: 400 14px/1.6 var(--ff-sans); color: var(--fg-2); max-width: 240px; }
+
+/* =============================================================
+ * Licensure strip
+ * ============================================================= */
+.nn-license-strip {
+  display: flex; gap: 48px; flex-wrap: wrap;
+  padding: 32px 0;
+  border-top: 1px solid var(--line-quiet);
+  border-bottom: 1px solid var(--line-quiet);
+}
+.nn-license {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.nn-license-label { font: 500 10px/1 var(--ff-sans); letter-spacing: .24em; text-transform: uppercase; color: var(--fg-3); }
+.nn-license-val { font: 500 14px/1 var(--ff-mono); color: var(--nn-copper); letter-spacing: .08em; }
+
+/* =============================================================
+ * Home — editorial split
+ * ============================================================= */
+.nn-editorial {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 96px; align-items: center;
+}
+.nn-editorial-img {
+  aspect-ratio: 4/5;
+  background: var(--nn-graphite);
+  overflow: hidden;
+  position: relative;
+}
+.nn-editorial-img img { width: 100%; height: 100%; object-fit: cover; }
+.nn-editorial-tag {
+  position: absolute; left: 24px; bottom: 24px;
+  padding: 10px 14px; background: rgba(11,13,15,0.85);
+  border: 1px solid var(--nn-copper);
+  font: 500 11px/1 var(--ff-mono); letter-spacing: .2em; text-transform: uppercase;
+  color: var(--nn-copper);
+}
+
+/* =============================================================
+ * Canvas overview (canvas.html)
+ * ============================================================= */
+.canvas-root {
+  background: #07090b;
+  min-height: 100vh;
+  padding: 72px 48px 96px;
+}
+.canvas-header {
+  max-width: 1600px; margin: 0 auto 72px;
+  display: flex; justify-content: space-between; align-items: end; gap: 32px;
+  padding-bottom: 32px; border-bottom: 1px solid var(--nn-copper);
+}
+.canvas-title { font: 500 40px/1.1 var(--ff-sans); letter-spacing: -0.015em; color: var(--fg-1); margin: 0; }
+.canvas-sub { font: 400 16px/1.5 var(--ff-sans); color: var(--fg-2); margin-top: 12px; max-width: 540px; }
+.canvas-meta {
+  font: 500 12px/1.5 var(--ff-mono); color: var(--fg-3);
+  letter-spacing: .18em; text-transform: uppercase; text-align: right;
+}
+.canvas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 64px 48px;
+  max-width: 1600px; margin: 0 auto;
+}
+.canvas-cell {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.canvas-cell-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-bottom: 14px; border-bottom: 1px solid var(--line-mid);
+}
+.canvas-cell-title { font: 500 18px/1 var(--ff-sans); color: var(--fg-1); letter-spacing: .04em; }
+.canvas-cell-n { font: 500 12px/1 var(--ff-mono); color: var(--nn-copper); letter-spacing: .22em; }
+.canvas-cell-note { font: 400 13px/1.5 var(--ff-sans); color: var(--fg-3); margin: 0; }
+.canvas-frame-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--nn-black);
+  border: 1px solid var(--line-quiet);
+  overflow: hidden;
+}
+.canvas-frame {
+  position: absolute; top: 0; left: 0;
+  width: 1440px; height: 1800px;
+  border: 0;
+  transform-origin: 0 0;
+  background: var(--nn-black);
+  pointer-events: none;
+}
+.canvas-frame-link {
+  position: absolute; inset: 0;
+  display: flex; align-items: flex-end; justify-content: flex-end;
+  padding: 16px;
+  background: linear-gradient(180deg, transparent 60%, rgba(11,13,15,0.1));
+  text-decoration: none;
+}
+.canvas-frame-link::after { display: none; }
+.canvas-frame-cta {
+  padding: 10px 14px;
+  background: rgba(11,13,15,0.9);
+  border: 1px solid var(--nn-copper);
+  font: 500 10px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase;
+  color: var(--nn-copper);
+  opacity: 0; transition: opacity var(--dur-mid) var(--ease-out);
+}
+.canvas-cell:hover .canvas-frame-cta { opacity: 1; }
+
+/* =============================================================
+ * Utility
+ * ============================================================= */
+.nn-mono { font-family: var(--ff-mono); font-variant-numeric: tabular-nums; }
+.nn-rule { height: 1px; background: var(--line-mid); border: 0; }
+.nn-rule-copper { height: 1px; background: var(--nn-copper); border: 0; }
+.nn-spacer-lg { height: 80px; }
+.nn-spacer-md { height: 48px; }
+.nn-spacer-sm { height: 24px; }
+
+/* Fade in on load */
+.nn-fade { opacity: 0; transform: translateY(12px); animation: nn-fade-up 900ms var(--ease-out) forwards; }
+.nn-fade.d1 { animation-delay: 80ms; }
+.nn-fade.d2 { animation-delay: 160ms; }
+.nn-fade.d3 { animation-delay: 240ms; }
+.nn-fade.d4 { animation-delay: 320ms; }
