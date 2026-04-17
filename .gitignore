@@ -2,7 +2,11 @@
 .vscode/
 .idea/
 node_modules/
+.next/
+out/
+*.tsbuildinfo
 .env
 .env.local
+.env.*.local
 *.log
 Thumbs.db
