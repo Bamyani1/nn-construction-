@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#0B0D0F"></stop>
-      <stop offset="0.7" stop-color="#151A1E"></stop>
-      <stop offset="1" stop-color="#1F2428"></stop>
+      <stop offset="0" stop-color="#F8FAFC"></stop>
+      <stop offset="0.7" stop-color="#FFFFFF"></stop>
+      <stop offset="1" stop-color="#F1F5F9"></stop>
     </linearGradient>
     <radialGradient id="moon" cx="0.82" cy="0.25" r="0.2">
-      <stop offset="0" stop-color="#E8DFD2" stop-opacity="0.35"></stop>
-      <stop offset="1" stop-color="#0B0D0F" stop-opacity="0"></stop>
+      <stop offset="0" stop-color="#0F172A" stop-opacity="0.35"></stop>
+      <stop offset="1" stop-color="#F8FAFC" stop-opacity="0"></stop>
     </radialGradient>
   </defs>
   <rect width="1200" height="680" fill="url(#sky)"></rect>
   <rect width="1200" height="680" fill="url(#moon)"></rect>
   
-  <polygon points="0,440 220,440 380,300 540,440 880,440 1040,320 1200,440 1200,680 0,680" fill="#0B0D0F" stroke="#1F2428"></polygon>
+  <polygon points="0,440 220,440 380,300 540,440 880,440 1040,320 1200,440 1200,680 0,680" fill="#F8FAFC" stroke="#F1F5F9"></polygon>
   
-  <g stroke="#C97B3F" stroke-width="0.8" opacity="0.35" fill="none">
+  <g stroke="#3B82F6" stroke-width="0.8" opacity="0.35" fill="none">
     <path d="M220 440 L380 300 L540 440"></path>
     <path d="M240 460 L380 320 L520 460"></path>
     <path d="M260 480 L380 340 L500 480"></path>
@@ -25,9 +25,9 @@
     <path d="M900 460 L1040 340 L1180 460"></path>
   </g>
   
-  <rect x="440" y="320" width="30" height="60" fill="#1F2428" stroke="#2A2F33"></rect>
+  <rect x="440" y="320" width="30" height="60" fill="#F1F5F9" stroke="#CBD5E1"></rect>
   
-  <rect x="300" y="490" width="20" height="30" fill="#C97B3F" opacity="0.6"></rect>
-  <rect x="700" y="490" width="20" height="30" fill="#C97B3F" opacity="0.4"></rect>
-  <rect x="960" y="490" width="20" height="30" fill="#C97B3F" opacity="0.5"></rect>
+  <rect x="300" y="490" width="20" height="30" fill="#3B82F6" opacity="0.6"></rect>
+  <rect x="700" y="490" width="20" height="30" fill="#3B82F6" opacity="0.4"></rect>
+  <rect x="960" y="490" width="20" height="30" fill="#3B82F6" opacity="0.5"></rect>
 </svg>
