@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
+/* Fonts loaded via next/font in app/layout.tsx — exposed as
+ * --nn-font-sans (Space Grotesk) and --nn-font-mono (JetBrains Mono). */
 
 :root {
   /* -------- Palette: raw swatches -------- */
@@ -37,8 +37,8 @@
   --line-cedar:  var(--nn-cedar);
 
   /* -------- Typography families -------- */
-  --ff-sans: "Space Grotesk", "Söhne", "Neue Haas Unica", "Inter", system-ui, -apple-system, sans-serif;
-  --ff-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ff-sans: var(--nn-font-sans), "Söhne", "Neue Haas Unica", "Inter", system-ui, -apple-system, sans-serif;
+  --ff-mono: var(--nn-font-mono), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* -------- Type scale (spec: modern geometric sans) -------- */
   --fs-display:   72px; --lh-display: 1.05; --fw-display: 500;
