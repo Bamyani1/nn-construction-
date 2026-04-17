@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
   
-  <g stroke="#C97B3F" stroke-width="1.6" stroke-linecap="square">
+  <g stroke="#3B82F6" stroke-width="1.6" stroke-linecap="square">
     <path d="M8 46 L8 14 L26 46 L26 14"></path>
     <path d="M34 46 L34 14 L52 46 L52 14"></path>
-    <path d="M4 50 L56 50" stroke="#E8DFD2" stroke-width="1"></path>
-    <circle cx="30" cy="50" r="1.2" fill="#C97B3F" stroke="none"></circle>
+    <path d="M4 50 L56 50" stroke="#0F172A" stroke-width="1"></path>
+    <circle cx="30" cy="50" r="1.2" fill="#3B82F6" stroke="none"></circle>
   </g>
   
-  <text x="72" y="34" fill="#E8DFD2" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="500" letter-spacing="0.02em">NN CONSTRUCTION</text>
-  <text x="72" y="48" fill="#6D7378" font-family="Space Grotesk, sans-serif" font-size="9" font-weight="400" letter-spacing="0.24em">YOUR DREAM · OUR HARDWORK</text>
+  <text x="72" y="34" fill="#0F172A" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="500" letter-spacing="0.02em">NN CONSTRUCTION</text>
+  <text x="72" y="48" fill="#64748B" font-family="Space Grotesk, sans-serif" font-size="9" font-weight="400" letter-spacing="0.24em">YOUR DREAM · OUR HARDWORK</text>
 </svg>

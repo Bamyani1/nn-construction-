@@ -1,6 +1,34 @@
 # Blue palette — design spec
 
-_2026-04-17 · status: approved_
+_2026-04-17 · status: superseded by amendment below_
+
+## Amendment — bright/light theme
+
+Initial direction was "lift the dark base + blue accent" (dark navy + blue). The owner clarified they wanted the site **actually bright** — a full light theme, not a darker-navy. Revised palette:
+
+| Token | Value |
+|---|---|
+| `--nn-black` (page) | `#F8FAFC` light slate |
+| `--nn-graphite` (cards) | `#FFFFFF` white |
+| `--nn-charcoal` (divider) | `#F1F5F9` |
+| `--nn-bone` (text) | `#0F172A` near-black |
+| `--nn-copper` (accent) | `#2563EB` blue-600 |
+| `--nn-copper-deep` | `#1D4ED8` blue-700 |
+| `--nn-cedar` (hover) | `#3B82F6` blue-500 |
+| `--nn-slate` | `#64748B` |
+| `--nn-slate-dim` | `#94A3B8` |
+| `--fg-2` | `#475569` |
+| `--bg-3` (input) | `#E2E8F0` |
+
+Illustrations (stairs, kitchen, roof, exterior) were inverted from dark jobsite scenes to light architectural renders. Icons (stroke `#3B82F6`) unchanged. Modal overlay kept dark-transparent (`rgba(15,23,42,0.45)`) for contrast against the now-light page.
+
+The original dark-navy direction (below) is retained for reference only — it was not shipped.
+
+---
+
+## Original direction (superseded)
+
+
 
 ## Why
 

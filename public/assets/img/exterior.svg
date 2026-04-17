@@ -1,30 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id="exBg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#0B0D0F"></stop>
-      <stop offset="1" stop-color="#1F2428"></stop>
+      <stop offset="0" stop-color="#F8FAFC"></stop>
+      <stop offset="1" stop-color="#F1F5F9"></stop>
     </linearGradient>
     <radialGradient id="exGlow" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#C97B3F" stop-opacity="0.22"></stop>
-      <stop offset="1" stop-color="#0B0D0F" stop-opacity="0"></stop>
+      <stop offset="0" stop-color="#3B82F6" stop-opacity="0.22"></stop>
+      <stop offset="1" stop-color="#F8FAFC" stop-opacity="0"></stop>
     </radialGradient>
   </defs>
   <rect width="1200" height="680" fill="url(#exBg)"></rect>
   
-  <rect x="200" y="200" width="800" height="380" fill="#151A1E" stroke="#2A2F33"></rect>
+  <rect x="200" y="200" width="800" height="380" fill="#FFFFFF" stroke="#CBD5E1"></rect>
   
-  <polygon points="180,200 600,80 1020,200" fill="#1F2428" stroke="#2A2F33"></polygon>
+  <polygon points="180,200 600,80 1020,200" fill="#F1F5F9" stroke="#CBD5E1"></polygon>
   
-  <rect x="560" y="400" width="80" height="180" fill="#0B0D0F" stroke="#8A6642" stroke-width="1.5"></rect>
+  <rect x="560" y="400" width="80" height="180" fill="#F8FAFC" stroke="#60A5FA" stroke-width="1.5"></rect>
   <rect x="560" y="420" width="80" height="120" fill="url(#exGlow)"></rect>
   
-  <g fill="#C97B3F" opacity="0.35">
+  <g fill="#3B82F6" opacity="0.35">
     <rect x="280" y="280" width="80" height="100"></rect>
     <rect x="400" y="280" width="80" height="100"></rect>
     <rect x="720" y="280" width="80" height="100"></rect>
     <rect x="840" y="280" width="80" height="100"></rect>
   </g>
-  <g stroke="#0B0D0F" stroke-width="2" fill="none">
+  <g stroke="#F8FAFC" stroke-width="2" fill="none">
     <line x1="320" y1="280" x2="320" y2="380"></line>
     <line x1="280" y1="330" x2="360" y2="330"></line>
     <line x1="440" y1="280" x2="440" y2="380"></line>
@@ -35,7 +35,7 @@
     <line x1="840" y1="330" x2="920" y2="330"></line>
   </g>
   
-  <g stroke="#C97B3F" stroke-width="0.4" opacity="0.2">
+  <g stroke="#3B82F6" stroke-width="0.4" opacity="0.2">
     <line x1="200" y1="240" x2="1000" y2="240"></line>
     <line x1="200" y1="270" x2="1000" y2="270"></line>
     <line x1="200" y1="410" x2="1000" y2="410"></line>
