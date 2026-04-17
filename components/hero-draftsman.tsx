@@ -51,7 +51,7 @@ export function HeroDraftsman() {
               <line x1="720" y1="113" x2="720" y2="119" />
               <line x1="980" y1="113" x2="980" y2="119" />
             </g>
-            <rect x="684" y="108" width="72" height="16" fill="#F8FAFC" />
+            <rect x="684" y="108" width="72" height="16" fill="#F5F2ED" />
             <text
               x="720"
               y="120"
@@ -76,7 +76,7 @@ export function HeroDraftsman() {
               <line x1="85" y1="470" x2="91" y2="470" />
               <line x1="85" y1="595" x2="91" y2="595" />
             </g>
-            <rect x="80" y="456" width="16" height="44" fill="#F8FAFC" />
+            <rect x="80" y="456" width="16" height="44" fill="#F5F2ED" />
             <text
               x="88"
               y="478"

@@ -2,6 +2,38 @@
 
 _2026-04-17 · status: superseded by amendment below_
 
+## Amendment — cinematic limestone atmosphere
+
+The pure slate-50 light theme (amendment below) read as clinical/SaaS — "too clear and lifeless" for a construction company. Revised palette + atmosphere, staying bright:
+
+| Token | Value |
+|---|---|
+| `--nn-black` (page) | `#F5F2ED` warm limestone |
+| `--nn-graphite` (cards) | `#FDFCFA` cool off-white (temp contrast) |
+| `--nn-charcoal` (divider) | `#EDE9E2` |
+| `--nn-bone` (text) | `#1B1F26` near-black, slight warm |
+| `--nn-copper` (accent) | `#2563EB` blue-600 (unchanged) |
+| `--nn-slate` | `#6B6B72` warm-neutral |
+| `--nn-slate-dim` | `#A3A097` warm-neutral |
+| `--fg-2` | `#4C4B50` |
+| `--bg-3` (input) | `#E6E1D7` warm |
+| hairlines | `rgba(20, 15, 10, *)` instead of `rgba(15, 23, 42, *)` |
+
+**Atmospheric layers (site-wide, `body::before` + `body::after`):**
+
+1. **Paper grain** — SVG `<feTurbulence>` data-URI, 180×180 tile, `mix-blend-mode: multiply` at ~7% effective opacity
+2. **Draftsman dot grid** — blue at 4% on 48px spacing, extends the hero's grid site-wide
+3. **Gradient meshes** — three radials: morning-blue top-right, warm-copper pool bottom-left, soft bright wash top-center
+4. **Edge vignette** — subtle four-corner darkening (6% alpha) on `body::after` z-index 3, above content but below nav (40) and modal (50+)
+
+Shadows re-authored from dark-theme `rgba(0,0,0,0.6)` to layered warm light-theme `rgba(20,15,10,0.05–0.12)`. Illustrations (stairs, kitchen, roof, exterior) had their bg/elevated/mid tones swept to match the new limestone (dark fills + blue accents kept).
+
+Modal overlay stays dark `rgba(15, 23, 42, 0.45)` for contrast against the light page.
+
+Tag: `v2.1.1`. Prior "bright/light theme" amendment below retained for lineage.
+
+---
+
 ## Amendment — bright/light theme
 
 Initial direction was "lift the dark base + blue accent" (dark navy + blue). The owner clarified they wanted the site **actually bright** — a full light theme, not a darker-navy. Revised palette:

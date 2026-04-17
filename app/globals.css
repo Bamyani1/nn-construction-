@@ -2,37 +2,37 @@
  * --nn-font-sans (Space Grotesk) and --nn-font-mono (JetBrains Mono). */
 
 :root {
-  /* -------- Palette: raw swatches (bright/light-theme, cool-blue) -------- */
-  --nn-black:          #F8FAFC; /* page bg — very light blue-slate */
-  --nn-graphite:       #FFFFFF; /* card bg — white */
-  --nn-charcoal:       #F1F5F9; /* divider / elevated surface */
-  --nn-bone:           #0F172A; /* primary type — near-black slate */
-  --nn-copper:         #2563EB; /* accent — blue-600 (strong on light) */
+  /* -------- Palette: warm limestone + blue-600 accent -------- */
+  --nn-black:          #F5F2ED; /* page bg — warm limestone */
+  --nn-graphite:       #FDFCFA; /* card bg — cool off-white (temp contrast) */
+  --nn-charcoal:       #EDE9E2; /* divider / elevated surface */
+  --nn-bone:           #1B1F26; /* primary type — near-black, slight warm */
+  --nn-copper:         #2563EB; /* accent — blue-600 (strong on limestone) */
   --nn-copper-deep:    #1D4ED8; /* pressed — blue-700 */
   --nn-cedar:          #3B82F6; /* hover / lifted — blue-500 */
-  --nn-slate:          #64748B; /* caption, meta */
-  --nn-slate-dim:      #94A3B8; /* very quiet UI lines */
-  --nn-hairline:       rgba(15, 23, 42, 0.08);
+  --nn-slate:          #6B6B72; /* caption, meta — warm-neutral */
+  --nn-slate-dim:      #A3A097; /* very quiet UI lines — warm-neutral */
+  --nn-hairline:       rgba(20, 15, 10, 0.10);
   --nn-hairline-warm:  rgba(37, 99, 235, 0.18);
 
   /* -------- Semantic foreground -------- */
   --fg-1: var(--nn-bone);        /* primary type */
-  --fg-2: #475569;                /* secondary type — mid slate */
+  --fg-2: #4C4B50;                /* secondary type — warm-neutral */
   --fg-3: var(--nn-slate);       /* meta, captions */
   --fg-accent: var(--nn-copper);
-  --fg-inverse: #F8FAFC;
+  --fg-inverse: #F5F2ED;
 
   /* -------- Semantic background -------- */
   --bg-0: var(--nn-black);       /* page */
   --bg-1: var(--nn-graphite);    /* card */
   --bg-2: var(--nn-charcoal);    /* divider / elevated card */
-  --bg-3: #E2E8F0;                /* input / pressed surface */
+  --bg-3: #E6E1D7;                /* input / pressed surface — warm */
   --bg-inverse: var(--nn-bone);
 
   /* -------- Lines -------- */
   --line-quiet:  var(--nn-hairline);
-  --line-mid:    rgba(15, 23, 42, 0.12);
-  --line-strong: rgba(15, 23, 42, 0.22);
+  --line-mid:    rgba(20, 15, 10, 0.14);
+  --line-strong: rgba(20, 15, 10, 0.22);
   --line-copper: var(--nn-copper);
   --line-cedar:  var(--nn-cedar);
 
@@ -76,9 +76,15 @@
   --radius-2: 4px;      /* cards, buttons */
   --radius-pill: 999px; /* tags only */
 
-  /* -------- Shadows — quiet, single-source flashlight -------- */
-  --shadow-1: 0 1px 0 rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.45);
-  --shadow-2: 0 1px 0 rgba(0,0,0,0.7), 0 24px 48px rgba(0,0,0,0.55);
+  /* -------- Shadows — warm, layered, light-theme -------- */
+  --shadow-1:
+    0 1px 2px rgba(20, 15, 10, 0.05),
+    0 8px 24px rgba(20, 15, 10, 0.08),
+    0 24px 48px rgba(20, 15, 10, 0.06);
+  --shadow-2:
+    0 2px 4px rgba(20, 15, 10, 0.07),
+    0 16px 40px rgba(20, 15, 10, 0.12),
+    0 32px 64px rgba(20, 15, 10, 0.10);
   --shadow-inset-hairline: inset 0 0 0 1px var(--line-quiet);
   --shadow-inset-copper:   inset 0 0 0 1px var(--nn-hairline-warm);
 
@@ -103,6 +109,45 @@ html, body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-feature-settings: "ss01", "cv11";
+}
+body {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+/* -------- Atmospheric stack: gradients + dot grid + paper grain -------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    /* paper grain — SVG turbulence, multiplies into base */
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0 0.04 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>"),
+    /* draftsman dot grid — blue at 4% */
+    radial-gradient(circle at 1px 1px, rgba(37, 99, 235, 0.22) 1px, transparent 0),
+    /* center-top bright wash */
+    radial-gradient(ellipse 1400px 900px at 50% 0%, rgba(253, 252, 250, 0.5), transparent 60%),
+    /* morning-blue top-right */
+    radial-gradient(ellipse 800px 600px at 85% 8%, rgba(37, 99, 235, 0.08), transparent 70%),
+    /* warm afternoon pool bottom-left */
+    radial-gradient(ellipse 1000px 800px at 15% 92%, rgba(181, 140, 90, 0.10), transparent 70%);
+  background-size: 180px 180px, 48px 48px, auto, auto, auto;
+  background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
+  background-blend-mode: multiply, normal, normal, normal, normal;
+}
+
+/* -------- Edge vignette — subtle four-corner darkening, above content, below nav/modal -------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 100% at 50% 50%, transparent 55%, rgba(20, 15, 10, 0.06) 100%);
 }
 
 /* =============================================================
@@ -201,7 +246,7 @@ button { font-family: inherit; }
  * ============================================================= */
 .nn-nav {
   position: sticky; top: 0; z-index: 40;
-  background: rgba(248, 250, 252,0.85);
+  background: rgba(245, 242, 237, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line-quiet);
@@ -292,7 +337,7 @@ button { font-family: inherit; }
   display: inline-flex; align-items: center; gap: 10px;
   font: 500 10px/1 var(--ff-mono); color: var(--nn-copper);
   letter-spacing: .24em; text-transform: uppercase;
-  padding: 8px 12px; background: rgba(248, 250, 252,0.55);
+  padding: 8px 12px; background: rgba(245, 242, 237, 0.72);
   backdrop-filter: blur(6px);
   border: 1px solid var(--line-quiet);
   z-index: 2;
@@ -323,7 +368,7 @@ button { font-family: inherit; }
 .nn-hero-band-finish .nn-hero-band-tint {
   position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(59, 130, 246,0.05) 0%, rgba(248, 250, 252,0.2) 55%, rgba(248, 250, 252,0.65) 100%);
+    linear-gradient(180deg, rgba(59, 130, 246,0.05) 0%, rgba(245, 242, 237, 0.25) 55%, rgba(245, 242, 237, 0.72) 100%);
 }
 .nn-hero-seam {
   position: absolute; left: 0; right: 0; height: 1px;
@@ -337,7 +382,7 @@ button { font-family: inherit; }
   position: absolute; inset: 0; pointer-events: none;
   background:
     radial-gradient(ellipse at 30% 40%, rgba(59, 130, 246,0.08) 0%, transparent 55%),
-    linear-gradient(180deg, rgba(248, 250, 252,0.1) 0%, rgba(248, 250, 252,0.35) 55%, rgba(248, 250, 252,0.92) 100%);
+    linear-gradient(180deg, rgba(245, 242, 237, 0.12) 0%, rgba(245, 242, 237, 0.38) 55%, rgba(245, 242, 237, 0.94) 100%);
 }
 .nn-hero-tool {
   position: absolute; width: 56px; height: 56px;
@@ -372,7 +417,7 @@ button { font-family: inherit; }
 .nn-hero-scrub {
   position: absolute; right: 48px; bottom: 60px;
   display: flex; align-items: center; gap: 18px;
-  background: rgba(248, 250, 252,0.7);
+  background: rgba(245, 242, 237, 0.75);
   backdrop-filter: blur(12px);
   padding: 14px 18px; border: 1px solid var(--line-quiet);
 }
@@ -815,7 +860,7 @@ button { font-family: inherit; }
 .nn-editorial-img img { width: 100%; height: 100%; object-fit: cover; }
 .nn-editorial-tag {
   position: absolute; left: 24px; bottom: 24px;
-  padding: 10px 14px; background: rgba(248, 250, 252,0.85);
+  padding: 10px 14px; background: rgba(245, 242, 237, 0.88);
   border: 1px solid var(--nn-copper);
   font: 500 11px/1 var(--ff-mono); letter-spacing: .2em; text-transform: uppercase;
   color: var(--nn-copper);
@@ -875,13 +920,13 @@ button { font-family: inherit; }
   position: absolute; inset: 0;
   display: flex; align-items: flex-end; justify-content: flex-end;
   padding: 16px;
-  background: linear-gradient(180deg, transparent 60%, rgba(248, 250, 252,0.1));
+  background: linear-gradient(180deg, transparent 60%, rgba(245, 242, 237, 0.18));
   text-decoration: none;
 }
 .canvas-frame-link::after { display: none; }
 .canvas-frame-cta {
   padding: 10px 14px;
-  background: rgba(248, 250, 252,0.9);
+  background: rgba(245, 242, 237, 0.92);
   border: 1px solid var(--nn-copper);
   font: 500 10px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase;
   color: var(--nn-copper);
@@ -925,7 +970,7 @@ button { font-family: inherit; }
 }
 .nn-modal-close {
   position: absolute; right: 16px; top: 16px; z-index: 2;
-  background: rgba(248, 250, 252,0.8);
+  background: rgba(245, 242, 237, 0.85);
   border: 1px solid var(--line-strong);
   color: var(--fg-1);
   font: 500 11px/1 var(--ff-sans);
