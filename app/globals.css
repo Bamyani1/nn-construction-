@@ -905,3 +905,30 @@ button { font-family: inherit; }
 .nn-fade.d2 { animation-delay: 160ms; }
 .nn-fade.d3 { animation-delay: 240ms; }
 .nn-fade.d4 { animation-delay: 320ms; }
+
+/* =============================================================
+ * Portfolio modal
+ * ============================================================= */
+.nn-modal {
+  position: fixed; inset: 0;
+  background: rgba(11,13,15,0.86);
+  backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+  z-index: 100; padding: 40px;
+}
+.nn-modal-inner {
+  background: var(--nn-graphite);
+  max-width: 960px; width: 100%;
+  max-height: 92vh; overflow: auto;
+  position: relative;
+  border: 1px solid var(--line-strong);
+}
+.nn-modal-close {
+  position: absolute; right: 16px; top: 16px; z-index: 2;
+  background: rgba(11,13,15,0.8);
+  border: 1px solid var(--line-strong);
+  color: var(--fg-1);
+  font: 500 11px/1 var(--ff-sans);
+  letter-spacing: .18em; text-transform: uppercase;
+  padding: 10px 14px; cursor: pointer;
+}
