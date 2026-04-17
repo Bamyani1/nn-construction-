@@ -1,8 +1,188 @@
-/* NN Construction — marketing site
- * Builds on colors_and_type.css tokens. Adds page-specific styling.
- */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-@import url("colors_and_type.css");
+
+:root {
+  /* -------- Palette: raw swatches -------- */
+  --nn-black:          #0B0D0F; /* near-black base */
+  --nn-graphite:       #151A1E; /* cards, elevated surfaces */
+  --nn-charcoal:       #1F2428; /* section dividers, warm charcoal */
+  --nn-bone:           #E8DFD2; /* warm bone — primary type */
+  --nn-copper:         #C97B3F; /* burnished copper — accent */
+  --nn-copper-deep:    #A8622E; /* pressed / deeper copper */
+  --nn-cedar:          #8A6642; /* hover state, rules */
+  --nn-slate:          #6D7378; /* caption, meta */
+  --nn-slate-dim:      #4A4F53; /* very quiet UI lines */
+  --nn-hairline:       rgba(232, 223, 210, 0.08);
+  --nn-hairline-warm:  rgba(201, 123, 63, 0.18);
+
+  /* -------- Semantic foreground -------- */
+  --fg-1: var(--nn-bone);        /* primary type */
+  --fg-2: #B7AFA3;                /* secondary type — dimmer bone */
+  --fg-3: var(--nn-slate);       /* meta, captions */
+  --fg-accent: var(--nn-copper);
+  --fg-inverse: var(--nn-black);
+
+  /* -------- Semantic background -------- */
+  --bg-0: var(--nn-black);       /* page */
+  --bg-1: var(--nn-graphite);    /* card */
+  --bg-2: var(--nn-charcoal);    /* divider / elevated card */
+  --bg-3: #262C31;                /* input / pressed surface */
+  --bg-inverse: var(--nn-bone);
+
+  /* -------- Lines -------- */
+  --line-quiet:  var(--nn-hairline);
+  --line-mid:    rgba(232, 223, 210, 0.14);
+  --line-strong: rgba(232, 223, 210, 0.28);
+  --line-copper: var(--nn-copper);
+  --line-cedar:  var(--nn-cedar);
+
+  /* -------- Typography families -------- */
+  --ff-sans: "Space Grotesk", "Söhne", "Neue Haas Unica", "Inter", system-ui, -apple-system, sans-serif;
+  --ff-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* -------- Type scale (spec: modern geometric sans) -------- */
+  --fs-display:   72px; --lh-display: 1.05; --fw-display: 500;
+  --fs-h1:        56px; --lh-h1:      1.08; --fw-h1:      500;
+  --fs-h2:        40px; --lh-h2:      1.15; --fw-h2:      500;
+  --fs-subhead:   32px; --lh-subhead: 1.25; --fw-subhead: 400;
+  --fs-lead:      22px; --lh-lead:    1.45; --fw-lead:    400;
+  --fs-body:      17px; --lh-body:    1.6;  --fw-body:    400;
+  --fs-small:     14px; --lh-small:   1.5;  --fw-small:   400;
+  --fs-micro:     12px; --lh-micro:   1.4;  --fw-micro:   500;
+  --fs-numeral:   20px; --lh-numeral: 1.4;  --fw-numeral: 500;
+  --fs-eyebrow:   12px; --lh-eyebrow: 1.2;  --fw-eyebrow: 500;
+
+  /* -------- Spatial system -------- */
+  --content-max:    1240px;
+  --gutter:         96px;
+  --gutter-sm:      48px;
+  --section-gap:    160px;
+  --section-gap-sm: 96px;
+
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+  --sp-10: 160px;
+
+  /* -------- Radii — minimal, the system reads plumb -------- */
+  --radius-0: 0px;      /* default: sharp */
+  --radius-1: 2px;      /* inputs, subtle softness */
+  --radius-2: 4px;      /* cards, buttons */
+  --radius-pill: 999px; /* tags only */
+
+  /* -------- Shadows — quiet, single-source flashlight -------- */
+  --shadow-1: 0 1px 0 rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.45);
+  --shadow-2: 0 1px 0 rgba(0,0,0,0.7), 0 24px 48px rgba(0,0,0,0.55);
+  --shadow-inset-hairline: inset 0 0 0 1px var(--line-quiet);
+  --shadow-inset-copper:   inset 0 0 0 1px var(--nn-hairline-warm);
+
+  /* -------- Motion -------- */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-mid:  400ms;
+  --dur-slow: 700ms;
+}
+
+/* =============================================================
+ * Base
+ * ============================================================= */
+html, body {
+  background: var(--bg-0);
+  color: var(--fg-1);
+  font-family: var(--ff-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* =============================================================
+ * Semantic type elements
+ * ============================================================= */
+.nn-display, h1.nn-display {
+  font: var(--fw-display) var(--fs-display)/var(--lh-display) var(--ff-sans);
+  letter-spacing: -0.02em;
+  color: var(--fg-1);
+}
+.nn-h1, h1 {
+  font: var(--fw-h1) var(--fs-h1)/var(--lh-h1) var(--ff-sans);
+  letter-spacing: -0.015em;
+  color: var(--fg-1);
+}
+.nn-h2, h2 {
+  font: var(--fw-h2) var(--fs-h2)/var(--lh-h2) var(--ff-sans);
+  letter-spacing: -0.012em;
+  color: var(--fg-1);
+}
+.nn-subhead, h3 {
+  font: var(--fw-subhead) var(--fs-subhead)/var(--lh-subhead) var(--ff-sans);
+  letter-spacing: -0.005em;
+  color: var(--fg-1);
+}
+.nn-lead {
+  font: var(--fw-lead) var(--fs-lead)/var(--lh-lead) var(--ff-sans);
+  color: var(--fg-2);
+}
+.nn-body, p {
+  font: var(--fw-body) var(--fs-body)/var(--lh-body) var(--ff-sans);
+  color: var(--fg-1);
+}
+.nn-small { font: var(--fw-small) var(--fs-small)/var(--lh-small) var(--ff-sans); color: var(--fg-2); }
+.nn-meta  { font: var(--fw-small) var(--fs-small)/var(--lh-small) var(--ff-sans); color: var(--fg-3); }
+.nn-eyebrow {
+  font: var(--fw-eyebrow) var(--fs-eyebrow)/var(--lh-eyebrow) var(--ff-sans);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-accent);
+}
+.nn-numeral, .nn-num {
+  font: var(--fw-numeral) var(--fs-numeral)/var(--lh-numeral) var(--ff-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-1);
+}
+code, .nn-code {
+  font: 500 14px/1.5 var(--ff-mono);
+  color: var(--fg-2);
+}
+
+/* =============================================================
+ * Links
+ * ============================================================= */
+a, .nn-link {
+  color: var(--fg-1);
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+}
+a::after, .nn-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: -3px;
+  height: 1px;
+  background: var(--nn-copper);
+  transition: right var(--dur-mid) var(--ease-out);
+}
+a:hover::after, .nn-link:hover::after {
+  right: 0;
+}
+a:hover, .nn-link:hover { color: var(--nn-bone); }
+
+/* =============================================================
+ * Utility: hairline rule
+ * ============================================================= */
+.nn-rule { height: 1px; background: var(--line-mid); border: 0; }
+.nn-rule-copper { height: 1px; background: var(--nn-copper); border: 0; }
+
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: var(--nn-black); color: var(--fg-1); }
