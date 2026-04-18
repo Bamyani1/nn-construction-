@@ -15,9 +15,6 @@ export default function PortfolioPage() {
       <section className="nn-page-head">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/icons/square.svg" alt="" />
-            <span className="nn-mono">03</span>
             <span className="nn-label">Portfolio</span>
           </div>
           <h1 className="nn-page-title">Recent work.</h1>

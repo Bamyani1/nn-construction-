@@ -50,9 +50,6 @@ export default function AboutPage() {
       <section className="nn-page-head">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/icons/pencil.svg" alt="" />
-            <span className="nn-mono">01</span>
             <span className="nn-label">About</span>
           </div>
           <h1 className="nn-page-title">
@@ -101,9 +98,6 @@ export default function AboutPage() {
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/icons/tape.svg" alt="" />
-              <span className="nn-chapter-n">02</span>
               <span className="nn-chapter-label">Founder&apos;s note</span>
             </div>
           </div>
@@ -151,9 +145,6 @@ export default function AboutPage() {
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/icons/hammer.svg" alt="" />
-              <span className="nn-chapter-n">03</span>
               <span className="nn-chapter-label">The crew</span>
             </div>
             <h2 className="nn-section-title">The people on site.</h2>

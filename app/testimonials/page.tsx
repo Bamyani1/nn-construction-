@@ -14,16 +14,11 @@ function projectYear(projectName: string): number | null {
 }
 
 export default function TestimonialsPage() {
-  const total = testimonials.length;
-
   return (
     <>
       <section className="nn-page-head">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/icons/pencil.svg" alt="" />
-            <span className="nn-mono">04</span>
             <span className="nn-label">Testimonials</span>
           </div>
           <h1 className="nn-page-title">
@@ -40,31 +35,24 @@ export default function TestimonialsPage() {
 
       <section className="nn-section">
         <div className="nn-container" style={{ maxWidth: 1100 }}>
-          {testimonials.map((t, idx) => {
+          {testimonials.map((t) => {
             const year = projectYear(t.project);
-            const n = String(idx + 1).padStart(2, "0");
-            const totalStr = String(total).padStart(2, "0");
             return (
               <figure key={t.name} className="nn-testimonial">
-                <div className="nn-testimonial-idx">
-                  {n} / {totalStr}
-                </div>
-                <div>
-                  <div className="nn-testimonial-rule" />
-                  <blockquote className="nn-testimonial-quote">
-                    &ldquo;{t.quote}&rdquo;
-                  </blockquote>
-                  <figcaption className="nn-testimonial-cap">
-                    <div className="nn-testimonial-name">{t.name}</div>
-                    <div className="nn-testimonial-role">
-                      {t.role} · {t.loc}
-                    </div>
-                    <div className="nn-testimonial-proj">
-                      {t.project}
-                      {year ? ` · ${year}` : ""}
-                    </div>
-                  </figcaption>
-                </div>
+                <div className="nn-testimonial-rule" />
+                <blockquote className="nn-testimonial-quote">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="nn-testimonial-cap">
+                  <div className="nn-testimonial-name">{t.name}</div>
+                  <div className="nn-testimonial-role">
+                    {t.role} · {t.loc}
+                  </div>
+                  <div className="nn-testimonial-proj">
+                    {t.project}
+                    {year ? ` · ${year}` : ""}
+                  </div>
+                </figcaption>
               </figure>
             );
           })}
