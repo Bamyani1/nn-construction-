@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 interface CanvasTileProps {
-  n: string;
   label: string;
   note: string;
   href: string;
@@ -13,7 +12,7 @@ interface CanvasTileProps {
 const FRAME_W = 1440;
 const FRAME_H = 1800;
 
-export function CanvasTile({ n, label, note, href }: CanvasTileProps) {
+export function CanvasTile({ label, note, href }: CanvasTileProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0);
 
@@ -32,9 +31,6 @@ export function CanvasTile({ n, label, note, href }: CanvasTileProps) {
     <div className="canvas-cell">
       <div className="canvas-cell-head">
         <span className="canvas-cell-title">{label}</span>
-        <span className="canvas-cell-n">
-          {n} · {href}
-        </span>
       </div>
       <p className="canvas-cell-note">{note}</p>
       <div ref={wrapRef} className="canvas-frame-wrap">

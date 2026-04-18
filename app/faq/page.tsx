@@ -15,9 +15,6 @@ export default function FaqPage() {
       <section className="nn-page-head">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/icons/wrench.svg" alt="" />
-            <span className="nn-mono">05</span>
             <span className="nn-label">FAQ</span>
           </div>
           <h1 className="nn-page-title">

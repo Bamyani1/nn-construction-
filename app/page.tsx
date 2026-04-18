@@ -4,22 +4,18 @@ import { stats, projects } from "@/lib/data";
 
 const pillars = [
   {
-    n: "01",
     title: "Quality workmanship",
     desc: "Tight miters. Consistent reveal. Plumb to the foundation.",
   },
   {
-    n: "02",
     title: "Expert consultation",
     desc: "Free walk-through. Written estimate in five days. No pressure.",
   },
   {
-    n: "03",
     title: "Timely completion",
     desc: "Schedules met. Permit timelines built in honestly, up front.",
   },
   {
-    n: "04",
     title: "Customer satisfaction",
     desc: "Clean punch list. 25-year workmanship warranty. Reachable directly.",
   },
@@ -27,8 +23,6 @@ const pillars = [
 
 const servicePreview = [
   {
-    icon: "trowel",
-    n: "01",
     title: "Kitchen & bath",
     desc: "Custom cabinetry, stone counters, tile set true. Appliances, lighting, plumbing finished to spec.",
     from: "$38/sqft",
@@ -37,8 +31,6 @@ const servicePreview = [
     featured: false,
   },
   {
-    icon: "hammer",
-    n: "04",
     title: "Framing & structural",
     desc: "New builds, additions, load-bearing work. Engineered to county code, plumb to the foundation.",
     from: "$42/sqft",
@@ -47,8 +39,6 @@ const servicePreview = [
     featured: false,
   },
   {
-    icon: "saw",
-    n: "05",
     title: "Siding & trim",
     desc: "Fiber-cement, cedar lap, stucco. Tight mitered corners, consistent reveal top to bottom.",
     from: "$12/sqft",
@@ -57,8 +47,6 @@ const servicePreview = [
     featured: false,
   },
   {
-    icon: "hammer",
-    n: "08 · Featured",
     title: "Roofing",
     desc: "Asphalt, metal standing-seam, slate repair. Full tear-off or overlay, ice-shield to ridge cap. Our specialty.",
     from: "$8/sqft",
@@ -86,8 +74,7 @@ export default function HomePage() {
           </div>
           <div className="nn-pillars">
             {pillars.map((p) => (
-              <div key={p.n} className="nn-pillar">
-                <div className="nn-pillar-n">{p.n}</div>
+              <div key={p.title} className="nn-pillar">
                 <h3 className="nn-pillar-title">{p.title}</h3>
                 <p className="nn-pillar-desc">{p.desc}</p>
               </div>
@@ -124,9 +111,6 @@ export default function HomePage() {
           </div>
           <div>
             <div className="nn-chapter">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/icons/level.svg" alt="" />
-              <span className="nn-chapter-n">01</span>
               <span className="nn-chapter-label">The work</span>
             </div>
             <h2 className="nn-section-title">
@@ -161,9 +145,6 @@ export default function HomePage() {
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/icons/hammer.svg" alt="" />
-              <span className="nn-chapter-n">02</span>
               <span className="nn-chapter-label">Services</span>
             </div>
             <h2 className="nn-section-title">
@@ -184,11 +165,6 @@ export default function HomePage() {
                 className={`nn-service-card${s.featured ? " featured" : ""}`}
                 href={s.href}
               >
-                <div className="nn-service-head">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/assets/icons/${s.icon}.svg`} alt="" />
-                  <span className="nn-service-n">{s.n}</span>
-                </div>
                 <h3 className="nn-service-title">{s.title}</h3>
                 <p className="nn-service-desc">{s.desc}</p>
                 <div className="nn-service-foot">
@@ -222,9 +198,6 @@ export default function HomePage() {
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/icons/square.svg" alt="" />
-              <span className="nn-chapter-n">03</span>
               <span className="nn-chapter-label">Portfolio</span>
             </div>
             <h2 className="nn-section-title">
@@ -267,9 +240,6 @@ export default function HomePage() {
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/icons/pencil.svg" alt="" />
-              <span className="nn-chapter-n">04</span>
               <span className="nn-chapter-label">Clients</span>
             </div>
           </div>

@@ -10,8 +10,6 @@ export const metadata: Metadata = {
 
 const exteriorServices = [
   {
-    icon: "saw",
-    n: "05",
     title: "Siding & trim",
     desc: "Fiber-cement, cedar lap, stucco. Tight mitered corners, consistent reveal top to bottom. Full tear-off or overlay with proper flashing.",
     from: "From $12/sqft",
@@ -19,8 +17,6 @@ const exteriorServices = [
     featured: false,
   },
   {
-    icon: "wrench",
-    n: "06",
     title: "Decks & hardscape",
     desc: "IPE and composite decks, paver patios, retaining walls. Drainage engineered in. Structural posts to frost depth.",
     from: "From $65/sqft",
@@ -28,8 +24,6 @@ const exteriorServices = [
     featured: false,
   },
   {
-    icon: "level",
-    n: "07",
     title: "Windows & doors",
     desc: "Full-frame replacement, custom entry doors, structural openings cut and supported. Rough-openings squared before install, every time.",
     from: "From $1,200/opening",
@@ -37,8 +31,6 @@ const exteriorServices = [
     featured: false,
   },
   {
-    icon: "hammer",
-    n: "08 · Featured",
     title: "Roofing",
     desc: "Asphalt, metal standing-seam, slate repair. Full tear-off or overlay, ice-shield to ridge cap. Our proven specialty — see below.",
     from: "From $8/sqft",
@@ -49,17 +41,14 @@ const exteriorServices = [
 
 const roofingCells = [
   {
-    n: "01",
     title: "Full tear-off re-roof",
     desc: "Decking inspected, ice & water shield applied at eaves and valleys, synthetic underlayment, hand-nailed asphalt or standing-seam metal. Proper step-flashing at every penetration.",
   },
   {
-    n: "02",
     title: "Repair & flashing",
     desc: "Leak diagnosis, chimney and skylight flashing, valley replacement. Documented before-and-after for every repair, including infrared moisture scans where warranted.",
   },
   {
-    n: "03",
     title: "Annual maintenance",
     desc: "Semi-annual inspection, gutter cleaning, sealant refresh. Keeps the 25-year workmanship warranty live and catches small failures before they become expensive ones.",
   },
@@ -89,9 +78,6 @@ export default function ExteriorServicesPage() {
       <section className="nn-page-head">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/icons/level.svg" alt="" />
-            <span className="nn-mono">02 · B</span>
             <span className="nn-label">Services · Exterior</span>
           </div>
           <h1 className="nn-page-title">
@@ -116,11 +102,6 @@ export default function ExteriorServicesPage() {
                 key={s.title}
                 className={`nn-service-card${s.featured ? " featured" : ""}`}
               >
-                <div className="nn-service-head">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/assets/icons/${s.icon}.svg`} alt="" />
-                  <span className="nn-service-n">{s.n}</span>
-                </div>
                 <h3 className="nn-service-title">{s.title}</h3>
                 <p className="nn-service-desc">{s.desc}</p>
                 <div className="nn-service-foot">
@@ -137,9 +118,6 @@ export default function ExteriorServicesPage() {
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/icons/hammer.svg" alt="" />
-              <span className="nn-chapter-n">03</span>
               <span className="nn-chapter-label">Specialty · Roofing</span>
             </div>
             <h2 className="nn-section-title">Our proven specialty.</h2>
@@ -152,8 +130,7 @@ export default function ExteriorServicesPage() {
 
           <div className="nn-roof-grid">
             {roofingCells.map((c) => (
-              <div key={c.n} className="nn-roof-cell">
-                <div className="nn-roof-n">{c.n}</div>
+              <div key={c.title} className="nn-roof-cell">
                 <h3 className="nn-roof-title">{c.title}</h3>
                 <p className="nn-roof-desc">{c.desc}</p>
               </div>

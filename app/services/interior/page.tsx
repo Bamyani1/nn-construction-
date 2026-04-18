@@ -10,32 +10,24 @@ export const metadata: Metadata = {
 
 const interiorServices = [
   {
-    icon: "trowel",
-    n: "01",
     title: "Kitchen & bath",
     desc: "Custom cabinetry, stone counters, tile set true. Appliances, lighting, plumbing finished to spec. Structural wall removal with engineered LVL where needed.",
     from: "From $38/sqft",
     time: "8–14 wks",
   },
   {
-    icon: "pencil",
-    n: "02",
     title: "Custom built-ins",
     desc: "Stained-oak millwork, floating shelves, integrated storage. Shop-built, site-finished. Mitred returns, continuous grain, hand-rubbed wax.",
     from: "From $210/lf",
     time: "3–6 wks",
   },
   {
-    icon: "square",
-    n: "03",
     title: "Flooring & stair",
     desc: "Wide-plank white oak, tile, stone. Custom stair runs with closed or open risers — blackened-steel stringers and solid hardwood treads.",
     from: "From $14/sqft",
     time: "2–5 wks",
   },
   {
-    icon: "hammer",
-    n: "04",
     title: "Framing & structural",
     desc: "New builds, additions, load-bearing work. Engineered to county code, plumb to the foundation. Permit submittal and inspection handled in-house.",
     from: "From $42/sqft",
@@ -45,22 +37,18 @@ const interiorServices = [
 
 const process = [
   {
-    n: "01",
     title: "Walk-through",
     desc: "Free, in-person, typically within a week. We walk the space, talk scope, discuss constraints.",
   },
   {
-    n: "02",
     title: "Written estimate",
     desc: "Inside five business days. Line-item labor, materials, permits, timeline. No hidden contingencies.",
   },
   {
-    n: "03",
     title: "Build",
     desc: "One project manager. One crew. Daily clean-up. Change orders written, signed, priced before work.",
   },
   {
-    n: "04",
     title: "Punch & warranty",
     desc: "Clean hand-off, 25-year workmanship warranty. Reachable directly — no call centers.",
   },
@@ -72,9 +60,6 @@ export default function InteriorServicesPage() {
       <section className="nn-page-head">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/icons/trowel.svg" alt="" />
-            <span className="nn-mono">02 · A</span>
             <span className="nn-label">Services · Interior</span>
           </div>
           <h1 className="nn-page-title">
@@ -96,11 +81,6 @@ export default function InteriorServicesPage() {
           <div className="nn-service-grid">
             {interiorServices.map((s) => (
               <div key={s.title} className="nn-service-card">
-                <div className="nn-service-head">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/assets/icons/${s.icon}.svg`} alt="" />
-                  <span className="nn-service-n">{s.n}</span>
-                </div>
                 <h3 className="nn-service-title">{s.title}</h3>
                 <p className="nn-service-desc">{s.desc}</p>
                 <div className="nn-service-foot">
@@ -117,17 +97,13 @@ export default function InteriorServicesPage() {
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/icons/tape.svg" alt="" />
-              <span className="nn-chapter-n">02</span>
               <span className="nn-chapter-label">Process</span>
             </div>
             <h2 className="nn-section-title">How a project moves.</h2>
           </div>
           <div className="nn-process">
             {process.map((p) => (
-              <div key={p.n} className="nn-process-step">
-                <div className="nn-process-n">{p.n}</div>
+              <div key={p.title} className="nn-process-step">
                 <h3 className="nn-process-title">{p.title}</h3>
                 <p className="nn-process-desc">{p.desc}</p>
               </div>

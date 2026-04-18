@@ -14,7 +14,6 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
     <>
       {items.map((item, idx) => {
         const open = openIndex === idx;
-        const n = String(idx + 1).padStart(2, "0");
         return (
           <div
             key={item.q}
@@ -31,7 +30,6 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
             }}
           >
             <div className="nn-faq-row">
-              <span className="nn-faq-n">{n}</span>
               <span className="nn-faq-q">{item.q}</span>
               <span className="nn-faq-toggle">{open ? "−" : "+"}</span>
             </div>
