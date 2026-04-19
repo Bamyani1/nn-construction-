@@ -49,7 +49,7 @@ export function CanvasTile({ label, note, href }: CanvasTileProps) {
               transformOrigin: "0 0",
               transform: `scale(${scale})`,
               pointerEvents: "none",
-              background: "var(--nn-black)",
+              background: "var(--nn-paper)",
             }}
           />
         )}

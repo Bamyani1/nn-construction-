@@ -93,7 +93,7 @@ export default function InteriorServicesPage() {
         </div>
       </section>
 
-      <section className="nn-section nn-section-elev">
+      <section className="nn-section nn-section-raised">
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">

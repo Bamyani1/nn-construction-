@@ -102,7 +102,7 @@ export default function HomePage() {
       </section>
 
       {/* Editorial split */}
-      <section className="nn-section nn-section-elev">
+      <section className="nn-section nn-section-raised">
         <div className="nn-container nn-editorial">
           <div className="nn-editorial-img">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -194,7 +194,7 @@ export default function HomePage() {
       </section>
 
       {/* Portfolio preview */}
-      <section className="nn-section nn-section-elev">
+      <section className="nn-section nn-section-raised">
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">

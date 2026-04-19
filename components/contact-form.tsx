@@ -96,7 +96,7 @@ export function ContactForm() {
             Request #
             <span
               className="nn-mono"
-              style={{ color: "var(--nn-copper)" }}
+              style={{ color: "var(--nn-azure)" }}
             >
               {requestId}
             </span>
