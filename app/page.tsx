@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HeroDraftsman } from "@/components/hero-draftsman";
+import { HeroSplit } from "@/components/hero-split";
 import { stats, projects } from "@/lib/data";
 
 const pillars = [
@@ -61,7 +61,7 @@ const portfolioPreview = projects.slice(0, 3);
 export default function HomePage() {
   return (
     <>
-      <HeroDraftsman />
+      <HeroSplit />
 
       {/* Four pillars */}
       <section

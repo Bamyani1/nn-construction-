@@ -311,133 +311,115 @@ button { font-family: inherit; }
 .nn-btn-lg { padding: 18px 28px; font-size: 13px; }
 
 /* =============================================================
- * Hero — build sequence
+ * Editorial split-hero
  * ============================================================= */
-.nn-hero {
-  position: relative; height: 92vh; min-height: 760px; overflow: hidden;
-  background: var(--nn-paper);
+.nn-hero-split {
+  display: grid;
+  grid-template-columns: 42% 1fr;
+  height: 92vh;
+  min-height: 760px;
   border-bottom: 1px solid var(--line-quiet);
 }
-.nn-hero-bg { position: absolute; inset: 0; }
-.nn-hero-grid { position: absolute; inset: 0; width: 100%; height: 100%; }
-.nn-hero-draft-marks { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-
-/* Stacked 3-band composition */
-.nn-hero-band {
-  position: absolute; left: 0; right: 0;
+.nn-hero-split-left {
+  background: var(--nn-ink);
+  color: var(--nn-paper);
+  padding: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.nn-hero-split-copy { max-width: 520px; }
+.nn-hero-split-title {
+  color: var(--nn-paper);
+  margin: 0;
+  font: 500 88px/1.05 var(--ff-sans);
+  letter-spacing: -0.02em;
+}
+.nn-hero-split-lead {
+  margin: 40px 0 0;
+  font: 400 20px/1.5 var(--ff-sans);
+  color: rgba(247, 250, 252, 0.7);
+  max-width: 460px;
+}
+.nn-hero-split-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 64px;
+  font: 500 12px/1 var(--ff-sans);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nn-paper);
+  text-decoration: none;
+  padding-bottom: 12px;
+  position: relative;
+  width: fit-content;
+}
+.nn-hero-split-cta::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: rgba(247, 250, 252, 0.5);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.nn-hero-split-cta:hover::after { background: var(--nn-paper); }
+.nn-hero-split-right {
+  position: relative;
   overflow: hidden;
-  transition: transform 900ms var(--ease-out), opacity 900ms var(--ease-out);
-  will-change: transform, opacity;
 }
-.nn-hero-band > svg {
-  position: absolute; inset: 0; width: 100%; height: 100%;
+.nn-hero-split-photo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0B1A2E 0%, #1E3A5F 60%, #2A4670 100%);
 }
-.nn-hero-band-tag {
-  position: absolute; left: 48px; bottom: 14px;
-  display: inline-flex; align-items: center; gap: 10px;
-  font: 500 10px/1 var(--ff-mono); color: var(--nn-azure);
-  letter-spacing: .24em; text-transform: uppercase;
-  padding: 8px 12px; background: rgba(236, 241, 247, 0.72);
-  backdrop-filter: blur(6px);
+.nn-hero-split-card {
+  position: absolute;
+  right: 48px;
+  bottom: 48px;
+  background: rgba(236, 241, 247, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--line-quiet);
-  z-index: 2;
+  padding: 28px 36px;
+  min-width: 280px;
 }
-.nn-azure-tick {
-  display: inline-block; width: 8px; height: 8px;
-  background: var(--nn-azure);
-}
-.nn-hero-band-foundation {
-  bottom: 0; height: 26%;
-  opacity: 0.95;
-}
-.nn-hero-band-framing {
-  bottom: 26%; height: 38%;
-  opacity: 0.85;
-}
-.nn-hero-band-finish {
-  top: 0; height: 36%;
-  opacity: 0.92;
-}
-.nn-hero-band-finish .nn-hero-photo {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: 0.55;
-  filter: saturate(0.85) contrast(1.02);
-  transition: opacity 900ms var(--ease-out), filter 900ms var(--ease-out), transform 900ms var(--ease-out);
-}
-.nn-hero-band-finish .nn-hero-band-tint {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(180deg, rgba(37, 86, 168,0.05) 0%, rgba(236, 241, 247, 0.25) 55%, rgba(236, 241, 247, 0.72) 100%);
-}
-.nn-hero-seam {
-  position: absolute; left: 0; right: 0; height: 1px;
-  background: var(--nn-azure); opacity: 0.5;
-  pointer-events: none; z-index: 1;
-}
-.nn-hero-seam-1 { bottom: 26%; }
-.nn-hero-seam-2 { bottom: 64%; }
-
-.nn-hero-vignette {
-  position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse at 30% 40%, rgba(37, 86, 168,0.08) 0%, transparent 55%),
-    linear-gradient(180deg, rgba(236, 241, 247, 0.12) 0%, rgba(236, 241, 247, 0.38) 55%, rgba(236, 241, 247, 0.94) 100%);
-}
-.nn-hero-tool {
-  position: absolute; width: 56px; height: 56px;
-  transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out);
-  filter: drop-shadow(0 0 20px rgba(37, 86, 168,0.45));
-}
-
-.nn-hero-copy {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 0 48px 140px;
-}
-.nn-hero-copy-inner { max-width: 1240px; margin: 0 auto; }
-.nn-hero-copy .nn-display {
-  margin: 24px 0 0;
-  font-size: 96px; line-height: 1.0;
-  max-width: 880px;
-}
-.nn-hero-copy .nn-lead { margin-top: 32px; max-width: 560px; color: var(--fg-2); }
-.nn-hero-cta { display: flex; gap: 28px; margin-top: 44px; align-items: center; flex-wrap: wrap; }
-
-.nn-hero-meta {
-  position: absolute; top: 48px; left: 0; right: 0;
-  padding: 0 48px;
-}
-.nn-hero-meta-inner {
-  max-width: 1240px; margin: 0 auto;
-  display: flex; justify-content: space-between; align-items: center;
-  color: var(--fg-3);
-  font: 500 11px/1 var(--ff-mono); letter-spacing: .2em; text-transform: uppercase;
-}
-
-.nn-hero-scrub {
-  position: absolute; right: 48px; bottom: 60px;
-  display: flex; align-items: center; gap: 18px;
-  background: rgba(236, 241, 247, 0.75);
-  backdrop-filter: blur(12px);
-  padding: 14px 18px; border: 1px solid var(--line-quiet);
-}
-.nn-hero-stage {
-  color: var(--nn-azure); letter-spacing: .22em;
-  font: 500 11px/1 var(--ff-mono); text-transform: uppercase;
-  min-width: 140px;
-}
-.nn-scrub {
-  width: 220px; accent-color: var(--nn-azure);
-  background: transparent;
-}
-.nn-scrub-play {
-  background: transparent; border: 1px solid var(--line-strong);
+.nn-hero-split-card-eyebrow {
+  font: 500 11px/1 var(--ff-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--nn-azure);
-  width: 32px; height: 32px; cursor: pointer;
-  font-family: var(--ff-mono); font-size: 12px;
-  transition: border-color var(--dur-fast) var(--ease-out);
+  margin-bottom: 14px;
 }
-.nn-scrub-play:hover { border-color: var(--nn-azure); }
+.nn-hero-split-card-title {
+  font: 500 24px/1.2 var(--ff-sans);
+  color: var(--fg-1);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.nn-hero-split-card-loc {
+  font: 400 13px/1.4 var(--ff-sans);
+  color: var(--fg-3);
+}
+@media (max-width: 768px) {
+  .nn-hero-split {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+  }
+  .nn-hero-split-left {
+    padding: 72px 32px;
+    min-height: 60vh;
+  }
+  .nn-hero-split-title { font-size: 56px; }
+  .nn-hero-split-right { min-height: 60vh; }
+  .nn-hero-split-card {
+    right: 24px;
+    bottom: 24px;
+    min-width: 0;
+    max-width: calc(100% - 48px);
+  }
+}
 
 /* =============================================================
  * Four pillars — quiet row
