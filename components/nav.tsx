@@ -15,15 +15,14 @@ export function Nav() {
     <nav className="nn-nav">
       <div className="nn-nav-inner">
         <Link className="nn-brand" href="/">
-          <div className="nn-brand-chip">
-            <Image
-              src="/assets/logo.png"
-              alt="NN Construction-BD"
-              width={296}
-              height={252}
-              priority
-            />
-          </div>
+          <Image
+            className="nn-brand-mark-img"
+            src="/assets/logo.png"
+            alt="NN Construction-BD"
+            width={296}
+            height={252}
+            priority
+          />
           <div className="nn-brand-tag">Your dream · Our hardwork</div>
         </Link>
         <NavLinks items={navItems} />
