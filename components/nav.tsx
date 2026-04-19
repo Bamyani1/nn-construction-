@@ -18,11 +18,15 @@ export function Nav() {
           <Image
             className="nn-brand-mark-img"
             src="/assets/logo.png"
-            alt="NN Construction-BD"
+            alt="NN Construction"
             width={296}
             height={252}
             priority
           />
+          <div className="nn-brand-text">
+            <div className="nn-brand-word">NN Construction</div>
+            <div className="nn-brand-tag">Your dream · Our hardwork</div>
+          </div>
         </Link>
         <NavLinks items={navItems} />
         <Link className="nn-btn nn-btn-primary" href="/contact">
