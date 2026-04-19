@@ -116,7 +116,7 @@ body {
   isolation: isolate;
 }
 
-/* -------- Atmospheric stack: gradients + dot grid + paper grain -------- */
+/* -------- Atmospheric stack: tool watermark + dot grid + gradient pools -------- */
 body::before {
   content: "";
   position: fixed;
@@ -124,8 +124,8 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background-image:
-    /* paper grain — SVG turbulence, cool-ink cast, multiplies into base */
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.06 0 0 0 0 0.10 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>"),
+    /* tool watermark — scattered draftsman tools, Prussian at ~10% (PS5-style ID-tag) */
+    url("/assets/img/tools-pattern.svg"),
     /* cyanotype dot grid — Prussian at 4% */
     radial-gradient(circle at 1px 1px, rgba(30, 58, 95, 0.22) 1px, transparent 0),
     /* center-top cool wash */
@@ -134,9 +134,9 @@ body::before {
     radial-gradient(ellipse 800px 600px at 85% 8%, rgba(30, 58, 95, 0.10), transparent 70%),
     /* cyanotype flash pool bottom-left */
     radial-gradient(ellipse 1000px 800px at 15% 92%, rgba(37, 99, 235, 0.10), transparent 70%);
-  background-size: 180px 180px, 48px 48px, auto, auto, auto;
+  background-size: 480px 480px, 48px 48px, auto, auto, auto;
   background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
-  background-blend-mode: multiply, normal, normal, normal, normal;
+  background-blend-mode: normal, normal, normal, normal, normal;
 }
 
 /* -------- Edge vignette — subtle four-corner darkening, above content, below nav/modal -------- */
