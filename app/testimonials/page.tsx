@@ -1,17 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { testimonials, projects } from "@/lib/data";
+import { testimonials } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Testimonials · NN Construction",
   description:
     "Unedited, attributed client testimonials. Reference calls available before you sign.",
 };
-
-function projectYear(projectName: string): number | null {
-  const match = projects.find((p) => p.name === projectName);
-  return match ? match.year : null;
-}
 
 export default function TestimonialsPage() {
   return (
@@ -35,27 +30,21 @@ export default function TestimonialsPage() {
 
       <section className="nn-section">
         <div className="nn-container" style={{ maxWidth: 1100 }}>
-          {testimonials.map((t) => {
-            const year = projectYear(t.project);
-            return (
-              <figure key={t.name} className="nn-testimonial">
-                <div className="nn-testimonial-rule" />
-                <blockquote className="nn-testimonial-quote">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="nn-testimonial-cap">
-                  <div className="nn-testimonial-name">{t.name}</div>
-                  <div className="nn-testimonial-role">
-                    {t.role} · {t.loc}
-                  </div>
-                  <div className="nn-testimonial-proj">
-                    {t.project}
-                    {year ? ` · ${year}` : ""}
-                  </div>
-                </figcaption>
-              </figure>
-            );
-          })}
+          {testimonials.map((t) => (
+            <figure key={t.name} className="nn-testimonial">
+              <div className="nn-testimonial-rule" />
+              <blockquote className="nn-testimonial-quote">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <figcaption className="nn-testimonial-cap">
+                <div className="nn-testimonial-name">{t.name}</div>
+                <div className="nn-testimonial-role">
+                  {t.role} · {t.loc}
+                </div>
+                <div className="nn-testimonial-proj">{t.project}</div>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 

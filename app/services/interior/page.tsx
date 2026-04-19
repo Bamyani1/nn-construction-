@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ServicesTabs } from "@/components/services-tabs";
@@ -73,6 +74,15 @@ export default function InteriorServicesPage() {
             and inspected.
           </p>
           <ServicesTabs active="interior" />
+          <div className="nn-page-head-img">
+            <Image
+              src="/assets/projects/primary-bath-renovation/01.webp"
+              alt="Primary bath renovation"
+              fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              priority
+            />
+          </div>
         </div>
       </section>
 

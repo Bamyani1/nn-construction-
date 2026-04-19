@@ -22,6 +22,7 @@ export function ContactForm() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    // TODO(phase-5): wire a real route handler + email backend.
     setSent(true);
   }
 
@@ -35,7 +36,7 @@ export function ContactForm() {
               id="cf-name"
               required
               type="text"
-              defaultValue="Maya Reyes"
+              placeholder="Your name"
             />
           </div>
           <div className="nn-field">
@@ -44,7 +45,7 @@ export function ContactForm() {
               id="cf-email"
               required
               type="email"
-              defaultValue="maya.reyes@example.com"
+              placeholder="you@example.com"
             />
           </div>
           <div className="nn-field">
@@ -52,7 +53,7 @@ export function ContactForm() {
             <input
               id="cf-phone"
               type="tel"
-              defaultValue="(240) 555-0166"
+              placeholder="(555) 555-5555"
             />
           </div>
           <div className="nn-field">
@@ -68,7 +69,7 @@ export function ContactForm() {
             <textarea
               id="cf-notes"
               rows={5}
-              defaultValue="1928 colonial in Chevy Chase. Looking at standing-seam metal for the front dormer and repair on the rear slope. Free to walk the property any weekday morning."
+              placeholder="Tell us about the property, the scope you're considering, and any timing constraints."
             />
           </div>
           <div className="nn-form-actions">
@@ -108,7 +109,7 @@ export function ContactForm() {
               maxWidth: 560,
             }}
           >
-            You&apos;ll receive a confirmation email within a few minutes. If
+            We&apos;ve received your request and will reach out directly. If
             your project is roofing-related and urgent (active leak, storm
             damage), please also call the office.
           </p>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ServicesTabs } from "@/components/services-tabs";
@@ -91,6 +92,15 @@ export default function ExteriorServicesPage() {
             drainage engineered in.
           </p>
           <ServicesTabs active="exterior" />
+          <div className="nn-page-head-img">
+            <Image
+              src="/assets/projects/foundation-waterproofing/01.webp"
+              alt="Foundation waterproofing"
+              fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              priority
+            />
+          </div>
         </div>
       </section>
 
