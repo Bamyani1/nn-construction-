@@ -23,7 +23,6 @@ export function Nav() {
             height={252}
             priority
           />
-          <div className="nn-brand-tag">Your dream · Our hardwork</div>
         </Link>
         <NavLinks items={navItems} />
         <Link className="nn-btn nn-btn-primary" href="/contact">
