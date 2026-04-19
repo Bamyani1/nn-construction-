@@ -57,10 +57,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="nn-footer-logo-band">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/logo.png" alt="NN Construction-BD" />
-      </div>
       <div className="nn-footer-base">
         <span>© 2026 NN Construction BD Corporation</span>
         <span>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { NavLinks, type NavLinkItem } from "@/components/nav-links";
 
@@ -14,9 +15,14 @@ export function Nav() {
     <nav className="nn-nav">
       <div className="nn-nav-inner">
         <Link className="nn-brand" href="/">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="nn-brand-mark" src="/assets/logo-mark.svg" alt="NN monogram" />
-          <div className="nn-brand-word">NN Construction</div>
+          <Image
+            className="nn-brand-mark-img"
+            src="/assets/logo.png"
+            alt="NN Construction-BD"
+            width={296}
+            height={252}
+            priority
+          />
         </Link>
         <NavLinks items={navItems} />
         <Link className="nn-btn nn-btn-primary" href="/contact">
