@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { team } from "@/lib/data";
+import { team, testimonials, faqs } from "@/lib/data";
+import { FaqAccordion } from "@/components/faq-accordion";
 
 export const metadata: Metadata = {
   title: "About · NN Construction",
@@ -184,6 +185,60 @@ export default function AboutPage() {
                 <span className="nn-license-val">{l.val}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section id="testimonials" className="nn-section nn-section-raised">
+        <div className="nn-container" style={{ maxWidth: 1100 }}>
+          <div className="nn-section-head">
+            <div className="nn-chapter">
+              <span className="nn-chapter-label">Client testimonials</span>
+            </div>
+            <h2 className="nn-section-title">Words from the sites we&apos;ve finished.</h2>
+          </div>
+          <div style={{ marginTop: 48 }}>
+            {testimonials.slice(0, 3).map((t) => (
+              <figure key={t.name} className="nn-testimonial">
+                <div className="nn-testimonial-rule" />
+                <blockquote className="nn-testimonial-quote">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="nn-testimonial-cap">
+                  <div className="nn-testimonial-name">{t.name}</div>
+                  <div className="nn-testimonial-role">
+                    {t.role} · {t.loc}
+                  </div>
+                  <div className="nn-testimonial-proj">{t.project}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <div style={{ marginTop: 32 }}>
+            <Link className="nn-link" href="/testimonials">
+              Read all testimonials →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="nn-section">
+        <div className="nn-container" style={{ maxWidth: 960 }}>
+          <div className="nn-section-head">
+            <div className="nn-chapter">
+              <span className="nn-chapter-label">Common questions</span>
+            </div>
+            <h2 className="nn-section-title">Questions, answered plainly.</h2>
+          </div>
+          <div style={{ marginTop: 48 }}>
+            <FaqAccordion items={faqs.slice(0, 5)} />
+          </div>
+          <div style={{ marginTop: 32 }}>
+            <Link className="nn-link" href="/faq">
+              Browse full FAQ →
+            </Link>
           </div>
         </div>
       </section>
