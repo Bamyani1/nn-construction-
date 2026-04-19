@@ -10,3 +10,4 @@ out/
 .env.*.local
 *.log
 Thumbs.db
+NN-pictures/

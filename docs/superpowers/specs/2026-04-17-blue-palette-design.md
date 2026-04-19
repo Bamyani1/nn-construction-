@@ -2,7 +2,50 @@
 
 _2026-04-17 · status: superseded by amendment below_
 
+## Amendment — Cyanotype Blueprint
+
+_2026-04-18 · v2.2 · current_
+
+The cinematic limestone palette (amendment below) created visual dissonance — warm limestone bg + warm-wood atmospheric pool fought the cool blue accent. Revised to a fully cyanotype direction (deep Prussian on blueprint paper). Token names also renamed to semantic blueprint vocabulary, since the prior `--nn-copper` / `--nn-cedar` / `--nn-bone` / `--nn-black` (which held the warm limestone value) were misleading once values shifted to blue.
+
+| Old token | New token | New value (cyanotype) |
+|---|---|---|
+| `--nn-black` (page) | `--nn-paper` | `#ECF1F7` blueprint paper |
+| `--nn-graphite` (cards) | `--nn-paper-raised` | `#F7FAFC` cool white |
+| `--nn-charcoal` (divider) | `--nn-paper-elevated` | `#DDE5EF` slate divider |
+| `--nn-bone` (text) | `--nn-ink` | `#0B1A2E` deep ink |
+| `--nn-copper` (accent) | `--nn-azure` | `#1E3A5F` Prussian |
+| `--nn-copper-deep` (pressed) | `--nn-azure-deep` | `#153050` deep Prussian |
+| `--nn-cedar` (hover) | `--nn-azure-lift` | `#2556A8` lifted cyan |
+| `--nn-slate` | `--nn-slate` (kept) | `#64748B` slate-500 |
+| `--nn-slate-dim` | `--nn-slate-dim` (kept) | `#94A3B8` slate-400 |
+| `--nn-hairline-warm` | `--nn-hairline-azure` | `rgba(30, 58, 95, 0.22)` |
+| `--bg-3` (input) | `--bg-3` (kept) | `#CFDAE6` pale blueprint |
+| `--fg-2` | `--fg-2` (kept) | `#3E4A5F` cool charcoal |
+| `--shadow-inset-copper` | `--shadow-inset-azure` | azure hairline |
+| `--line-copper`, `--line-cedar` | `--line-azure`, `--line-azure-lift` | follow new accents |
+
+**Atmosphere — re-tinted, not stripped.** The five-layer `body::before` stack (paper grain, dot grid, three radial gradients) and `body::after` edge vignette are retained — only colors shift. Warm `rgba(20, 15, 10, *)` shadows and hairlines move to `rgba(11, 26, 46, *)`. Warm-wood pool `rgba(181, 140, 90, 0.10)` becomes cyanotype flash `rgba(37, 99, 235, 0.10)`. Paper-grain SVG `<feColorMatrix>` shifts to a cool-ink cast (`0.04, 0.06, 0.10`). Dot grid and top-right wash pulled to `rgba(30, 58, 95, *)`. Limestone literals `rgba(245, 242, 237, *)` (used in nav backdrop, hero band/scrub backdrops, modal close, canvas frame gradients) all swept to `rgba(236, 241, 247, *)` (blueprint paper).
+
+**Class renames** for semantic consistency:
+- `.nn-rule-copper` → `.nn-rule-azure`
+- `.nn-copper-tick` → `.nn-azure-tick`
+- `.nn-section-elev` → `.nn-section-raised` (4 component usages updated)
+- `.nn-section-charcoal` → `.nn-section-elevated`
+
+**Asset sweep** — `logo.svg`, `logo-mark.svg`, four illustrations (`roof`, `kitchen`, `exterior`, `stairs`), and eight icons (`hammer`, `level`, `pencil`, `saw`, `square`, `tape`, `trowel`, `wrench`) updated: warm gradient stops swept to blueprint paper / cool white / slate divider; `#3B82F6` strokes pulled to `#1E3A5F` (Prussian); `#0F172A` deep ink to `#0B1A2E`; `#60A5FA` highlights to `#2556A8` (azure-lift).
+
+**Bug fix piggybacked.** `.canvas-root` was still set to `#07090b` (leftover from the original dark theme), which rendered the canvas-page header/title text invisible against a dark background. Switched to `var(--bg-2)` so labels read against the new blueprint-elevated surround.
+
+**Contrast (WCAG AAA):** ink `#0B1A2E` on paper `#ECF1F7` ≈ 16.8:1; Prussian accent `#1E3A5F` on paper ≈ 9.4:1.
+
+Tag: `v2.2.0`. Prior cinematic-limestone amendment below retained for lineage.
+
+---
+
 ## Amendment — cinematic limestone atmosphere
+
+_2026-04-17 · v2.1.1 · status: superseded by Cyanotype Blueprint above_
 
 The pure slate-50 light theme (amendment below) read as clinical/SaaS — "too clear and lifeless" for a construction company. Revised palette + atmosphere, staying bright:
 

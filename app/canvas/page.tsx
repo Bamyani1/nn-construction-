@@ -4,6 +4,7 @@ import { CanvasTile } from "@/components/canvas-tile";
 export const metadata: Metadata = {
   title: "Canvas · NN Construction",
   description: "All eight marketing pages at once, scaled into one view.",
+  robots: { index: false, follow: false },
 };
 
 const pages = [

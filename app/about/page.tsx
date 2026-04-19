@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { team } from "@/lib/data";
@@ -85,8 +86,12 @@ export default function AboutPage() {
               className="nn-editorial-img"
               style={{ aspectRatio: "4 / 5" }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/img/stairs.svg" alt="" />
+              <Image
+                src="/assets/projects/brick-facade-restoration/01.webp"
+                alt="Shop — Silver Spring"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
               <div className="nn-editorial-tag">Shop · Silver Spring</div>
             </div>
           </div>
@@ -94,7 +99,7 @@ export default function AboutPage() {
       </section>
 
       {/* Founder's note */}
-      <section className="nn-section nn-section-elev">
+      <section className="nn-section nn-section-raised">
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">

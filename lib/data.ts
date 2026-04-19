@@ -8,8 +8,6 @@ export type IconName =
   | "trowel"
   | "wrench";
 
-export type ProjectImg = "roof" | "kitchen" | "stairs" | "exterior";
-
 export type ProjectCategory = "Interior" | "Exterior" | "Roofing";
 
 export interface Service {
@@ -30,11 +28,8 @@ export interface TeamMember {
 export interface Project {
   slug: string;
   name: string;
-  loc: string;
-  year: number;
-  area: string;
   cat: ProjectCategory;
-  img: ProjectImg;
+  images: string[];
   brief: string;
 }
 
@@ -43,7 +38,7 @@ export interface Testimonial {
   name: string;
   role: string;
   loc: string;
-  project: string;
+  project: Project["name"];
 }
 
 export interface Faq {
@@ -162,70 +157,55 @@ export const team: TeamMember[] = [
 
 export const projects: Project[] = [
   {
-    slug: "glendale-standing-seam",
-    name: "Glendale Standing-Seam",
-    loc: "Chevy Chase, MD",
-    year: 2025,
-    area: "3,400 sqft",
+    slug: "standing-seam-reroof",
+    name: "Standing-Seam Re-roof",
     cat: "Roofing",
-    img: "roof",
+    images: [
+      "01.webp", "02.webp", "03.webp", "04.webp", "05.webp", "06.webp",
+      "07.webp", "08.webp", "09.webp", "10.webp", "11.webp", "12.webp", "13.webp",
+    ],
     brief:
-      "Full tear-off and standing-seam metal re-roof on a 1928 Tudor. Matched original copper flashing detail.",
+      "Tear-off and standing-seam metal re-roof with copper flashing. Matched original detail through ridge and eaves.",
   },
   {
-    slug: "oak-ridge-kitchen",
-    name: "Oak Ridge Kitchen",
-    loc: "Bethesda, MD",
-    year: 2025,
-    area: "640 sqft",
+    slug: "brooklyn-flat-roof",
+    name: "Brooklyn Flat-Roof Install",
+    cat: "Roofing",
+    images: ["01.webp", "02.webp", "03.webp"],
+    brief:
+      "Low-slope membrane re-roof on a city row-house. Full tear-off, new decking, tied in to neighboring parapets.",
+  },
+  {
+    slug: "primary-bath-renovation",
+    name: "Primary Bath Renovation",
     cat: "Interior",
-    img: "kitchen",
+    images: ["01.webp", "02.webp", "03.webp", "04.webp"],
     brief:
-      "Rift-sawn white oak cabinetry, soapstone counters, induction cooking. Structural wall removed with LVL.",
+      "Full gut and refit — large-format tile, new vanity, walk-in shower with linear drain.",
   },
   {
-    slug: "jefferson-stair",
-    name: "Jefferson Stair",
-    loc: "Silver Spring, MD",
-    year: 2024,
-    area: "21 risers",
-    cat: "Interior",
-    img: "stairs",
-    brief:
-      "Open-riser stair with blackened-steel stringer and solid white oak treads. Custom handrail in cedar.",
-  },
-  {
-    slug: "fairmount-facade",
-    name: "Fairmount Facade",
-    loc: "Arlington, VA",
-    year: 2024,
-    area: "4,200 sqft",
+    slug: "brick-facade-restoration",
+    name: "Brick Facade Restoration",
     cat: "Exterior",
-    img: "exterior",
+    images: ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp", "06.webp"],
     brief:
-      "Full siding replacement, new trim package, three custom window openings cut and framed.",
+      "Select-brick replacement, full repoint, mortar-matched to the original 1930s blend.",
   },
   {
-    slug: "brookside-addition",
-    name: "Brookside Addition",
-    loc: "Takoma Park, MD",
-    year: 2023,
-    area: "820 sqft",
+    slug: "foundation-waterproofing",
+    name: "Foundation Waterproofing",
     cat: "Exterior",
-    img: "roof",
+    images: ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp"],
     brief:
-      "Second-story rear addition with tie-in to existing roof. Full framing, roofing, and exterior finish.",
+      "Excavation, membrane application, drain tile, and backfill. Dry basement, sealed permanently.",
   },
   {
-    slug: "congressional-bath",
-    name: "Congressional Bath",
-    loc: "Rockville, MD",
-    year: 2023,
-    area: "160 sqft",
-    cat: "Interior",
-    img: "kitchen",
+    slug: "custom-window-install",
+    name: "Custom Window Install",
+    cat: "Exterior",
+    images: ["01.webp", "02.webp", "03.webp", "04.webp"],
     brief:
-      "Primary bath renovation — large-format tile, walnut vanity, walk-in shower with linear drain.",
+      "Rough openings cut, flashing detail, trim package. New windows installed plumb and sealed.",
   },
 ];
 
@@ -236,7 +216,7 @@ export const testimonials: Testimonial[] = [
     name: "Eleanor Park",
     role: "Homeowner",
     loc: "Bethesda, MD",
-    project: "Oak Ridge Kitchen",
+    project: "Primary Bath Renovation",
   },
   {
     quote:
@@ -244,7 +224,7 @@ export const testimonials: Testimonial[] = [
     name: "Marcus Boateng",
     role: "Homeowner",
     loc: "Chevy Chase, MD",
-    project: "Glendale Standing-Seam",
+    project: "Standing-Seam Re-roof",
   },
   {
     quote:
@@ -252,7 +232,7 @@ export const testimonials: Testimonial[] = [
     name: "Rachael Wen",
     role: "Facilities Director, Tessera Legal",
     loc: "Arlington, VA",
-    project: "Fairmount Facade",
+    project: "Brick Facade Restoration",
   },
   {
     quote:
@@ -260,7 +240,7 @@ export const testimonials: Testimonial[] = [
     name: "David Hollister",
     role: "Homeowner",
     loc: "Takoma Park, MD",
-    project: "Brookside Addition",
+    project: "Custom Window Install",
   },
 ];
 

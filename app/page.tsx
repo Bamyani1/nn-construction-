@@ -1,6 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
-import { HeroDraftsman } from "@/components/hero-draftsman";
-import { stats, projects } from "@/lib/data";
+import { HeroSplit } from "@/components/hero-split";
+import { stats, projects, testimonials } from "@/lib/data";
+
+const featuredTestimonial = testimonials[0];
 
 const pillars = [
   {
@@ -61,7 +64,7 @@ const portfolioPreview = projects.slice(0, 3);
 export default function HomePage() {
   return (
     <>
-      <HeroDraftsman />
+      <HeroSplit />
 
       {/* Four pillars */}
       <section
@@ -102,12 +105,16 @@ export default function HomePage() {
       </section>
 
       {/* Editorial split */}
-      <section className="nn-section nn-section-elev">
+      <section className="nn-section nn-section-raised">
         <div className="nn-container nn-editorial">
           <div className="nn-editorial-img">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/img/stairs.svg" alt="" />
-            <div className="nn-editorial-tag">Jefferson Stair · 2024</div>
+            <Image
+              src="/assets/projects/standing-seam-reroof/01.webp"
+              alt="Standing-Seam Re-roof"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+            <div className="nn-editorial-tag">Standing-Seam Re-roof</div>
           </div>
           <div>
             <div className="nn-chapter">
@@ -194,7 +201,7 @@ export default function HomePage() {
       </section>
 
       {/* Portfolio preview */}
-      <section className="nn-section nn-section-elev">
+      <section className="nn-section nn-section-raised">
         <div className="nn-container">
           <div className="nn-section-head">
             <div className="nn-chapter">
@@ -211,18 +218,17 @@ export default function HomePage() {
             {portfolioPreview.map((p) => (
               <Link key={p.slug} className="nn-project-card" href="/portfolio">
                 <div className="nn-project-img">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/assets/img/${p.img}.svg`} alt="" />
+                  <Image
+                    src={`/assets/projects/${p.slug}/${p.images[0]}`}
+                    alt={p.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                 </div>
                 <div className="nn-project-meta">
                   <span className="nn-eyebrow">{p.cat}</span>
-                  <span className="nn-project-year">{p.year}</span>
                 </div>
                 <h3 className="nn-project-title">{p.name}</h3>
-                <div className="nn-project-sub">
-                  <span>{p.loc}</span>
-                  <span className="nn-project-area">{p.area}</span>
-                </div>
               </Link>
             ))}
           </div>
@@ -245,12 +251,11 @@ export default function HomePage() {
           </div>
           <div className="nn-pull-quote">
             <p className="nn-pull-quote-text">
-              &ldquo;They showed up on the days they said they would, for the
-              number they quoted. After two other contractors ghosted us,
-              that alone was a revelation. The work itself is beautiful.&rdquo;
+              &ldquo;{featuredTestimonial.quote}&rdquo;
             </p>
             <div className="nn-pull-quote-cap">
-              Eleanor Park · Bethesda, MD · Oak Ridge Kitchen
+              {featuredTestimonial.name} · {featuredTestimonial.loc} ·{" "}
+              {featuredTestimonial.project}
             </div>
           </div>
           <div style={{ marginTop: 48 }}>
