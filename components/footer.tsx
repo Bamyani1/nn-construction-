@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/data";
 
@@ -7,12 +6,8 @@ export function Footer() {
     <footer className="nn-footer">
       <div className="nn-footer-inner">
         <div className="nn-footer-brand">
-          <Image
-            src="/assets/logo.png"
-            alt="NN Construction-BD"
-            width={296}
-            height={252}
-          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/logo.svg" alt="NN Construction" />
           <p className="nn-footer-blurb">
             Full-service construction. Residential &amp; commercial. Licensed MHIC #{site.licenses.mhic}.
           </p>
@@ -61,6 +56,10 @@ export function Footer() {
             {site.email}
           </div>
         </div>
+      </div>
+      <div className="nn-footer-logo-band">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/assets/logo.png" alt="NN Construction-BD" />
       </div>
       <div className="nn-footer-base">
         <span>© 2026 NN Construction BD Corporation</span>

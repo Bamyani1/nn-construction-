@@ -15,11 +15,8 @@ export function Nav() {
       <div className="nn-nav-inner">
         <Link className="nn-brand" href="/">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="nn-brand-mark"
-            src="/assets/logo-mark.svg"
-            alt="NN monogram"
-          />
+          <img className="nn-brand-mark" src="/assets/logo-mark.svg" alt="NN monogram" />
+          <div className="nn-brand-word">NN Construction</div>
         </Link>
         <NavLinks items={navItems} />
         <Link className="nn-btn nn-btn-primary" href="/contact">
