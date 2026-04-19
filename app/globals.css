@@ -124,7 +124,7 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background-image:
-    /* tool watermark — scattered draftsman tools, Prussian at ~10% (PS5-style ID-tag) */
+    /* tool watermark — scattered draftsman tools, Prussian at ~6% (PS5-style ID-tag) */
     url("/assets/img/tools-pattern.svg"),
     /* cyanotype dot grid — Prussian at 4% */
     radial-gradient(circle at 1px 1px, rgba(30, 58, 95, 0.22) 1px, transparent 0),
