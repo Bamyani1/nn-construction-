@@ -255,38 +255,41 @@ button { font-family: inherit; }
  * ============================================================= */
 .nn-nav {
   position: sticky; top: 0; z-index: 40;
-  background: rgba(236, 241, 247, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line-quiet);
+  background: var(--nn-azure);
 }
 .nn-nav-inner {
   max-width: 1240px; margin: 0 auto;
-  padding: 18px 48px;
+  padding: 14px 48px;
   display: grid; grid-template-columns: auto 1fr auto;
   align-items: center; gap: 48px;
 }
-.nn-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nn-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; text-decoration: none; }
 .nn-brand::after { display: none; }
-.nn-brand-mark { width: 26px; height: 26px; }
-.nn-brand-word { font: 500 13px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-1); }
-.nn-brand-tag  { font: 400 10px/1 var(--ff-sans); letter-spacing: .2em;  text-transform: uppercase; color: var(--fg-3); margin-top: 4px; }
+.nn-brand-chip {
+  background: #fff; border-radius: 8px;
+  padding: 6px 12px; display: inline-flex; align-items: center;
+  line-height: 0;
+}
+.nn-brand-chip img { display: block; height: 40px; width: auto; }
+.nn-brand-tag  { font: 400 10px/1 var(--ff-sans); letter-spacing: .2em; text-transform: uppercase; color: var(--nn-paper); opacity: 0.8; }
 .nn-nav-links { display: flex; gap: 32px; justify-content: center; }
 .nn-nav-link {
   font: 500 12px/1 var(--ff-sans); letter-spacing: .18em; text-transform: uppercase;
-  color: var(--fg-2); text-decoration: none;
-  position: relative; padding-bottom: 6px;
-  transition: color var(--dur-fast) var(--ease-out);
+  color: var(--nn-paper); text-decoration: none;
+  position: relative; padding-bottom: 6px; opacity: 0.8;
+  transition: opacity var(--dur-fast) var(--ease-out);
 }
 .nn-nav-link::after {
   content: ""; position: absolute; left: 0; right: 100%; bottom: 0;
-  height: 1px; background: var(--nn-azure);
+  height: 1px; background: var(--nn-paper);
   transition: right var(--dur-mid) var(--ease-out);
 }
-.nn-nav-link:hover { color: var(--fg-1); }
+.nn-nav-link:hover { opacity: 1; }
 .nn-nav-link:hover::after { right: 0; }
-.nn-nav-link.active { color: var(--nn-ink); }
+.nn-nav-link.active { opacity: 1; }
 .nn-nav-link.active::after { right: 0; }
+.nn-nav .nn-btn-primary { background: #fff; color: var(--nn-azure); }
+.nn-nav .nn-btn-primary:hover { background: var(--nn-paper); color: var(--nn-azure-deep); }
 
 /* =============================================================
  * Buttons
