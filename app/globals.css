@@ -124,17 +124,17 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background-image:
-    /* tool watermark — scattered draftsman tools, Prussian at ~6% (PS5-style ID-tag) */
+    /* tool watermark — scattered draftsman tools, Prussian at ~3.5% (PS5-style ID-tag) */
     url("/assets/img/tools-pattern.svg"),
-    /* cyanotype dot grid — Prussian at 4% */
-    radial-gradient(circle at 1px 1px, rgba(30, 58, 95, 0.22) 1px, transparent 0),
+    /* cyanotype dot grid — Prussian, sparse and quiet */
+    radial-gradient(circle at 1px 1px, rgba(30, 58, 95, 0.05) 1px, transparent 0),
     /* center-top cool wash */
     radial-gradient(ellipse 1400px 900px at 50% 0%, rgba(247, 250, 252, 0.5), transparent 60%),
     /* Prussian wash top-right */
     radial-gradient(ellipse 800px 600px at 85% 8%, rgba(30, 58, 95, 0.10), transparent 70%),
     /* cyanotype flash pool bottom-left */
     radial-gradient(ellipse 1000px 800px at 15% 92%, rgba(37, 99, 235, 0.10), transparent 70%);
-  background-size: 480px 480px, 48px 48px, auto, auto, auto;
+  background-size: 480px 480px, 120px 120px, auto, auto, auto;
   background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
   background-blend-mode: normal, normal, normal, normal, normal;
 }
