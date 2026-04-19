@@ -7,13 +7,13 @@
   --nn-paper-raised:   #F7FAFC; /* card bg — cool white */
   --nn-paper-elevated: #DDE5EF; /* divider / elevated surface */
   --nn-ink:            #0B1A2E; /* primary type — deep ink */
-  --nn-azure:          #1E3A5F; /* accent — Prussian blue */
-  --nn-azure-deep:     #153050; /* pressed — deeper Prussian */
-  --nn-azure-lift:     #2556A8; /* hover / lifted — cyan flash */
+  --nn-azure:          #3973C2; /* accent — brand blue */
+  --nn-azure-deep:     #2E5DA0; /* pressed — deeper brand */
+  --nn-azure-lift:     #5B91D4; /* hover / lifted — brighter brand */
   --nn-slate:          #64748B; /* caption, meta — slate-500 */
   --nn-slate-dim:      #94A3B8; /* very quiet UI lines — slate-400 */
   --nn-hairline:       rgba(11, 26, 46, 0.10);
-  --nn-hairline-azure: rgba(30, 58, 95, 0.22);
+  --nn-hairline-azure: rgba(57, 115, 194, 0.22);
 
   /* -------- Semantic foreground -------- */
   --fg-1: var(--nn-ink);          /* primary type */
