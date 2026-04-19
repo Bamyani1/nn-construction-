@@ -23,10 +23,7 @@ export function Nav() {
             height={252}
             priority
           />
-          <div className="nn-brand-text">
-            <div className="nn-brand-word">NN Construction</div>
-            <div className="nn-brand-tag">Your dream · Our hardwork</div>
-          </div>
+          <div className="nn-brand-word">NN Construction</div>
         </Link>
         <NavLinks items={navItems} />
         <Link className="nn-btn nn-btn-primary" href="/contact">

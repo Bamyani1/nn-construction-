@@ -267,9 +267,7 @@ button { font-family: inherit; }
 .nn-brand { display: flex; align-items: center; gap: 16px; text-decoration: none; }
 .nn-brand::after { display: none; }
 .nn-brand-mark-img { display: block; height: 48px; width: auto; }
-.nn-brand-text { display: flex; flex-direction: column; }
 .nn-brand-word { font: 500 20px/1.1 var(--ff-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--nn-ink); }
-.nn-brand-tag  { font: 400 11px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-3); margin-top: 6px; }
 .nn-nav-links { display: flex; gap: 32px; justify-content: center; }
 .nn-nav-link {
   font: 500 12px/1 var(--ff-sans); letter-spacing: .18em; text-transform: uppercase;
