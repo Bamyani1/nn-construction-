@@ -260,13 +260,13 @@ button { font-family: inherit; }
 }
 .nn-nav-inner {
   max-width: 1240px; margin: 0 auto;
-  padding: 14px 48px;
+  padding: 10px 48px;
   display: grid; grid-template-columns: auto 1fr auto;
   align-items: center; gap: 48px;
 }
-.nn-brand { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+.nn-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
 .nn-brand::after { display: none; }
-.nn-brand-mark-img { display: block; height: 48px; width: auto; }
+.nn-brand-mark-img { display: block; height: 40px; width: auto; }
 .nn-brand-word { font: 500 20px/1.1 var(--ff-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--nn-ink); }
 .nn-nav-links { display: flex; gap: 32px; justify-content: center; }
 .nn-nav-link {
@@ -615,7 +615,7 @@ button { font-family: inherit; }
   max-width: 1240px; margin: 0 auto; padding: 0 48px 72px;
   display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.6fr; gap: 48px;
 }
-.nn-footer-brand img { width: 220px; }
+.nn-footer-brand .nn-footer-mark { display: block; height: 80px; width: auto; }
 .nn-footer-blurb { font: 400 13px/1.65 var(--ff-sans); color: var(--fg-2); margin-top: 20px; max-width: 280px; }
 .nn-footer-list { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 12px; }
 .nn-footer-list a {

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/data";
 
@@ -6,8 +7,13 @@ export function Footer() {
     <footer className="nn-footer">
       <div className="nn-footer-inner">
         <div className="nn-footer-brand">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/assets/logo.svg" alt="NN Construction" />
+          <Image
+            className="nn-footer-mark"
+            src="/assets/logo.png"
+            alt="NN Construction"
+            width={296}
+            height={252}
+          />
           <p className="nn-footer-blurb">
             Full-service construction. Residential &amp; commercial. Licensed MHIC #{site.licenses.mhic}.
           </p>
