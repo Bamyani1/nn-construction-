@@ -39,7 +39,7 @@ export function Pillars() {
               data-reveal="fade-rise"
               style={{ "--i": i } as React.CSSProperties}
             >
-              <h3 className="nn-pillar-title">{p.title}</h3>
+              <h2 className="nn-pillar-title">{p.title}</h2>
               <p className="nn-pillar-desc">{p.desc}</p>
             </div>
           ))}
