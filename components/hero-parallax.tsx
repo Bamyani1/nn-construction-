@@ -60,9 +60,13 @@ export function HeroParallax() {
     }
 
     hero.setAttribute("data-hero-scroll-ready", "");
+    // The hero is position: sticky inside .nn-hero-pin, so its own rect.top
+    // stays at 0 while pinned. Read progress from the pin wrapper, whose
+    // rect.top goes from 0 → -100vh across the pinning window.
+    const pin = hero.closest<HTMLElement>(".nn-hero-pin") ?? hero;
     const clamp01 = (n: number) => (n < 0 ? 0 : n > 1 ? 1 : n);
     const readProgress = () => {
-      const rect = hero.getBoundingClientRect();
+      const rect = pin.getBoundingClientRect();
       return clamp01(-rect.top / window.innerHeight);
     };
     const apply = (p: number) => {
