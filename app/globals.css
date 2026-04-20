@@ -1082,7 +1082,7 @@ button { font-family: inherit; }
   display: flex; align-items: center; justify-content: space-between;
   padding-top: 22px; border-top: 1px solid var(--line-quiet);
 }
-.nn-service-from { font: 500 13px/1 var(--ff-mono); color: var(--nn-azure); letter-spacing: .15em; }
+.nn-service-from { font: 500 13px/1 var(--ff-mono); color: var(--nn-azure-deep); letter-spacing: .15em; }
 .nn-service-more { font: 500 11px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-2); }
 @media (hover: hover) {
   .nn-service-card:hover .nn-service-more { color: var(--nn-azure); }
@@ -1262,7 +1262,7 @@ button { font-family: inherit; }
 @media (hover: hover) {
   .nn-tab:hover { color: var(--nn-azure); border-color: var(--nn-azure-lift); }
 }
-.nn-tab.active { color: var(--nn-azure); border-color: var(--nn-azure); }
+.nn-tab.active { color: var(--nn-azure-deep); border-color: var(--nn-azure-deep); }
 
 /* =============================================================
  * About / two-col / principles / team
