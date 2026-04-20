@@ -35,9 +35,9 @@ const servicePreview = [
   },
 ] as const;
 
-export function ServicesPreview() {
+export function ServicesPreview({ id }: { id?: string } = {}) {
   return (
-    <section className="nn-section">
+    <section id={id} className="nn-section">
       <div className="nn-container">
         <div className="nn-section-head">
           <div className="nn-chapter">

@@ -15,10 +15,10 @@ export default function HomePage() {
       <hr className="nn-rule" style={{ maxWidth: 1240, margin: "0 auto" }} />
       <StatsSection />
       <Editorial />
-      <ServicesPreview />
-      <PortfolioPreview />
+      <ServicesPreview id="services" />
+      <PortfolioPreview id="portfolio" />
       <TestimonialLead />
-      <CtaBand />
+      <CtaBand id="contact" />
     </>
   );
 }

@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-export function CtaBand() {
+export function CtaBand({ id }: { id?: string } = {}) {
   return (
-    <section className="nn-cta-band">
+    <section id={id} className="nn-cta-band">
       <div className="nn-container nn-cta-inner">
         <div>
           <div className="nn-eyebrow">Accepting projects · Summer &apos;26</div>

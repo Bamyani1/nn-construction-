@@ -7,6 +7,8 @@ import {
 } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { LenisProvider } from "@/components/lenis-provider";
+import { ScrollProgress } from "@/components/scroll-progress";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -69,9 +71,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} ${playfairDisplay.variable}`}
     >
       <body>
-        <Nav />
-        <main>{children}</main>
-        <Footer />
+        <LenisProvider>
+          <ScrollProgress />
+          <Nav />
+          <main>{children}</main>
+          <Footer />
+        </LenisProvider>
       </body>
     </html>
   );
