@@ -1224,7 +1224,7 @@ button { font-family: inherit; }
 .nn-page-eyebrow img { width: 26px; height: 26px; }
 .nn-page-eyebrow .nn-mono { font: 500 13px/1 var(--ff-mono); color: var(--nn-azure); letter-spacing: .22em; }
 .nn-page-eyebrow .nn-label { font: 500 12px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-2); }
-.nn-page-title { font: 500 84px/1.02 var(--ff-sans); letter-spacing: -0.025em; margin: 0; max-width: 1040px; text-wrap: pretty; }
+.nn-page-title { font: 500 clamp(42px, 8vw, 84px)/1.02 var(--ff-sans); letter-spacing: -0.025em; margin: 0; max-width: 1040px; text-wrap: balance; overflow-wrap: break-word; }
 .nn-page-lead { font: 400 24px/1.5 var(--ff-sans); color: var(--fg-2); margin-top: 32px; max-width: 720px; text-wrap: pretty; }
 
 /* Split page-head for the contact page: eyebrow+title on the left,
