@@ -553,14 +553,38 @@ button { font-family: inherit; }
 .nn-hero-split-right {
   position: relative;
   background-color: var(--nn-azure-deep);
+  overflow: hidden;
+}
+/* Atmospheric pool — deepest layer, sits behind the tools pattern. */
+.nn-hero-split-right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 45%,
+      rgba(91, 145, 212, 0.14) 0%,
+      rgba(91, 145, 212, 0) 70%),
+    radial-gradient(ellipse 120% 80% at 50% 100%,
+      rgba(11, 26, 46, 0.35) 0%,
+      rgba(11, 26, 46, 0) 60%);
+}
+/* Tools pattern — moved off the element so it can be translated independently. */
+.nn-hero-split-right::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background-image: url("/assets/img/tools-pattern-dark.svg");
   background-size: 480px 480px;
   background-repeat: repeat;
-  overflow: hidden;
 }
 .nn-hero-stack {
   position: absolute;
   inset: 0;
+  z-index: 1;
 }
 .nn-hero-stack-back,
 .nn-hero-stack-front {
