@@ -492,17 +492,32 @@ button { font-family: inherit; }
   height: 92vh;
   min-height: 760px;
   border-bottom: 1px solid var(--line-quiet);
-}
-.nn-hero-split-left {
+  position: relative;
   background-color: var(--nn-azure-deep);
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Tools-pattern watermark — a single layer spanning both panels so
+   the tile grid stays continuous across the 42%/58% seam. Drifts as
+   the "pattern" tier of the parallax. */
+.nn-hero-split::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background-image: url("/assets/img/tools-pattern-dark.svg");
   background-size: 480px 480px;
   background-repeat: repeat;
+}
+.nn-hero-split-left {
   color: var(--nn-paper);
   padding: 96px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 .nn-hero-split-copy { max-width: 520px; }
 .nn-hero-split-title {
@@ -552,10 +567,10 @@ button { font-family: inherit; }
 .nn-hero-split-cta:hover::after { background: var(--nn-paper); }
 .nn-hero-split-right {
   position: relative;
-  background-color: var(--nn-azure-deep);
+  z-index: 1;
   overflow: hidden;
 }
-/* Atmospheric pool — deepest layer, sits behind the tools pattern. */
+/* Atmospheric pool — a soft azure/ink radial behind just the image stack. */
 .nn-hero-split-right::before {
   content: "";
   position: absolute;
@@ -569,17 +584,6 @@ button { font-family: inherit; }
     radial-gradient(ellipse 120% 80% at 50% 100%,
       rgba(11, 26, 46, 0.35) 0%,
       rgba(11, 26, 46, 0) 60%);
-}
-/* Tools pattern — moved off the element so it can be translated independently. */
-.nn-hero-split-right::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: url("/assets/img/tools-pattern-dark.svg");
-  background-size: 480px 480px;
-  background-repeat: repeat;
 }
 .nn-hero-stack {
   position: absolute;
@@ -639,6 +643,14 @@ button { font-family: inherit; }
 .nn-hero-stack-front .nn-hero-stack-img {
   box-shadow: 0 32px 64px rgba(0, 0, 0, 0.45);
 }
+/* Narrow desktop / small-laptop: the 92px serif title overflows the
+   42%-wide copy column below ~1280px. Tighten the gutters and drop
+   the display type a step so the longest word still fits. */
+@media (max-width: 1280px) {
+  .nn-hero-split-left { padding: 72px 64px; }
+  .nn-hero-split-title { font-size: 64px; }
+  .nn-hero-split-title-accent { font-size: 44px; }
+}
 @media (max-width: 768px) {
   .nn-hero-split {
     grid-template-columns: 1fr;
@@ -675,8 +687,8 @@ button { font-family: inherit; }
  * user prefers reduced motion.
  * ============================================================= */
 @supports (animation-timeline: scroll()) {
+  .nn-hero-split::before,
   .nn-hero-split-right::before,
-  .nn-hero-split-right::after,
   .nn-hero-stack-back,
   .nn-hero-stack-front {
     animation-timeline: scroll(root block);
@@ -684,8 +696,8 @@ button { font-family: inherit; }
     animation-fill-mode: both;
     animation-timing-function: linear;
   }
+  .nn-hero-split::before       { animation-name: nn-hero-drift-pattern; }
   .nn-hero-split-right::before { animation-name: nn-hero-drift-atmos; }
-  .nn-hero-split-right::after  { animation-name: nn-hero-drift-pattern; }
   .nn-hero-stack-back          { animation-name: nn-hero-drift-back; }
   .nn-hero-stack-front         { animation-name: nn-hero-drift-front; }
 
@@ -713,7 +725,7 @@ button { font-family: inherit; }
   .nn-hero-split[data-hero-scroll-ready] .nn-hero-split-right::before {
     transform: translate3d(0, calc(var(--nn-hero-scroll, 0) *  100px), 0);
   }
-  .nn-hero-split[data-hero-scroll-ready] .nn-hero-split-right::after {
+  .nn-hero-split[data-hero-scroll-ready]::before {
     transform: translate3d(0, calc(var(--nn-hero-scroll, 0) *  70px),  0);
   }
   .nn-hero-split[data-hero-scroll-ready] .nn-hero-stack-back {
@@ -726,8 +738,8 @@ button { font-family: inherit; }
 
 /* Compositor promotion only while the hero is in view — HeroParallax's
    IntersectionObserver toggles [data-hero-active]. */
+.nn-hero-split[data-hero-active]::before,
 .nn-hero-split[data-hero-active] .nn-hero-split-right::before,
-.nn-hero-split[data-hero-active] .nn-hero-split-right::after,
 .nn-hero-split[data-hero-active] .nn-hero-stack-back,
 .nn-hero-split[data-hero-active] .nn-hero-stack-front {
   will-change: transform;
@@ -736,8 +748,8 @@ button { font-family: inherit; }
 /* Mobile: touch-scroll jitter kills the effect.
    Reduced motion: honor the system preference. */
 @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .nn-hero-split::before,
   .nn-hero-split-right::before,
-  .nn-hero-split-right::after,
   .nn-hero-stack-back,
   .nn-hero-stack-front {
     animation: none !important;
