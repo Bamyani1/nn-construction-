@@ -785,8 +785,14 @@ button { font-family: inherit; }
 /* =============================================================
  * Contact
  * ============================================================= */
-.nn-contact-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 96px; align-items: start; }
-.nn-contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 28px; }
+.nn-contact-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 96px; }
+.nn-contact-form {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px 28px;
+  background: var(--nn-paper-raised);
+  padding: 48px 40px;
+  border-top: 1px solid var(--nn-azure);
+  align-content: start;
+}
 .nn-field { display: flex; flex-direction: column; }
 .nn-field-full { grid-column: span 2; }
 .nn-field label {
@@ -803,7 +809,7 @@ button { font-family: inherit; }
   font-family: var(--ff-sans);
 }
 .nn-field select {
-  background: var(--nn-paper);
+  background: transparent;
   appearance: none;
   -webkit-appearance: none;
 }
@@ -1100,7 +1106,8 @@ button { font-family: inherit; }
   .nn-team-grid,
   .nn-process,
   .nn-footer-inner { grid-template-columns: 1fr; }
-  .nn-contact-form { grid-template-columns: 1fr; gap: 24px; }
+  .nn-contact-form { grid-template-columns: 1fr; gap: 24px; padding: 32px 24px; }
+  .nn-contact-aside { padding: 32px 24px; }
 
   /* Nav: stack brand over links, smaller font. */
   .nn-nav-inner {
