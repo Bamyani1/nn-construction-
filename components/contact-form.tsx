@@ -38,6 +38,7 @@ export function ContactForm() {
               type="text"
               placeholder="Your name"
             />
+            <span className="nn-field-hint">Please enter your name.</span>
           </div>
           <div className="nn-field">
             <label htmlFor="cf-email">Email</label>
@@ -47,6 +48,7 @@ export function ContactForm() {
               type="email"
               placeholder="you@example.com"
             />
+            <span className="nn-field-hint">Please enter a valid email address.</span>
           </div>
           <div className="nn-field">
             <label htmlFor="cf-phone">Phone</label>
@@ -76,8 +78,10 @@ export function ContactForm() {
             <button
               className="nn-btn nn-btn-primary nn-btn-lg"
               type="submit"
+              data-magnetic
+              data-glow
             >
-              Send request →
+              Send request <span className="nn-btn-arrow" aria-hidden="true">→</span>
             </button>
           </div>
         </div>

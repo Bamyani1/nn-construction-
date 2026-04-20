@@ -26,8 +26,13 @@ export function Nav() {
           <div className="nn-brand-word">NN Construction</div>
         </Link>
         <NavLinks items={navItems} />
-        <Link className="nn-btn nn-btn-primary" href="/contact">
-          Get a quote →
+        <Link
+          className="nn-btn nn-btn-primary"
+          href="/contact"
+          data-magnetic
+          data-glow
+        >
+          Get a quote <span className="nn-btn-arrow" aria-hidden="true">→</span>
         </Link>
       </div>
     </nav>

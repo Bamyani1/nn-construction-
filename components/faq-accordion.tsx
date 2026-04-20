@@ -31,7 +31,7 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
           >
             <div className="nn-faq-row">
               <span className="nn-faq-q">{item.q}</span>
-              <span className="nn-faq-toggle">{open ? "−" : "+"}</span>
+              <span className="nn-faq-toggle" aria-hidden="true">+</span>
             </div>
             <div className="nn-faq-a">{item.a}</div>
           </div>

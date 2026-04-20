@@ -41,7 +41,7 @@ export function HeroSplit({
             data-reveal="scale-settle"
             style={{ "--i": 19 } as React.CSSProperties}
           >
-            Explore services <span aria-hidden="true">→</span>
+            Explore services <span className="nn-btn-arrow" aria-hidden="true">→</span>
           </Link>
         </div>
       </div>

@@ -8,8 +8,13 @@ export function CtaBand({ id }: { id?: string } = {}) {
           <div className="nn-eyebrow">Accepting projects · Summer &apos;26</div>
           <h2 className="nn-cta-title">Start with a free walk-through.</h2>
         </div>
-        <Link className="nn-btn nn-btn-primary nn-btn-lg" href="/contact">
-          Request estimate →
+        <Link
+          className="nn-btn nn-btn-primary nn-btn-lg"
+          href="/contact"
+          data-magnetic
+          data-glow
+        >
+          Request estimate <span className="nn-btn-arrow" aria-hidden="true">→</span>
         </Link>
       </div>
     </section>

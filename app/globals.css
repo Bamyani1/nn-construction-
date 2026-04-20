@@ -219,10 +219,12 @@ a::after, .nn-link::after {
   background: var(--nn-azure);
   transition: right var(--dur-mid) var(--ease-out);
 }
-a:hover::after, .nn-link:hover::after {
-  right: 0;
+@media (hover: hover) {
+  a:hover::after, .nn-link:hover::after {
+    right: 0;
+  }
+  a:hover, .nn-link:hover { color: var(--nn-ink); }
 }
-a:hover, .nn-link:hover { color: var(--nn-ink); }
 
 /* =============================================================
  * Utility: hairline rule
@@ -233,10 +235,6 @@ a:hover, .nn-link:hover { color: var(--nn-ink); }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg-1); }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: smooth; }
-}
-
 /* Scroll progress indicator — 3px accent bar pinned to top of viewport. */
 .nn-scroll-progress {
   position: fixed; top: 0; left: 0; right: 0;
@@ -269,6 +267,15 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
  * Latched rule keeps a short transition so that any snap between
  *   "animation cut short" and "final state" stays smooth.
  * ============================================================= */
+
+/* Registered by pointer-field (see components/pointer-field.tsx).
+   Typed fallbacks keep calc() math cheap and avoid string parsing.
+   popover + CSS Anchor Positioning are reserved for future tooltips/
+   flyouts — the site has none today, so don't invent surfaces for them. */
+@property --mag-x  { syntax: "<number>"; inherits: false; initial-value: 0; }
+@property --mag-y  { syntax: "<number>"; inherits: false; initial-value: 0; }
+@property --glow-x { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --glow-y { syntax: "<length>"; inherits: false; initial-value: 0px; }
 
 @property --reveal-progress {
   syntax: "<number>";
@@ -355,6 +362,24 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
   [data-reveal][data-revealed] { opacity: 1; }
 }
 
+/* Reduced motion for micro-interactions: strip transforms from hover /
+   active / magnetic states. Color, border, shadow, and focus cues remain
+   — they communicate state without motion. The FAQ rotate stays because
+   it's the only indicator of expand/collapse. */
+@media (prefers-reduced-motion: reduce) {
+  [data-magnetic] { transform: none; }
+  .nn-card-hover:hover { transform: none; }
+  .nn-project-card:hover .nn-project-img img { transform: none; }
+  .nn-btn:hover .nn-btn-arrow,
+  .nn-hero-split-cta:hover .nn-btn-arrow { transform: none; }
+  .nn-btn-primary:active,
+  .nn-service-card:active,
+  .nn-project-card:active,
+  .nn-team-card:active,
+  .nn-modal-close:active,
+  .nn-modal-thumb:active { transform: none; }
+}
+
 /* Primer for elements that mount already in-view (modals, expanded
    accordions). Use `data-reveal-enter` to fade them in on insertion. */
 [data-reveal-enter] {
@@ -407,6 +432,107 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* Shape-aware overrides. A 2px rectangle ring on a pill button reads as
+   browser chrome; these match each shape to the design language. */
+.nn-btn:focus-visible,
+.nn-tab:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--nn-azure) 35%, transparent),
+    0 0 0 1.5px var(--nn-azure);
+  border-radius: 2px;
+}
+
+.nn-service-card:focus-visible,
+.nn-project-card:focus-visible,
+.nn-team-card:focus-visible,
+.nn-faq:focus-visible {
+  outline: 2px solid var(--nn-azure);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Text links — reveal the pseudo-underline instead of adding a ring. */
+a:focus-visible,
+.nn-link:focus-visible,
+.nn-nav-link:focus-visible,
+.nn-hero-split-cta:focus-visible {
+  outline: none;
+}
+a:focus-visible::after,
+.nn-link:focus-visible::after,
+.nn-nav-link:focus-visible::after {
+  right: 0;
+}
+.nn-hero-split-cta:focus-visible::after {
+  background: var(--nn-paper);
+}
+
+.nn-footer-list a:focus-visible {
+  outline: none;
+  text-decoration: underline;
+  text-decoration-color: var(--nn-azure);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Form fields: existing azure border-bottom is the signal; replace the
+   global outline with a crisp shadow to avoid a doubled ring. */
+.nn-field input:focus-visible,
+.nn-field textarea:focus-visible,
+.nn-field select:focus-visible {
+  outline: none;
+  box-shadow: 0 1px 0 0 var(--nn-azure);
+}
+
+/* :active press feedback — fires on mouse click-down and touch tap.
+   Tighter timing (120ms) reads as snappier than the hover duration. */
+.nn-btn-primary:active {
+  background: color-mix(in oklab, var(--nn-azure) 78%, black);
+  transform: translateY(1px);
+  box-shadow: none;
+  transition-duration: 120ms;
+}
+.nn-btn-outline:active {
+  border-color: var(--nn-azure-deep);
+  color: var(--nn-azure-deep);
+  background: color-mix(in oklab, var(--nn-azure) 10%, transparent);
+  transition-duration: 120ms;
+}
+.nn-btn-ghost:active::after {
+  height: 2px;
+}
+.nn-tab:active {
+  color: var(--nn-azure-deep);
+  border-color: var(--nn-azure-deep);
+  transition-duration: 120ms;
+}
+.nn-service-card:active,
+.nn-project-card:active,
+.nn-team-card:active {
+  transform: translateY(1px);
+}
+.nn-modal-close:active,
+.nn-modal-thumb:active {
+  transform: translateY(1px);
+}
+
+/* Unified card hover — lift + shadow. Each card type layers its own
+   signature (image scale on projects, border on team, tint on services)
+   on top. Opt in with the nn-card-hover class. */
+.nn-card-hover {
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .nn-card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-1);
+  }
+}
+
 img, svg { display: block; max-width: 100%; }
 button { font-family: inherit; }
 
@@ -447,8 +573,10 @@ button { font-family: inherit; }
   height: 1px; background: var(--nn-azure);
   transition: right var(--dur-mid) var(--ease-out);
 }
-.nn-nav-link:hover { color: var(--fg-1); }
-.nn-nav-link:hover::after { right: 0; }
+@media (hover: hover) {
+  .nn-nav-link:hover { color: var(--fg-1); }
+  .nn-nav-link:hover::after { right: 0; }
+}
 .nn-nav-link.active { color: var(--nn-ink); }
 .nn-nav-link.active::after { right: 0; }
 
@@ -462,10 +590,55 @@ button { font-family: inherit; }
   text-decoration: none; display: inline-block;
 }
 .nn-btn::after { display: none; }
-.nn-btn-primary { background: var(--nn-azure); color: var(--nn-paper); }
-.nn-btn-primary:hover { background: var(--nn-azure-deep); color: var(--nn-paper); }
+.nn-btn-primary {
+  background: var(--nn-azure); color: var(--nn-paper);
+  position: relative; isolation: isolate; overflow: hidden;
+}
+.nn-btn-primary[data-glow]::before {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    200px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    color-mix(in oklab, var(--nn-azure-lift) 32%, transparent),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .nn-btn-primary:hover {
+    background: color-mix(in oklab, var(--nn-azure) 88%, black);
+    color: var(--nn-paper);
+    box-shadow: var(--shadow-1);
+  }
+  .nn-btn-primary[data-glow]:hover::before { opacity: 1; }
+}
+
+/* Magnetic pull — [data-magnetic] elements drift toward the cursor when it
+   comes within ATTRACT_RADIUS of their bounds (see components/pointer-field.tsx).
+   will-change scoped to :hover so idle elements don't burn compositor budget. */
+@media (hover: hover) {
+  [data-magnetic] {
+    transition: transform var(--dur-fast) var(--ease-out);
+    transform: translate3d(
+      calc(var(--mag-x, 0) * 6px),
+      calc(var(--mag-y, 0) * 4px),
+      0
+    );
+  }
+  [data-magnetic]:hover { will-change: transform; }
+}
 .nn-btn-outline { background: transparent; color: var(--fg-1); border: 1px solid var(--line-strong); }
-.nn-btn-outline:hover { border-color: var(--nn-azure); color: var(--nn-azure); }
+@media (hover: hover) {
+  .nn-btn-outline:hover {
+    border-color: var(--nn-azure);
+    color: var(--nn-azure);
+    background: color-mix(in oklab, var(--nn-azure) 6%, transparent);
+  }
+}
 .nn-btn-ghost {
   background: transparent; color: var(--fg-1);
   padding: 14px 0; position: relative;
@@ -480,8 +653,19 @@ button { font-family: inherit; }
   height: 1px; background: var(--nn-azure);
   transition: right var(--dur-mid) var(--ease-out);
 }
-.nn-btn-ghost:hover::after { right: 0; }
+@media (hover: hover) {
+  .nn-btn-ghost:hover { color: var(--nn-azure); }
+  .nn-btn-ghost:hover::after { right: 0; }
+}
 .nn-btn-lg { padding: 18px 28px; font-size: 13px; }
+.nn-btn-arrow {
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .nn-btn:hover .nn-btn-arrow,
+  .nn-hero-split-cta:hover .nn-btn-arrow { transform: translateX(3px); }
+}
 
 /* =============================================================
  * Editorial split-hero
@@ -564,7 +748,9 @@ button { font-family: inherit; }
   background: rgba(247, 250, 252, 0.5);
   transition: background var(--dur-fast) var(--ease-out);
 }
-.nn-hero-split-cta:hover::after { background: var(--nn-paper); }
+@media (hover: hover) {
+  .nn-hero-split-cta:hover::after { background: var(--nn-paper); }
+}
 .nn-hero-split-right {
   position: relative;
   z-index: 1;
@@ -870,13 +1056,19 @@ button { font-family: inherit; }
 .nn-service-card::after { display: none; }
 .nn-service-card:first-child,
 .nn-service-card:nth-child(2n+1) { border-left: 0; }
-.nn-service-card:hover { background: rgba(37, 86, 168,0.04); }
+@media (hover: hover) {
+  .nn-service-card:hover { background: rgba(37, 86, 168,0.04); }
+}
 .nn-service-card.featured {
   background: rgba(37, 86, 168,0.06);
 }
 .nn-service-card.featured::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: var(--nn-azure);
+  transition: height var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .nn-service-card.featured:hover::before { height: 3px; }
 }
 .nn-service-head {
   display: flex; align-items: flex-start; justify-content: space-between;
@@ -892,7 +1084,9 @@ button { font-family: inherit; }
 }
 .nn-service-from { font: 500 13px/1 var(--ff-mono); color: var(--nn-azure); letter-spacing: .15em; }
 .nn-service-more { font: 500 11px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-2); }
-.nn-service-card:hover .nn-service-more { color: var(--nn-azure); }
+@media (hover: hover) {
+  .nn-service-card:hover .nn-service-more { color: var(--nn-azure); }
+}
 
 /* =============================================================
  * Projects
@@ -915,7 +1109,9 @@ button { font-family: inherit; }
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 900ms var(--ease-out);
 }
-.nn-project-card:hover .nn-project-img img { transform: scale(1.04); }
+@media (hover: hover) {
+  .nn-project-card:hover .nn-project-img img { transform: scale(1.04); }
+}
 .nn-project-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .nn-project-title { font: 500 24px/1.2 var(--ff-sans); letter-spacing: -0.008em; color: var(--fg-1); margin: 0 0 8px; }
 .nn-empty {
@@ -953,7 +1149,12 @@ button { font-family: inherit; }
   align-items: center; gap: 24px;
 }
 .nn-faq-q { font: 500 22px/1.3 var(--ff-sans); letter-spacing: -0.008em; color: var(--fg-1); }
-.nn-faq-toggle { color: var(--nn-azure); font-size: 22px; text-align: right; font-family: var(--ff-mono); }
+.nn-faq-toggle {
+  color: var(--nn-azure); font-size: 22px; text-align: right; font-family: var(--ff-mono);
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.nn-faq[aria-expanded="true"] .nn-faq-toggle { transform: rotate(45deg); }
 .nn-faq-a {
   margin-top: 24px;
   color: var(--fg-2); font: 400 16px/1.65 var(--ff-sans);
@@ -996,7 +1197,9 @@ button { font-family: inherit; }
   transition: color var(--dur-fast) var(--ease-out);
 }
 .nn-footer-list a::after { display: none; }
-.nn-footer-list a:hover { color: var(--nn-azure); }
+@media (hover: hover) {
+  .nn-footer-list a:hover { color: var(--nn-azure); }
+}
 .nn-footer-office {
   font: 400 13px/1.8 var(--ff-mono); color: var(--fg-2);
   margin-top: 16px;
@@ -1055,7 +1258,9 @@ button { font-family: inherit; }
   color: var(--fg-2); cursor: pointer; background: transparent;
   transition: all var(--dur-fast) var(--ease-out);
 }
-.nn-tab:hover { color: var(--nn-azure); border-color: var(--nn-azure-lift); }
+@media (hover: hover) {
+  .nn-tab:hover { color: var(--nn-azure); border-color: var(--nn-azure-lift); }
+}
 .nn-tab.active { color: var(--nn-azure); border-color: var(--nn-azure); }
 
 /* =============================================================
@@ -1080,7 +1285,9 @@ button { font-family: inherit; }
   border: 1px solid var(--line-quiet);
   transition: border-color var(--dur-fast) var(--ease-out);
 }
-.nn-team-card:hover { border-color: var(--nn-azure-lift); }
+@media (hover: hover) {
+  .nn-team-card:hover { border-color: var(--nn-azure-lift); }
+}
 .nn-team-avatar {
   width: 56px; height: 56px; border: 1px solid var(--nn-azure);
   display: flex; align-items: center; justify-content: center;
@@ -1163,6 +1370,22 @@ button { font-family: inherit; }
 }
 .nn-field input:focus, .nn-field textarea:focus, .nn-field select:focus { border-bottom-color: var(--nn-azure); }
 .nn-field textarea { resize: vertical; min-height: 120px; }
+.nn-field input:user-invalid,
+.nn-field textarea:user-invalid,
+.nn-field select:user-invalid {
+  border-bottom: 2px solid color-mix(in oklab, var(--nn-ink) 85%, transparent);
+}
+.nn-field-hint {
+  display: none;
+  margin-top: 8px;
+  font: 400 12px/1.4 var(--ff-sans);
+  color: var(--fg-3);
+}
+.nn-field input:user-invalid + .nn-field-hint,
+.nn-field textarea:user-invalid + .nn-field-hint,
+.nn-field select:user-invalid + .nn-field-hint {
+  display: block;
+}
 .nn-form-actions { grid-column: span 2; justify-self: start; margin-top: 16px; }
 .nn-sent {
   grid-column: span 2;
@@ -1331,7 +1554,9 @@ button { font-family: inherit; }
   color: var(--nn-azure);
   opacity: 0; transition: opacity var(--dur-mid) var(--ease-out);
 }
-.canvas-cell:hover .canvas-frame-cta { opacity: 1; }
+@media (hover: hover) {
+  .canvas-cell:hover .canvas-frame-cta { opacity: 1; }
+}
 
 /* =============================================================
  * Utility
@@ -1393,7 +1618,9 @@ button { font-family: inherit; }
   cursor: pointer;
   transition: border-color 120ms ease;
 }
-.nn-modal-thumb:hover { border-color: var(--line-strong); }
+@media (hover: hover) {
+  .nn-modal-thumb:hover { border-color: var(--line-strong); }
+}
 .nn-modal-thumb.active { border: 2px solid var(--nn-azure); }
 .nn-modal-thumb img {
   width: 100%; height: 100%;
