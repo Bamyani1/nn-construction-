@@ -689,14 +689,14 @@ button { font-family: inherit; }
   .nn-hero-stack-back          { animation-name: nn-hero-drift-back; }
   .nn-hero-stack-front         { animation-name: nn-hero-drift-front; }
 
-  /* Drift amounts (atmos 36, pattern 28, back 20, front 8) appear
+  /* Drift amounts (atmos 72, pattern 56, back 40, front 16) appear
      twice by necessity: the @keyframes below drive the CSS-timeline
      path, and the calc() rules in @supports not (...) drive the JS
      fallback. Keep the two lists in sync when tuning. */
-  @keyframes nn-hero-drift-atmos   { to { transform: translate3d(0, 36px, 0); } }
-  @keyframes nn-hero-drift-pattern { to { transform: translate3d(0, 28px, 0); } }
-  @keyframes nn-hero-drift-back    { to { transform: translate3d(0, 20px, 0); } }
-  @keyframes nn-hero-drift-front   { to { transform: translate3d(0, 8px,  0); } }
+  @keyframes nn-hero-drift-atmos   { to { transform: translate3d(0, 72px, 0); } }
+  @keyframes nn-hero-drift-pattern { to { transform: translate3d(0, 56px, 0); } }
+  @keyframes nn-hero-drift-back    { to { transform: translate3d(0, 40px, 0); } }
+  @keyframes nn-hero-drift-front   { to { transform: translate3d(0, 16px, 0); } }
 }
 
 /* Fallback path: HeroParallax writes --nn-hero-scroll (0..1) on the
@@ -705,16 +705,16 @@ button { font-family: inherit; }
    initial state until JS takes over. */
 @supports not (animation-timeline: scroll()) {
   .nn-hero-split[data-hero-scroll-ready] .nn-hero-split-right::before {
-    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 36px), 0);
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 72px), 0);
   }
   .nn-hero-split[data-hero-scroll-ready] .nn-hero-split-right::after {
-    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 28px), 0);
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 56px), 0);
   }
   .nn-hero-split[data-hero-scroll-ready] .nn-hero-stack-back {
-    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 20px), 0);
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 40px), 0);
   }
   .nn-hero-split[data-hero-scroll-ready] .nn-hero-stack-front {
-    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 8px),  0);
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 16px), 0);
   }
 }
 
