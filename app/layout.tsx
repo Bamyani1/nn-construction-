@@ -9,6 +9,7 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { LenisProvider } from "@/components/lenis-provider";
 import { ScrollProgress } from "@/components/scroll-progress";
+import { RevealObserver } from "@/components/reveal-observer";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -70,9 +71,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="en"
       className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} ${playfairDisplay.variable}`}
     >
+      <head>
+        <noscript>
+          {/* Safety for users with JS disabled: reveal targets stay visible. */}
+          <style>{`[data-reveal]{opacity:1 !important;transform:none !important;filter:none !important;clip-path:inset(0) !important;}`}</style>
+        </noscript>
+      </head>
       <body>
         <LenisProvider>
           <ScrollProgress />
+          <RevealObserver />
           <Nav />
           <main>{children}</main>
           <Footer />

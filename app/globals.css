@@ -258,6 +258,142 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
   }
 }
 
+/* =============================================================
+ * Reveal system — scroll-driven entrance, one-shot latch.
+ * Each section declares its variant via [data-reveal="..."].
+ * Children of [data-reveal-stagger] shift their range via --i.
+ * ============================================================= */
+
+@property --reveal-progress {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+[data-reveal] {
+  opacity: 0;
+  will-change: opacity, transform, filter, clip-path;
+}
+
+/* Primary path: scroll-driven via view() timeline. Off main thread. */
+@supports (animation-timeline: view()) {
+  [data-reveal] {
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+    animation-fill-mode: both;
+    animation-timing-function: var(--ease-out);
+  }
+  [data-reveal="fade-rise"]        { animation-name: reveal-fade-rise; }
+  [data-reveal="side-slide-left"]  { animation-name: reveal-slide-left; }
+  [data-reveal="side-slide-right"] { animation-name: reveal-slide-right; }
+  [data-reveal="scale-settle"]     { animation-name: reveal-scale-settle; }
+  [data-reveal="clip-reveal"]      { animation-name: reveal-clip; }
+  [data-reveal="blur-to-sharp"]    { animation-name: reveal-blur; }
+  [data-reveal="mask-wipe"]        { animation-name: reveal-mask-wipe; }
+
+  [data-reveal-stagger] > [data-reveal] {
+    --nn-reveal-step: 4%;
+    animation-range:
+      entry calc(var(--i, 0) * var(--nn-reveal-step))
+      cover calc(25% + var(--i, 0) * var(--nn-reveal-step));
+  }
+
+  /* Latched by the observer — drop the animation entirely and hold the end
+     state via explicit declarations. (Swapping animation-timeline to auto
+     would re-trigger fill-mode backwards and snap to the first keyframe.) */
+  [data-reveal][data-revealed] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+    clip-path: inset(0);
+  }
+}
+
+/* Fallback path: time-based transition, triggered by observer latch. */
+@supports not (animation-timeline: view()) {
+  [data-reveal] {
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out),
+      filter var(--dur-slow) var(--ease-out),
+      clip-path var(--dur-slow) var(--ease-out);
+  }
+  [data-reveal="fade-rise"]        { transform: translateY(24px); }
+  [data-reveal="side-slide-left"]  { transform: translateX(-40px); }
+  [data-reveal="side-slide-right"] { transform: translateX(40px); }
+  [data-reveal="scale-settle"]     { transform: scale(0.96); }
+  [data-reveal="blur-to-sharp"]    { filter: blur(12px); }
+  [data-reveal="clip-reveal"]      { clip-path: inset(0 100% 0 0); }
+  [data-reveal="mask-wipe"]        { clip-path: inset(100% 0 0 0); }
+
+  [data-reveal-stagger] > [data-reveal] {
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+
+  [data-reveal][data-revealed] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    clip-path: inset(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    animation: none !important;
+    transition: opacity 150ms linear !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+  [data-reveal][data-revealed] { opacity: 1; }
+}
+
+/* Primer for elements that mount already in-view (modals, expanded
+   accordions). Use `data-reveal-enter` to fade them in on insertion. */
+[data-reveal-enter] {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur-mid) var(--ease-out),
+              transform var(--dur-mid) var(--ease-out);
+}
+@starting-style {
+  [data-reveal-enter] {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes reveal-fade-rise {
+  from { opacity: 0; transform: translateY(24px); --reveal-progress: 0; }
+  to   { opacity: 1; transform: none;             --reveal-progress: 1; }
+}
+@keyframes reveal-slide-left {
+  from { opacity: 0; transform: translateX(-40px); --reveal-progress: 0; }
+  to   { opacity: 1; transform: none;              --reveal-progress: 1; }
+}
+@keyframes reveal-slide-right {
+  from { opacity: 0; transform: translateX(40px); --reveal-progress: 0; }
+  to   { opacity: 1; transform: none;             --reveal-progress: 1; }
+}
+@keyframes reveal-scale-settle {
+  from { opacity: 0; transform: scale(0.96); --reveal-progress: 0; }
+  to   { opacity: 1; transform: none;        --reveal-progress: 1; }
+}
+@keyframes reveal-clip {
+  from { opacity: 0; clip-path: inset(0 100% 0 0); --reveal-progress: 0; }
+  to   { opacity: 1; clip-path: inset(0);          --reveal-progress: 1; }
+}
+@keyframes reveal-blur {
+  from { opacity: 0; filter: blur(12px); --reveal-progress: 0; }
+  to   { opacity: 1; filter: blur(0);    --reveal-progress: 1; }
+}
+@keyframes reveal-mask-wipe {
+  from { opacity: 0; clip-path: inset(100% 0 0 0); --reveal-progress: 0; }
+  to   { opacity: 1; clip-path: inset(0);          --reveal-progress: 1; }
+}
+
 /* Keyboard-only focus indicator. Applies to every interactive
    element unless explicitly overridden (e.g. form fields below). */
 *:focus { outline: none; }
