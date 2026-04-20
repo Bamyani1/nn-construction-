@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <noscript>
           {/* Safety for users with JS disabled: reveal targets stay visible. */}
-          <style>{`[data-reveal]{opacity:1 !important;transform:none !important;filter:none !important;clip-path:inset(0) !important;}`}</style>
+          <style>{`[data-reveal],.nn-hero-word{opacity:1 !important;transform:none !important;filter:none !important;clip-path:inset(0) !important;}`}</style>
         </noscript>
       </head>
       <body>

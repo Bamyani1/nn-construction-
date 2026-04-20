@@ -679,6 +679,53 @@ button { font-family: inherit; }
 }
 
 /* =============================================================
+ * Hero title — per-word cascade.
+ * Authored entrance for the site's emotional key line. Each word
+ * ships hidden (opacity:0 + translate + blur) and only animates
+ * once <HeroTextReveal /> stamps data-hero-title-play on the
+ * section. Subtitle and CTA hang back via their own --i values
+ * (see hero-split.tsx) so the whole phrase lands as a musical
+ * sequence rather than three parallel cues.
+ * ============================================================= */
+.nn-hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.3em);
+  filter: blur(10px);
+}
+
+@keyframes nn-hero-word-reveal {
+  from { opacity: 0; transform: translateY(0.3em); filter: blur(10px); }
+  to   { opacity: 1; transform: none;              filter: blur(0);   }
+}
+
+.nn-hero-split[data-hero-title-play="full"] .nn-hero-word {
+  animation: nn-hero-word-reveal 900ms var(--ease-out) both;
+  animation-delay: calc(var(--wi, 0) * 140ms + var(--phrase-offset, 0ms));
+}
+
+/* Accent line carries a breath beat — word 3 starts while word 2 is
+   still settling so the phrase reads musical, not sequential. */
+.nn-hero-split-title-accent .nn-hero-word { --phrase-offset: 180ms; }
+
+/* Reduced-motion: mirror the site's existing 150ms opacity-only fallback. */
+.nn-hero-split[data-hero-title-play="reduced"] .nn-hero-word {
+  animation: nn-hero-word-fade 150ms linear both;
+}
+@keyframes nn-hero-word-fade {
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+/* Mobile — tighten cadence for the shrunk 60px title. */
+@media (max-width: 768px) {
+  .nn-hero-split[data-hero-title-play="full"] .nn-hero-word {
+    animation-duration: 700ms;
+    animation-delay: calc(var(--wi, 0) * 110ms + var(--phrase-offset, 0ms));
+  }
+  .nn-hero-split-title-accent .nn-hero-word { --phrase-offset: 140ms; }
+}
+
+/* =============================================================
  * Hero depth — scroll-linked parallax.
  * Four tiers drift at declining rates over the first viewport of
  * scroll, so the scene resolves into layers rather than sliding
