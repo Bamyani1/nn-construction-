@@ -11,3 +11,5 @@ out/
 *.log
 Thumbs.db
 NN-pictures/
+docs/
+.playwright-mcp/
