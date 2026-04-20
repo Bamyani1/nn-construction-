@@ -46,6 +46,19 @@ export function HeroParallax() {
       };
     }
 
+    // Reduced-motion mirrors the CSS path: no drift. The CSS media
+    // query already nulls the transforms, but skip the subscription
+    // so we don't run the handler every frame for no visual effect.
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return () => {
+        io.disconnect();
+        hero.removeAttribute("data-hero-active");
+      };
+    }
+
     hero.setAttribute("data-hero-scroll-ready", "");
     const clamp01 = (n: number) => (n < 0 ? 0 : n > 1 ? 1 : n);
     const readProgress = () => {

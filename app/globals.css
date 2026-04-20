@@ -689,6 +689,10 @@ button { font-family: inherit; }
   .nn-hero-stack-back          { animation-name: nn-hero-drift-back; }
   .nn-hero-stack-front         { animation-name: nn-hero-drift-front; }
 
+  /* Drift amounts (atmos 36, pattern 28, back 20, front 8) appear
+     twice by necessity: the @keyframes below drive the CSS-timeline
+     path, and the calc() rules in @supports not (...) drive the JS
+     fallback. Keep the two lists in sync when tuning. */
   @keyframes nn-hero-drift-atmos   { to { transform: translate3d(0, 36px, 0); } }
   @keyframes nn-hero-drift-pattern { to { transform: translate3d(0, 28px, 0); } }
   @keyframes nn-hero-drift-back    { to { transform: translate3d(0, 20px, 0); } }
@@ -723,18 +727,9 @@ button { font-family: inherit; }
   will-change: transform;
 }
 
-@media (max-width: 768px) {
-  .nn-hero-split-right::before,
-  .nn-hero-split-right::after,
-  .nn-hero-stack-back,
-  .nn-hero-stack-front {
-    animation: none !important;
-    transform: none !important;
-    will-change: auto !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
+/* Mobile: touch-scroll jitter kills the effect.
+   Reduced motion: honor the system preference. */
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
   .nn-hero-split-right::before,
   .nn-hero-split-right::after,
   .nn-hero-stack-back,
