@@ -233,7 +233,30 @@ a:hover, .nn-link:hover { color: var(--nn-ink); }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg-1); }
-html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Scroll progress indicator — 3px accent bar pinned to top of viewport. */
+.nn-scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 3px; z-index: 60;
+  background: var(--nn-azure);
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+  pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  .nn-scroll-progress {
+    animation: nn-scroll-progress-fill linear both;
+    animation-timeline: scroll(root block);
+  }
+  @keyframes nn-scroll-progress-fill {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+}
 
 /* Keyboard-only focus indicator. Applies to every interactive
    element unless explicitly overridden (e.g. form fields below). */
