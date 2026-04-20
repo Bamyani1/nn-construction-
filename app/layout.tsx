@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import {
+  Space_Grotesk,
+  JetBrains_Mono,
+  Playfair_Display,
+} from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import "./globals.css";
@@ -22,6 +26,14 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--nn-font-mono",
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--nn-font-serif",
   display: "swap",
 });
 
@@ -54,7 +66,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}
+      className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} ${playfairDisplay.variable}`}
     >
       <body>
         <Nav />
