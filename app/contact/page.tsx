@@ -16,15 +16,7 @@ export default function ContactPage() {
           <div className="nn-page-eyebrow">
             <span className="nn-label">Contact</span>
           </div>
-          <h1 className="nn-page-title">
-            Start with
-            <br />
-            a walk-through.
-          </h1>
-          <p className="nn-page-lead">
-            Free, in-person, typically within a week. Written estimate inside
-            five business days.
-          </p>
+          <h1 className="nn-page-title">Start with a walk-through.</h1>
         </div>
       </section>
 
