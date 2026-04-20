@@ -43,9 +43,9 @@
   --nn-periwinkle: #B6C7E8;
 
   /* -------- Type scale (spec: modern geometric sans) -------- */
-  --fs-display:   72px; --lh-display: 1.05; --fw-display: 500;
-  --fs-h1:        56px; --lh-h1:      1.08; --fw-h1:      500;
-  --fs-h2:        40px; --lh-h2:      1.15; --fw-h2:      500;
+  --fs-display:   clamp(44px, 7.5vw, 72px); --lh-display: 1.05; --fw-display: 500;
+  --fs-h1:        clamp(36px, 6vw, 56px);   --lh-h1:      1.08; --fw-h1:      500;
+  --fs-h2:        clamp(28px, 4.5vw, 40px); --lh-h2:      1.15; --fw-h2:      500;
   --fs-subhead:   32px; --lh-subhead: 1.25; --fw-subhead: 400;
   --fs-lead:      22px; --lh-lead:    1.45; --fw-lead:    400;
   --fs-body:      17px; --lh-body:    1.6;  --fw-body:    400;
