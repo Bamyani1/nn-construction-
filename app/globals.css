@@ -695,6 +695,34 @@ button { font-family: inherit; }
   @keyframes nn-hero-drift-front   { to { transform: translate3d(0, 8px,  0); } }
 }
 
+/* Fallback path: HeroParallax writes --nn-hero-scroll (0..1) on the
+   section as the hero exits the viewport. Gated on
+   [data-hero-scroll-ready] so SSR paint stays at the zero-drift
+   initial state until JS takes over. */
+@supports not (animation-timeline: scroll()) {
+  .nn-hero-split[data-hero-scroll-ready] .nn-hero-split-right::before {
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 36px), 0);
+  }
+  .nn-hero-split[data-hero-scroll-ready] .nn-hero-split-right::after {
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 28px), 0);
+  }
+  .nn-hero-split[data-hero-scroll-ready] .nn-hero-stack-back {
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 20px), 0);
+  }
+  .nn-hero-split[data-hero-scroll-ready] .nn-hero-stack-front {
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * 8px),  0);
+  }
+}
+
+/* Compositor promotion only while the hero is in view — HeroParallax's
+   IntersectionObserver toggles [data-hero-active]. */
+.nn-hero-split[data-hero-active] .nn-hero-split-right::before,
+.nn-hero-split[data-hero-active] .nn-hero-split-right::after,
+.nn-hero-split[data-hero-active] .nn-hero-stack-back,
+.nn-hero-split[data-hero-active] .nn-hero-stack-front {
+  will-change: transform;
+}
+
 @media (max-width: 768px) {
   .nn-hero-split-right::before,
   .nn-hero-split-right::after,
