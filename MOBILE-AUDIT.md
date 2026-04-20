@@ -164,3 +164,51 @@ Reveal stagger duration is the same on phones as on desktop. Consider shortening
 3. **Page-title overflow fix.** Prefer `overflow-wrap: break-word` (safe but may break a word across lines), or pure typographic shrink via `clamp()` (no word breaks but loses desktop punch at mobile)? Recommend `clamp()` + `text-wrap: balance` primary, `overflow-wrap` as a safety net.
 
 Awaiting confirmation / additions before Phase 2.
+
+---
+
+## Phase 3 results
+
+Production build passes; all 9 routes render as `○ Static`. Built HTML `<meta name="viewport">` contains `viewport-fit=cover` and no `user-scalable` restriction. Horizontal overflow verified cleared at 375 px on every route that was flagged in Phase 1 (`/about`, `/faq`, `/services/interior`, `/services/exterior`). Desktop 1280 spot-checked — trigger hidden, inline nav shown, no overflow, drawer styles do not intrude.
+
+### Lighthouse mobile (navigation, Next.js dev server :3001)
+
+| Route                | A11y pre | A11y post | BP  | SEO | Notes |
+|----------------------|---------:|----------:|----:|----:|-------|
+| `/`                  |       98 |       100 | 100 |  92 | heading-order cleared |
+| `/services/interior` |       94 |       100 | 100 |  92 | contrast + heading-order cleared |
+| `/contact`           |        — |       100 | 100 |  92 | added for Phase 3 baseline |
+
+Performance is not scored by the MCP `lighthouse_audit` tool; `performance_start_trace` deferred (marked below).
+
+### Findings — status
+
+| # | Severity | Item | Status | Commit |
+|---|----------|------|--------|--------|
+| 1 | Critical | Horizontal overflow `.nn-page-title` h1 | ✅ | `6c9928d` |
+| 2 | Critical | Horizontal overflow `.nn-spec-cell` on services | ✅ | `796a57a` |
+| 3 | Critical | No hamburger — nav wraps inline | ✅ | `42690f4` (drawer + focus trap + scroll lock + ESC/backdrop) |
+| 4 | Critical | `vh` leaks (7 sites) | ✅ | `d901a96`, `f2187d3`, `d24acb9` |
+| 5 | Critical | `viewportFit: "cover"` missing | ✅ | `92bd027` |
+| 6 | Critical | No `<480` breakpoint tier | ✅ | `5a87ddf` |
+| 7 | Major    | Contact form `autoComplete` + `inputMode` | ✅ | `be3856c` |
+| 8 | Major    | Touch targets under 44×44 | ✅ | `319e355` (tabs). `.nn-faq` already has role=button + keydown. |
+| 9 | Major    | `next/image fill` without `aspect-ratio` | ⚠ deferred | No CLS regression observed in Lighthouse runs; sweep still worthwhile next pass. |
+| 10 | Major   | Meta-description missing | ⚠ false positive | Meta present in served HTML (`curl` verified); Lighthouse flag persists in dev and has no effect on prod SEO. |
+| 11 | Major   | `heading-order` (`/`, `/services/interior`) | ✅ | `6edbc1b`, `2cd6879`, `d21ec1b` |
+| 12 | Major   | `color-contrast` (`/services/interior`, `/contact`) | ✅ | `d4180d2`, `171c407`, `9444a1c`, `fd660df` |
+| 13 | Polish  | No `clamp()` fluid type | ✅ | `7ab7f34` (display/h1/h2) + page-title already clamped in `6c9928d` |
+| 14 | Polish  | `content-visibility: auto` off-screen | ⚠ deferred | Intentional — needs careful `contain-intrinsic-size` per section to avoid paint flash; defer to perf-focused pass. |
+| 15 | Polish  | Playfair Display weight trim | ⚠ not applicable | `.nn-hero-split-title` uses weight 600; italic used on `.nn-hero-split-title-accent`. Both above-the-fold. Keep current weights. |
+| 16 | Polish  | Reveal stagger shorten at `<480` | ⚠ deferred | Subjective — defer until real-device feedback. |
+
+### Summary for PR
+
+Mobile repair pass. Drawer with focus trap / body-scroll-lock / ESC + backdrop / animated hamburger-to-X. All horizontal-overflow sources killed (`.nn-page-title` via `clamp()` + `overflow-wrap`, `.nn-spec-sheet` collapses to one column at ≤ 640). Viewport-height units swapped for `dvh` / `svh` / `lvh` with intent per site. `viewport-fit=cover` enabled so safe-area insets resolve. Contact form gets `autoComplete` + `inputMode`. Touch targets bumped. Three a11y clusters cleared (`heading-order`, `color-contrast`, tab visibility) — `/`, `/services/interior`, and `/contact` all reach 100 A11y on mobile Lighthouse. New `<= 480` tier trims gutters and section rhythm. Fluid type on display/h1/h2. No desktop regressions.
+
+### Deferred / not addressed
+
+- `performance_start_trace` INP measurement — MCP tool time-boxed; no interactions observed over 200 ms in manual drawer testing.
+- `content-visibility: auto` sweep.
+- `aspect-ratio` sweep (no measurable CLS regression, but structural).
+- Reveal stagger shortening at `<480`.
