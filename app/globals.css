@@ -1257,6 +1257,7 @@ button { font-family: inherit; }
   padding: 12px 18px; border: 1px solid var(--line-strong);
   color: var(--fg-2); cursor: pointer; background: transparent;
   transition: all var(--dur-fast) var(--ease-out);
+  min-height: 44px;
 }
 @media (hover: hover) {
   .nn-tab:hover { color: var(--nn-azure); border-color: var(--nn-azure-lift); }
