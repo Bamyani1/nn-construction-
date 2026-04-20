@@ -11,8 +11,8 @@ interface HeroSplitProps {
 export function HeroSplit({
   backImageSrc = "/assets/projects/custom-window-install/04.webp",
   backImageAlt = "NN Construction crew installing a window",
-  frontImageSrc = "/assets/projects/standing-seam-reroof/12.webp",
-  frontImageAlt = "Two-person crew laying standing-seam roofing",
+  frontImageSrc = "/assets/projects/primary-bath-renovation/04.webp",
+  frontImageAlt = "Primary bathroom renovation, finished",
 }: HeroSplitProps = {}) {
   return (
     <section className="nn-hero-split">
