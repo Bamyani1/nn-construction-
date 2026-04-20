@@ -117,7 +117,7 @@ export function PortfolioBrowser({ projects }: PortfolioBrowserProps) {
                 <button
                   key={p.slug}
                   type="button"
-                  className="nn-project-card"
+                  className="nn-project-card nn-card-hover"
                   onClick={(e) => openModal(p, e.currentTarget)}
                   aria-haspopup="dialog"
                 >

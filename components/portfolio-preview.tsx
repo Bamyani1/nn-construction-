@@ -35,7 +35,7 @@ export function PortfolioPreview({ id }: { id?: string } = {}) {
           {portfolioPreview.map((p, i) => (
             <Link
               key={p.slug}
-              className="nn-project-card"
+              className="nn-project-card nn-card-hover"
               href="/portfolio"
               data-reveal="mask-wipe"
               style={{ "--i": i } as React.CSSProperties}

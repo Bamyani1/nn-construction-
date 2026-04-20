@@ -504,6 +504,21 @@ a:focus-visible::after,
   transform: translateY(1px);
 }
 
+/* Unified card hover — lift + shadow. Each card type layers its own
+   signature (image scale on projects, border on team, tint on services)
+   on top. Opt in with the nn-card-hover class. */
+.nn-card-hover {
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .nn-card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-1);
+  }
+}
+
 img, svg { display: block; max-width: 100%; }
 button { font-family: inherit; }
 
@@ -995,6 +1010,10 @@ button { font-family: inherit; }
 .nn-service-card.featured::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: var(--nn-azure);
+  transition: height var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .nn-service-card.featured:hover::before { height: 3px; }
 }
 .nn-service-head {
   display: flex; align-items: flex-start; justify-content: space-between;

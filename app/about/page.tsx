@@ -161,7 +161,7 @@ export default function AboutPage() {
           </div>
           <div className="nn-team-grid" style={{ marginTop: 64 }}>
             {team.map((m) => (
-              <div key={m.name} className="nn-team-card">
+              <div key={m.name} className="nn-team-card nn-card-hover">
                 <div className="nn-team-avatar">{initials(m.name)}</div>
                 <div className="nn-team-name">{m.name}</div>
                 <div className="nn-team-role">{m.role}</div>
