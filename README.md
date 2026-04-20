@@ -1,113 +1,145 @@
-# NN Construction — Marketing Site
+<div align="center">
 
-> Your dream, our hardwork.
+<img src="public/assets/nn-logo-with-text.png" alt="NN Construction" width="440" />
 
-Marketing site for **NN Construction** — full-service residential construction
-in the DC metro (Silver Spring, MD), with roofing as a proven specialty.
-Cyanotype blueprint palette; a construction-company voice, not an architect's.
+<br />
+<br />
 
-## Stack
+_Your dream, our hardwork._
 
-- **Next.js 15** (App Router) · **React 19** · **TypeScript 5**
-- **`next/font`** — Space Grotesk + JetBrains Mono (400 + 500 weights only)
-- **`next/image`** — AVIF/WebP format negotiation, responsive `srcset`, lazy loading
-- Design tokens + page styles in `app/globals.css` (no Tailwind, no CSS-in-JS)
-- Fully static — every route prerenders as `○ (Static)`
+<br />
 
-## Routes
+[![View on GitHub](https://img.shields.io/badge/VIEW-GitHub-3973C2?style=for-the-badge&labelColor=0B1A2E)](https://github.com/Bamyani1/nn-construction-)
 
-| Path | What |
-|---|---|
-| `/` | Hero split · four pillars · stats · services preview · portfolio preview · testimonial |
-| `/about` | Principles, founder's note, crew, licensure |
-| `/services/interior` | Interior disciplines + project process |
-| `/services/exterior` | Exterior disciplines + roofing specialty spec sheet |
-| `/portfolio` | Filterable project grid (All / Roofing / Interior / Exterior) with hero + gallery modal |
-| `/testimonials` | Attributed client quotes |
-| `/faq` | Accordion |
-| `/contact` | Estimate form (front-end only — see *Known deferrals*) |
-| `/canvas` | Design canvas — all pages scaled into one view (noindex) |
+<br />
 
-Plus `/sitemap.xml`, `/robots.txt`, `/opengraph-image.jpg`, `/icon.svg`.
+![Next.js 15.5](https://img.shields.io/badge/Next.js-15.5-0B1A2E?style=flat-square&logo=next.js&logoColor=white)
+![React 19](https://img.shields.io/badge/React-19-0B1A2E?style=flat-square&logo=react&logoColor=white)
+![TypeScript 5.7](https://img.shields.io/badge/TypeScript-5.7-0B1A2E?style=flat-square&logo=typescript&logoColor=white)
+![Lenis 1.3](https://img.shields.io/badge/Lenis-1.3-0B1A2E?style=flat-square)
+![Sharp 0.34](https://img.shields.io/badge/Sharp-0.34-0B1A2E?style=flat-square)
 
-## Repository layout
+</div>
 
-```
-app/
-  layout.tsx               — root shell, metadata, viewport
-  page.tsx                 — home
-  icon.svg                 — favicon
-  opengraph-image.jpg      — social preview
-  sitemap.ts / robots.ts   — generated /sitemap.xml + /robots.txt
-  not-found.tsx            — 404
-  error.tsx                — client error boundary
-  globals.css              — all design tokens + page styles + responsive breakpoints
-components/                — Nav, NavLinks, Footer, HeroSplit, PortfolioBrowser, FaqAccordion, ContactForm, CanvasTile, ServicesTabs
-lib/data.ts                — typed content (projects, testimonials, team, stats, faqs)
-public/assets/
-  logo(-mark).svg          — brand marks
-  projects/<slug>/NN.webp  — real project photos (1600 px max, q80)
-  img/tools-pattern.svg    — decorative background pattern
-scripts/compress-images.mjs — HEIC → WebP pipeline
-NN-pictures/               — raw HEIC sources (gitignored, local only)
-docs/                      — design specs and historical notes
-```
+<br />
 
-## Content model
+---
 
-`lib/data.ts` holds the typed data every page consumes. The key types:
+## Overview
 
-```ts
-Project     = { slug, name, cat, images[], brief }
-Testimonial = { quote, name, role, loc, project }   // project ↔ Project["name"] union
-TeamMember  = { name, role, tenure }
-Faq         = { q, a }
-```
+Marketing site for **NN Construction** &mdash; full-service residential construction in the DC metro, with roofing as a proven specialty. A cyanotype blueprint palette, nine hand-composed routes, and a construction-company voice &mdash; not an architect's. Every page prerenders statically.
 
-Swapping a photo, renaming a project, or adding a testimonial is a one-file
-change.
+<br />
 
-## Develop
+## Tech Stack
+
+| Layer         | Tools                                                                           |
+| ------------- | ------------------------------------------------------------------------------- |
+| **Framework** | Next.js 15.5 (App Router, React Server Components), React 19, TypeScript 5.7    |
+| **Styling**   | CSS custom properties in `app/globals.css` &mdash; no Tailwind, no CSS-in-JS    |
+| **Fonts**     | Space Grotesk + JetBrains Mono via `next/font` (400 and 500 weights only)       |
+| **Media**     | `next/image` with AVIF/WebP negotiation, Sharp + `sips` HEIC pipeline           |
+| **Motion**    | Lenis smooth scroll                                                             |
+| **Hosting**   | Static prerender, Vercel-ready                                                  |
+
+<br />
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js 20 LTS** or newer
+- **npm 10** or newer
+
+### Local development
 
 ```bash
+git clone https://github.com/Bamyani1/nn-construction-.git
+cd nn-construction-
 npm install
-npm run dev           # http://localhost:3000
-npm run build         # production build
-npm run start         # serve production build
-npm run lint          # next lint
-npm run images        # regenerate /public/assets/projects/** from /NN-pictures/**
+npm run dev              # http://localhost:3000
 ```
 
-## Image pipeline
+### Scripts
 
-`npm run images` converts raw iPhone HEICs in `NN-pictures/<folder>/*.HEIC`
-to WebP under `public/assets/projects/<slug>/NN.webp`:
+| Command           | Description                                                    |
+| ----------------- | -------------------------------------------------------------- |
+| `npm run dev`     | Start the Next.js dev server (Turbopack) on port 3000          |
+| `npm run build`   | Production build                                               |
+| `npm run start`   | Serve the production build                                     |
+| `npm run lint`    | ESLint via `eslint-config-next`                                |
+| `npm run images`  | Regenerate `/public/assets/projects/**` from `/NN-pictures/**` |
 
-1. `sips` decodes HEIC → intermediate full-res JPEG.
-2. `sharp` applies EXIF rotation, resizes to 1600 px max edge, writes WebP q80.
-3. Each slug folder is written to a tmp directory first and renamed atomically
-   on success, so a mid-run failure never leaves production pointing at an
-   empty folder.
+<br />
 
-The folder → slug mapping and hero-first file ordering is hard-coded in
-`scripts/compress-images.mjs`.
+## Highlights
 
-## Known deferrals
+- **Cyanotype blueprint design system** &mdash; every color, type step, spacing unit, and radius lives as a CSS custom property in a single `:root` block. No utility framework, no runtime styling.
+- **Nine editorial routes** &mdash; home, about, interior services, exterior services, portfolio, testimonials, FAQ, contact, and a design canvas that scales every page into one view.
+- **Static by construction** &mdash; every route prerenders as `○ (Static)`. No servers to run, no caches to warm.
+- **Filterable portfolio with gallery modal** &mdash; category tabs across All / Roofing / Interior / Exterior, per-project hero, and a keyboard-navigable image lightbox.
+- **Real project photography** &mdash; HEIC sources from an iPhone pass through a repeatable `npm run images` pipeline. Each slug folder is rebuilt atomically, so a mid-run failure never leaves production pointing at an empty folder.
+- **Typed content model** &mdash; projects, testimonials, crew, stats, and FAQs all live in `lib/data.ts`. Swapping a photo or adding a quote is a one-file change with full type safety.
+- **Performance-tuned images** &mdash; `next/image` handles AVIF/WebP negotiation, responsive `srcset`, and lazy loading. Source images cap at 1600px at WebP q80.
 
-- **Contact form has no backend.** `components/contact-form.tsx` only flips
-  local state on submit. Copy tells the user "we've received your request"
-  without promising an email. Real submission (Resend + route handler) is a
-  planned follow-up — see the `TODO(phase-5)` comment in `handleSubmit`.
-- **Nav has no mobile drawer.** On viewports ≤640 px the brand and link strip
-  stack vertically with links wrapping. It works but isn't a polished
-  hamburger pattern.
-- **Per-page OpenGraph overrides** are not set — every page inherits the root
-  `openGraph` block. Once a live domain is attached, consider adding per-page
-  OG images (esp. `/portfolio`).
+<br />
 
-## History
+## Pages
 
-- **v1.0.0** — Static HTML/CSS/JS handoff from Claude Design (tag preserved)
-- **v2.0.0** — Full migration to Next.js 15 App Router
-- **v2.1.0** (in progress) — Real project photos, gallery modal, accessibility
-  pass, performance pass, mobile responsive, production readiness
+| Page         | Route                 | Description                                                                              |
+| ------------ | --------------------- | ---------------------------------------------------------------------------------------- |
+| Home         | `/`                   | Hero split &middot; four pillars &middot; stats &middot; services, portfolio, and testimonial previews |
+| About        | `/about`              | Principles, founder's note, crew, licensure                                              |
+| Interior     | `/services/interior`  | Interior disciplines and the project process                                             |
+| Exterior     | `/services/exterior`  | Exterior disciplines and roofing specialty spec sheet                                    |
+| Portfolio    | `/portfolio`          | Filterable project grid with hero view and gallery modal                                 |
+| Testimonials | `/testimonials`       | Attributed client quotes                                                                 |
+| FAQ          | `/faq`                | Accordion                                                                                |
+| Contact      | `/contact`            | Estimate form (front-end only &mdash; see [Roadmap](#roadmap))                           |
+| Canvas       | `/canvas`             | Design canvas &mdash; every page scaled into one view (noindex)                          |
+
+Plus `/sitemap.xml`, `/robots.txt`, `/opengraph-image.jpg`, and `/icon.svg`.
+
+<br />
+
+## Design System
+
+The _cyanotype blueprint_ palette and every visual value are declared as CSS custom properties inside `app/globals.css`:
+
+| Category       | Examples                                                                                      |
+| -------------- | --------------------------------------------------------------------------------------------- |
+| **Colors**     | `#ECF1F7` paper, `#0B1A2E` ink, `#3973C2` azure, `#64748B` slate, `#B6C7E8` periwinkle accent |
+| **Typography** | Space Grotesk for display and body, JetBrains Mono for numerics and micro copy                |
+| **Layout**     | 1240px content max, 96px gutter, 160px section gap                                            |
+| **Radii**      | Mostly sharp &mdash; 2px on inputs, 4px on cards, pill only on tags                           |
+
+<br />
+
+## Image Pipeline
+
+`npm run images` rebuilds `/public/assets/projects/<slug>/` from iPhone HEICs in `/NN-pictures/`. Each source passes through `sips` (HEIC → q95 JPEG) and then Sharp (EXIF rotate → resize to 1600px max edge → WebP q80). The folder-to-slug map and hero-first file ordering are hard-coded in `scripts/compress-images.mjs`; raw HEICs stay gitignored and local-only.
+
+<br />
+
+## Roadmap
+
+- **Contact form backend** &mdash; wire `components/contact-form.tsx` to Resend via a route handler. Current submit flips local state only.
+- **Mobile navigation drawer** &mdash; replace the stacking link strip on viewports ≤ 640px with a proper hamburger drawer.
+- **Per-page OpenGraph imagery** &mdash; every route currently inherits the root `openGraph`; `/portfolio` especially deserves its own card.
+
+<br />
+
+---
+
+<div align="center">
+
+<img src="public/assets/nn-logo.png" alt="NN Construction" width="160" />
+
+<br />
+<br />
+
+[**github.com/Bamyani1/nn-construction- &rarr;**](https://github.com/Bamyani1/nn-construction-)
+
+&copy; 2026 NN Construction
+
+</div>
