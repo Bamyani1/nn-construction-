@@ -19,7 +19,7 @@
   --fg-1: var(--nn-ink);          /* primary type */
   --fg-2: #3E4A5F;                /* secondary type — cool charcoal */
   --fg-3: var(--nn-slate);        /* meta, captions */
-  --fg-accent: var(--nn-azure);
+  --fg-accent: var(--nn-azure-deep);
   --fg-inverse: var(--nn-paper);
 
   /* -------- Semantic background -------- */
@@ -1431,7 +1431,7 @@ button { font-family: inherit; }
 .nn-pull-quote-cap {
   margin-top: 28px;
   font: 500 12px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase;
-  color: var(--nn-azure);
+  color: var(--nn-azure-deep);
 }
 
 /* =============================================================
