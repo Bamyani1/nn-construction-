@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/assets/nn-logo-with-text.png" alt="NN Construction" width="440" />
+<img src="public/assets/nn-logo-with-text.png" alt="NN Construction" width="176" />
 
 <br />
 <br />
