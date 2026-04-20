@@ -8,20 +8,38 @@ export function PortfolioPreview({ id }: { id?: string } = {}) {
   return (
     <section id={id} className="nn-section nn-section-raised">
       <div className="nn-container">
-        <div className="nn-section-head">
-          <div className="nn-chapter">
+        <div className="nn-section-head" data-reveal-stagger>
+          <div
+            className="nn-chapter"
+            data-reveal="fade-rise"
+            style={{ "--i": 0 } as React.CSSProperties}
+          >
             <span className="nn-chapter-label">Portfolio</span>
           </div>
-          <h2 className="nn-section-title">
+          <h2
+            className="nn-section-title"
+            data-reveal="fade-rise"
+            style={{ "--i": 1 } as React.CSSProperties}
+          >
             Recent work,
             <br />
             appraised in low light.
           </h2>
         </div>
 
-        <div className="nn-project-grid" style={{ marginTop: 64 }}>
-          {portfolioPreview.map((p) => (
-            <Link key={p.slug} className="nn-project-card" href="/portfolio">
+        <div
+          className="nn-project-grid"
+          style={{ marginTop: 64 }}
+          data-reveal-stagger
+        >
+          {portfolioPreview.map((p, i) => (
+            <Link
+              key={p.slug}
+              className="nn-project-card"
+              href="/portfolio"
+              data-reveal="mask-wipe"
+              style={{ "--i": i } as React.CSSProperties}
+            >
               <div className="nn-project-img">
                 <Image
                   src={`/assets/projects/${p.slug}/${p.images[0]}`}

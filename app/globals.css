@@ -258,6 +258,147 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
   }
 }
 
+/* =============================================================
+ * Reveal system — scroll-driven entrance, one-shot latch.
+ * Chrome: CSS view() timeline drives the entrance as the element
+ *   enters the viewport. For above-the-fold elements, the JS
+ *   observer swaps the timeline to wall-clock on mount, giving a
+ *   700ms time-based entrance using the same keyframes.
+ * Safari (no view() support): a transition defined in the
+ *   fallback block fires when the observer adds data-revealed.
+ * Latched rule keeps a short transition so that any snap between
+ *   "animation cut short" and "final state" stays smooth.
+ * ============================================================= */
+
+@property --reveal-progress {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+[data-reveal] {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+[data-reveal="fade-rise"]        { transform: translateY(24px); }
+[data-reveal="side-slide-left"]  { transform: translateX(-40px); }
+[data-reveal="side-slide-right"] { transform: translateX(40px); }
+[data-reveal="scale-settle"]     { transform: scale(0.96); }
+[data-reveal="blur-to-sharp"]    { filter: blur(12px); }
+[data-reveal="clip-reveal"]      { clip-path: inset(0 100% 0 0); }
+[data-reveal="mask-wipe"]        { clip-path: inset(100% 0 0 0); }
+
+/* Primary (Chrome): scroll-driven via view() timeline. */
+@supports (animation-timeline: view()) {
+  [data-reveal] {
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+    animation-fill-mode: both;
+    animation-timing-function: var(--ease-out);
+  }
+  [data-reveal="fade-rise"]        { animation-name: reveal-fade-rise; }
+  [data-reveal="side-slide-left"]  { animation-name: reveal-slide-left; }
+  [data-reveal="side-slide-right"] { animation-name: reveal-slide-right; }
+  [data-reveal="scale-settle"]     { animation-name: reveal-scale-settle; }
+  [data-reveal="clip-reveal"]      { animation-name: reveal-clip; }
+  [data-reveal="blur-to-sharp"]    { animation-name: reveal-blur; }
+  [data-reveal="mask-wipe"]        { animation-name: reveal-mask-wipe; }
+
+  [data-reveal-stagger] [data-reveal] {
+    animation-range:
+      entry calc(var(--i, 0) * 10%)
+      entry calc(80% + var(--i, 0) * 10%);
+  }
+}
+
+/* Fallback (Safari and older browsers): transition-based. Fires
+   when the observer adds data-revealed. */
+@supports not (animation-timeline: view()) {
+  [data-reveal] {
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out),
+      filter var(--dur-slow) var(--ease-out),
+      clip-path var(--dur-slow) var(--ease-out);
+  }
+  [data-reveal-stagger] [data-reveal] {
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+}
+
+/* Latched end state — animation off, final values pinned,
+   clip-path cleared so natural text overflow (descenders, font
+   metrics) isn't cut. Short transition smooths the snap when the
+   observer latches mid-animation. */
+[data-reveal][data-revealed] {
+  animation: none;
+  opacity: 1;
+  transform: none;
+  filter: none;
+  clip-path: none;
+  transition:
+    opacity 250ms var(--ease-out),
+    transform 250ms var(--ease-out),
+    filter 250ms var(--ease-out),
+    clip-path 250ms var(--ease-out);
+}
+
+/* Reduced motion: collapse to a minimal opacity fade. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    animation: none !important;
+    transition: opacity 150ms linear !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+  [data-reveal][data-revealed] { opacity: 1; }
+}
+
+/* Primer for elements that mount already in-view (modals, expanded
+   accordions). Use `data-reveal-enter` to fade them in on insertion. */
+[data-reveal-enter] {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur-mid) var(--ease-out),
+              transform var(--dur-mid) var(--ease-out);
+}
+@starting-style {
+  [data-reveal-enter] {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes reveal-fade-rise {
+  from { opacity: 0; transform: translateY(24px); --reveal-progress: 0; }
+  to   { opacity: 1; transform: none;             --reveal-progress: 1; }
+}
+@keyframes reveal-slide-left {
+  from { opacity: 0; transform: translateX(-40px); --reveal-progress: 0; }
+  to   { opacity: 1; transform: none;              --reveal-progress: 1; }
+}
+@keyframes reveal-slide-right {
+  from { opacity: 0; transform: translateX(40px); --reveal-progress: 0; }
+  to   { opacity: 1; transform: none;             --reveal-progress: 1; }
+}
+@keyframes reveal-scale-settle {
+  from { opacity: 0; transform: scale(0.96); --reveal-progress: 0; }
+  to   { opacity: 1; transform: none;        --reveal-progress: 1; }
+}
+@keyframes reveal-clip {
+  from { opacity: 0; clip-path: inset(0 100% 0 0); --reveal-progress: 0; }
+  to   { opacity: 1; clip-path: inset(0);          --reveal-progress: 1; }
+}
+@keyframes reveal-blur {
+  from { opacity: 0; filter: blur(12px); --reveal-progress: 0; }
+  to   { opacity: 1; filter: blur(0);    --reveal-progress: 1; }
+}
+@keyframes reveal-mask-wipe {
+  from { opacity: 0; clip-path: inset(100% 0 0 0); --reveal-progress: 0; }
+  to   { opacity: 1; clip-path: inset(0);          --reveal-progress: 1; }
+}
+
 /* Keyboard-only focus indicator. Applies to every interactive
    element unless explicitly overridden (e.g. form fields below). */
 *:focus { outline: none; }

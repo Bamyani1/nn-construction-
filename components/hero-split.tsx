@@ -17,21 +17,34 @@ export function HeroSplit({
   return (
     <section className="nn-hero-split">
       <div className="nn-hero-split-left">
-        <div className="nn-hero-split-copy">
-          <h1 className="nn-hero-split-title">
+        <div className="nn-hero-split-copy" data-reveal-stagger>
+          <h1
+            className="nn-hero-split-title"
+            data-reveal="fade-rise"
+            style={{ "--i": 0 } as React.CSSProperties}
+          >
             {"Full\u2011service construction."}
             <span className="nn-hero-split-title-accent">Done right.</span>
           </h1>
-          <p className="nn-hero-split-lead">
+          <p
+            className="nn-hero-split-lead"
+            data-reveal="fade-rise"
+            style={{ "--i": 1 } as React.CSSProperties}
+          >
             Residential construction from framing to finish — plumb to the
             foundation, tight to the weather, finished appraisal-ready.
           </p>
-          <Link href="/services/interior" className="nn-hero-split-cta">
+          <Link
+            href="/services/interior"
+            className="nn-hero-split-cta"
+            data-reveal="fade-rise"
+            style={{ "--i": 2 } as React.CSSProperties}
+          >
             Explore services <span aria-hidden="true">→</span>
           </Link>
         </div>
       </div>
-      <div className="nn-hero-split-right">
+      <div className="nn-hero-split-right" data-reveal="scale-settle">
         <div className="nn-hero-stack">
           <figure className="nn-hero-stack-back">
             <span className="nn-hero-stack-glow" aria-hidden="true">
