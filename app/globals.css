@@ -1323,6 +1323,22 @@ button { font-family: inherit; }
 }
 .nn-field input:focus, .nn-field textarea:focus, .nn-field select:focus { border-bottom-color: var(--nn-azure); }
 .nn-field textarea { resize: vertical; min-height: 120px; }
+.nn-field input:user-invalid,
+.nn-field textarea:user-invalid,
+.nn-field select:user-invalid {
+  border-bottom: 2px solid color-mix(in oklab, var(--nn-ink) 85%, transparent);
+}
+.nn-field-hint {
+  display: none;
+  margin-top: 8px;
+  font: 400 12px/1.4 var(--ff-sans);
+  color: var(--fg-3);
+}
+.nn-field input:user-invalid + .nn-field-hint,
+.nn-field textarea:user-invalid + .nn-field-hint,
+.nn-field select:user-invalid + .nn-field-hint {
+  display: block;
+}
 .nn-form-actions { grid-column: span 2; justify-self: start; margin-top: 16px; }
 .nn-sent {
   grid-column: span 2;
