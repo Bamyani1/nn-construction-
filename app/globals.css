@@ -557,7 +557,7 @@ button { font-family: inherit; }
   align-items: center; gap: 48px;
   height: 60px;
 }
-.nn-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.nn-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; min-height: 44px; }
 .nn-brand::after { display: none; }
 .nn-brand-mark-img { display: block; height: 32px; width: auto; }
 .nn-brand-word { font: 500 20px/1 var(--ff-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--nn-ink); margin-top: 6px; }
@@ -1697,8 +1697,11 @@ button { font-family: inherit; }
   /* Nav: compact padding on phones; drawer handles links. */
   .nn-nav-inner {
     padding: 10px 20px;
-    gap: 16px;
+    gap: 12px;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
   }
+  .nn-nav-cta { white-space: nowrap; }
 
   /* Modal: reduce padding so thumbnail strip doesn't feel cramped. */
   .nn-modal { padding: 12px; }
@@ -1885,4 +1888,15 @@ button { font-family: inherit; }
   }
   .nn-container { padding-left: 20px; padding-right: 20px; }
   .nn-section-head { margin-bottom: 32px; }
+
+  /* Nav fits brand mark + CTA + hamburger on iPhone-class widths only when the
+     wordmark steps aside. Logo carries the brand at this scale. */
+  .nn-brand-word { display: none; }
+  .nn-brand-mark-img { height: 28px; }
+  .nn-nav-cta {
+    padding: 10px 14px;
+    font-size: 11px;
+    letter-spacing: .14em;
+  }
+  .nn-nav-inner { gap: 8px; padding: 10px 16px; }
 }
