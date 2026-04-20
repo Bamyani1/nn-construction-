@@ -1876,3 +1876,13 @@ button { font-family: inherit; }
   .nn-nav-links { display: none; }
   .nn-mobile-trigger { display: inline-flex; }
 }
+
+/* Sub-480 tier: tighten gutters + section rhythm so small phones breathe. */
+@media (max-width: 480px) {
+  :root {
+    --gutter-sm: 20px;
+    --section-gap-sm: 72px;
+  }
+  .nn-container { padding-left: 20px; padding-right: 20px; }
+  .nn-section-head { margin-bottom: 32px; }
+}
