@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function CtaBand({ id }: { id?: string } = {}) {
   return (
-    <section id={id} className="nn-cta-band">
+    <section id={id} className="nn-cta-band" data-reveal="scale-settle">
       <div className="nn-container nn-cta-inner">
         <div>
           <div className="nn-eyebrow">Accepting projects · Summer &apos;26</div>

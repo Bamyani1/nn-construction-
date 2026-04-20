@@ -39,27 +39,45 @@ export function ServicesPreview({ id }: { id?: string } = {}) {
   return (
     <section id={id} className="nn-section">
       <div className="nn-container">
-        <div className="nn-section-head">
-          <div className="nn-chapter">
+        <div className="nn-section-head" data-reveal-stagger>
+          <div
+            className="nn-chapter"
+            data-reveal="fade-rise"
+            style={{ "--i": 0 } as React.CSSProperties}
+          >
             <span className="nn-chapter-label">Services</span>
           </div>
-          <h2 className="nn-section-title">
+          <h2
+            className="nn-section-title"
+            data-reveal="fade-rise"
+            style={{ "--i": 1 } as React.CSSProperties}
+          >
             Every surface considered.
             <br />
             Every line true.
           </h2>
-          <p className="nn-section-lead">
+          <p
+            className="nn-section-lead"
+            data-reveal="fade-rise"
+            style={{ "--i": 2 } as React.CSSProperties}
+          >
             Eight core disciplines, one crew. Interior, exterior, and a
             proven roofing specialty.
           </p>
         </div>
 
-        <div className="nn-service-grid" style={{ marginTop: 72 }}>
-          {servicePreview.map((s) => (
+        <div
+          className="nn-service-grid"
+          style={{ marginTop: 72 }}
+          data-reveal-stagger
+        >
+          {servicePreview.map((s, i) => (
             <Link
               key={s.title}
               className={`nn-service-card${s.featured ? " featured" : ""}`}
               href={s.href}
+              data-reveal={s.featured ? "scale-settle" : "fade-rise"}
+              style={{ "--i": i } as React.CSSProperties}
             >
               <h3 className="nn-service-title">{s.title}</h3>
               <p className="nn-service-desc">{s.desc}</p>

@@ -24,12 +24,21 @@ export function Pillars() {
       style={{ paddingTop: 96, paddingBottom: 96 }}
     >
       <div className="nn-container">
-        <div className="nn-eyebrow" style={{ marginBottom: 32 }}>
+        <div
+          className="nn-eyebrow"
+          style={{ marginBottom: 32 }}
+          data-reveal="fade-rise"
+        >
           Four pillars
         </div>
-        <div className="nn-pillars">
-          {pillars.map((p) => (
-            <div key={p.title} className="nn-pillar">
+        <div className="nn-pillars" data-reveal-stagger>
+          {pillars.map((p, i) => (
+            <div
+              key={p.title}
+              className="nn-pillar"
+              data-reveal="fade-rise"
+              style={{ "--i": i } as React.CSSProperties}
+            >
               <h3 className="nn-pillar-title">{p.title}</h3>
               <p className="nn-pillar-desc">{p.desc}</p>
             </div>

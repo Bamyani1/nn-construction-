@@ -291,7 +291,7 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
   [data-reveal="blur-to-sharp"]    { animation-name: reveal-blur; }
   [data-reveal="mask-wipe"]        { animation-name: reveal-mask-wipe; }
 
-  [data-reveal-stagger] > [data-reveal] {
+  [data-reveal-stagger] [data-reveal] {
     --nn-reveal-step: 4%;
     animation-range:
       entry calc(var(--i, 0) * var(--nn-reveal-step))
@@ -327,7 +327,7 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
   [data-reveal="clip-reveal"]      { clip-path: inset(0 100% 0 0); }
   [data-reveal="mask-wipe"]        { clip-path: inset(100% 0 0 0); }
 
-  [data-reveal-stagger] > [data-reveal] {
+  [data-reveal-stagger] [data-reveal] {
     transition-delay: calc(var(--i, 0) * 80ms);
   }
 

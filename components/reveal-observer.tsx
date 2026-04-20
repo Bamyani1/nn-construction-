@@ -16,7 +16,10 @@ export function RevealObserver() {
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
+          // Latch on intersection, or when the element has already scrolled
+          // past the viewport top (handles fast jumps / hash-link landings
+          // where the observer never saw the transient intersection).
+          if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
             entry.target.setAttribute("data-revealed", "");
             io.unobserve(entry.target);
           }
