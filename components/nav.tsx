@@ -27,7 +27,7 @@ export function Nav() {
         </Link>
         <NavLinks items={navItems} />
         <Link className="nn-btn nn-btn-primary" href="/contact">
-          Get a quote →
+          Get a quote <span className="nn-btn-arrow" aria-hidden="true">→</span>
         </Link>
       </div>
     </nav>

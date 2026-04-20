@@ -9,7 +9,7 @@ export function CtaBand({ id }: { id?: string } = {}) {
           <h2 className="nn-cta-title">Start with a free walk-through.</h2>
         </div>
         <Link className="nn-btn nn-btn-primary nn-btn-lg" href="/contact">
-          Request estimate →
+          Request estimate <span className="nn-btn-arrow" aria-hidden="true">→</span>
         </Link>
       </div>
     </section>

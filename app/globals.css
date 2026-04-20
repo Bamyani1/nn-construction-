@@ -611,6 +611,13 @@ button { font-family: inherit; }
   .nn-btn-ghost:hover::after { right: 0; }
 }
 .nn-btn-lg { padding: 18px 28px; font-size: 13px; }
+.nn-btn-arrow {
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .nn-btn:hover .nn-btn-arrow { transform: translateX(3px); }
+}
 
 /* =============================================================
  * Editorial split-hero

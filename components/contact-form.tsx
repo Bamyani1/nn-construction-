@@ -77,7 +77,7 @@ export function ContactForm() {
               className="nn-btn nn-btn-primary nn-btn-lg"
               type="submit"
             >
-              Send request →
+              Send request <span className="nn-btn-arrow" aria-hidden="true">→</span>
             </button>
           </div>
         </div>
