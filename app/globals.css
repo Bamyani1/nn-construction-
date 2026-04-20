@@ -219,10 +219,12 @@ a::after, .nn-link::after {
   background: var(--nn-azure);
   transition: right var(--dur-mid) var(--ease-out);
 }
-a:hover::after, .nn-link:hover::after {
-  right: 0;
+@media (hover: hover) {
+  a:hover::after, .nn-link:hover::after {
+    right: 0;
+  }
+  a:hover, .nn-link:hover { color: var(--nn-ink); }
 }
-a:hover, .nn-link:hover { color: var(--nn-ink); }
 
 /* =============================================================
  * Utility: hairline rule
@@ -456,8 +458,10 @@ button { font-family: inherit; }
   height: 1px; background: var(--nn-azure);
   transition: right var(--dur-mid) var(--ease-out);
 }
-.nn-nav-link:hover { color: var(--fg-1); }
-.nn-nav-link:hover::after { right: 0; }
+@media (hover: hover) {
+  .nn-nav-link:hover { color: var(--fg-1); }
+  .nn-nav-link:hover::after { right: 0; }
+}
 .nn-nav-link.active { color: var(--nn-ink); }
 .nn-nav-link.active::after { right: 0; }
 
@@ -472,9 +476,13 @@ button { font-family: inherit; }
 }
 .nn-btn::after { display: none; }
 .nn-btn-primary { background: var(--nn-azure); color: var(--nn-paper); }
-.nn-btn-primary:hover { background: var(--nn-azure-deep); color: var(--nn-paper); }
+@media (hover: hover) {
+  .nn-btn-primary:hover { background: var(--nn-azure-deep); color: var(--nn-paper); }
+}
 .nn-btn-outline { background: transparent; color: var(--fg-1); border: 1px solid var(--line-strong); }
-.nn-btn-outline:hover { border-color: var(--nn-azure); color: var(--nn-azure); }
+@media (hover: hover) {
+  .nn-btn-outline:hover { border-color: var(--nn-azure); color: var(--nn-azure); }
+}
 .nn-btn-ghost {
   background: transparent; color: var(--fg-1);
   padding: 14px 0; position: relative;
@@ -489,7 +497,9 @@ button { font-family: inherit; }
   height: 1px; background: var(--nn-azure);
   transition: right var(--dur-mid) var(--ease-out);
 }
-.nn-btn-ghost:hover::after { right: 0; }
+@media (hover: hover) {
+  .nn-btn-ghost:hover::after { right: 0; }
+}
 .nn-btn-lg { padding: 18px 28px; font-size: 13px; }
 
 /* =============================================================
@@ -573,7 +583,9 @@ button { font-family: inherit; }
   background: rgba(247, 250, 252, 0.5);
   transition: background var(--dur-fast) var(--ease-out);
 }
-.nn-hero-split-cta:hover::after { background: var(--nn-paper); }
+@media (hover: hover) {
+  .nn-hero-split-cta:hover::after { background: var(--nn-paper); }
+}
 .nn-hero-split-right {
   position: relative;
   z-index: 1;
@@ -879,7 +891,9 @@ button { font-family: inherit; }
 .nn-service-card::after { display: none; }
 .nn-service-card:first-child,
 .nn-service-card:nth-child(2n+1) { border-left: 0; }
-.nn-service-card:hover { background: rgba(37, 86, 168,0.04); }
+@media (hover: hover) {
+  .nn-service-card:hover { background: rgba(37, 86, 168,0.04); }
+}
 .nn-service-card.featured {
   background: rgba(37, 86, 168,0.06);
 }
@@ -901,7 +915,9 @@ button { font-family: inherit; }
 }
 .nn-service-from { font: 500 13px/1 var(--ff-mono); color: var(--nn-azure); letter-spacing: .15em; }
 .nn-service-more { font: 500 11px/1 var(--ff-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--fg-2); }
-.nn-service-card:hover .nn-service-more { color: var(--nn-azure); }
+@media (hover: hover) {
+  .nn-service-card:hover .nn-service-more { color: var(--nn-azure); }
+}
 
 /* =============================================================
  * Projects
@@ -924,7 +940,9 @@ button { font-family: inherit; }
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 900ms var(--ease-out);
 }
-.nn-project-card:hover .nn-project-img img { transform: scale(1.04); }
+@media (hover: hover) {
+  .nn-project-card:hover .nn-project-img img { transform: scale(1.04); }
+}
 .nn-project-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .nn-project-title { font: 500 24px/1.2 var(--ff-sans); letter-spacing: -0.008em; color: var(--fg-1); margin: 0 0 8px; }
 .nn-empty {
@@ -1005,7 +1023,9 @@ button { font-family: inherit; }
   transition: color var(--dur-fast) var(--ease-out);
 }
 .nn-footer-list a::after { display: none; }
-.nn-footer-list a:hover { color: var(--nn-azure); }
+@media (hover: hover) {
+  .nn-footer-list a:hover { color: var(--nn-azure); }
+}
 .nn-footer-office {
   font: 400 13px/1.8 var(--ff-mono); color: var(--fg-2);
   margin-top: 16px;
@@ -1064,7 +1084,9 @@ button { font-family: inherit; }
   color: var(--fg-2); cursor: pointer; background: transparent;
   transition: all var(--dur-fast) var(--ease-out);
 }
-.nn-tab:hover { color: var(--nn-azure); border-color: var(--nn-azure-lift); }
+@media (hover: hover) {
+  .nn-tab:hover { color: var(--nn-azure); border-color: var(--nn-azure-lift); }
+}
 .nn-tab.active { color: var(--nn-azure); border-color: var(--nn-azure); }
 
 /* =============================================================
@@ -1089,7 +1111,9 @@ button { font-family: inherit; }
   border: 1px solid var(--line-quiet);
   transition: border-color var(--dur-fast) var(--ease-out);
 }
-.nn-team-card:hover { border-color: var(--nn-azure-lift); }
+@media (hover: hover) {
+  .nn-team-card:hover { border-color: var(--nn-azure-lift); }
+}
 .nn-team-avatar {
   width: 56px; height: 56px; border: 1px solid var(--nn-azure);
   display: flex; align-items: center; justify-content: center;
@@ -1340,7 +1364,9 @@ button { font-family: inherit; }
   color: var(--nn-azure);
   opacity: 0; transition: opacity var(--dur-mid) var(--ease-out);
 }
-.canvas-cell:hover .canvas-frame-cta { opacity: 1; }
+@media (hover: hover) {
+  .canvas-cell:hover .canvas-frame-cta { opacity: 1; }
+}
 
 /* =============================================================
  * Utility
@@ -1402,7 +1428,9 @@ button { font-family: inherit; }
   cursor: pointer;
   transition: border-color 120ms ease;
 }
-.nn-modal-thumb:hover { border-color: var(--line-strong); }
+@media (hover: hover) {
+  .nn-modal-thumb:hover { border-color: var(--line-strong); }
+}
 .nn-modal-thumb.active { border: 2px solid var(--nn-azure); }
 .nn-modal-thumb img {
   width: 100%; height: 100%;
