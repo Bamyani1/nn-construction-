@@ -7,7 +7,7 @@ export function Editorial() {
       <div className="nn-container nn-editorial">
         <div className="nn-editorial-img">
           <Image
-            src="/assets/projects/standing-seam-reroof/01.webp"
+            src="/assets/projects/standing-seam-reroof/02.webp"
             alt="Standing-Seam Re-roof"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
