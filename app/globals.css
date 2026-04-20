@@ -1322,6 +1322,11 @@ button { font-family: inherit; }
   border-top: 1px solid var(--nn-azure);
   display: grid; grid-template-columns: 1fr 1fr 1fr;
 }
+@media (max-width: 640px) {
+  .nn-spec-sheet { grid-template-columns: 1fr; }
+  .nn-spec-cell { border-right: 0; border-bottom: 1px solid var(--line-quiet); padding: 24px 0; }
+  .nn-spec-cell:last-child { border-bottom: 0; }
+}
 .nn-spec-row {
   display: grid; grid-template-columns: 160px 1fr;
   padding: 24px 0;
