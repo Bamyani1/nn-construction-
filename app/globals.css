@@ -265,11 +265,12 @@ button { font-family: inherit; }
   padding: 10px 48px;
   display: grid; grid-template-columns: auto 1fr auto;
   align-items: center; gap: 48px;
+  height: 60px;
 }
 .nn-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
 .nn-brand::after { display: none; }
-.nn-brand-mark-img { display: block; height: 40px; width: auto; }
-.nn-brand-word { font: 500 20px/1.1 var(--ff-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--nn-ink); }
+.nn-brand-mark-img { display: block; height: 32px; width: auto; }
+.nn-brand-word { font: 500 20px/1 var(--ff-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--nn-ink); margin-top: 6px; }
 .nn-nav-links { display: flex; gap: 32px; justify-content: center; }
 .nn-nav-link {
   font: 500 12px/1 var(--ff-sans); letter-spacing: .18em; text-transform: uppercase;
@@ -329,7 +330,7 @@ button { font-family: inherit; }
   border-bottom: 1px solid var(--line-quiet);
 }
 .nn-hero-split-left {
-  background-color: var(--nn-ink);
+  background-color: var(--nn-azure-deep);
   background-image: url("/assets/img/tools-pattern-dark.svg");
   background-size: 480px 480px;
   background-repeat: repeat;
@@ -387,7 +388,7 @@ button { font-family: inherit; }
 .nn-hero-split-cta:hover::after { background: var(--nn-paper); }
 .nn-hero-split-right {
   position: relative;
-  background-color: var(--nn-ink);
+  background-color: var(--nn-azure-deep);
   background-image: url("/assets/img/tools-pattern-dark.svg");
   background-size: 480px 480px;
   background-repeat: repeat;
