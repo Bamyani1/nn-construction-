@@ -10,6 +10,7 @@ import { Footer } from "@/components/footer";
 import { LenisProvider } from "@/components/lenis-provider";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { RevealObserver } from "@/components/reveal-observer";
+import { PointerField } from "@/components/pointer-field";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <LenisProvider>
           <ScrollProgress />
           <RevealObserver />
+          <PointerField />
           <Nav />
           <main>{children}</main>
           <Footer />
