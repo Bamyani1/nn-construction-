@@ -1,23 +1,4 @@
-export type IconName =
-  | "hammer"
-  | "level"
-  | "pencil"
-  | "saw"
-  | "square"
-  | "tape"
-  | "trowel"
-  | "wrench";
-
 export type ProjectCategory = "Interior" | "Exterior" | "Roofing";
-
-export interface Service {
-  n: string;
-  icon: IconName;
-  name: string;
-  desc: string;
-  from: string;
-  featured?: boolean;
-}
 
 export interface TeamMember {
   name: string;
@@ -81,70 +62,6 @@ export const stats: Stat[] = [
   { label: "Roofs", value: "1.4M", unit: "sqft installed" },
   { label: "Warranty", value: "25", unit: "years, workmanship" },
 ];
-
-export const services: { interior: Service[]; exterior: Service[] } = {
-  interior: [
-    {
-      n: "01",
-      icon: "trowel",
-      name: "Kitchen & bath",
-      desc: "Custom cabinetry, stone counters, tile set true. Appliances, lighting, plumbing finished to spec.",
-      from: "$38/sqft",
-    },
-    {
-      n: "02",
-      icon: "pencil",
-      name: "Custom built-ins",
-      desc: "Stained-oak millwork, floating shelves, integrated storage — shop-built, site-finished.",
-      from: "$210/lf",
-    },
-    {
-      n: "03",
-      icon: "square",
-      name: "Flooring & stair",
-      desc: "Wide-plank white oak, tile, stone. Custom stair runs with closed or open risers.",
-      from: "$14/sqft",
-    },
-    {
-      n: "04",
-      icon: "hammer",
-      name: "Framing & structural",
-      desc: "New builds, additions, load-bearing work. Engineered to county code, plumb to the foundation.",
-      from: "$42/sqft",
-    },
-  ],
-  exterior: [
-    {
-      n: "05",
-      icon: "saw",
-      name: "Siding & trim",
-      desc: "Fiber-cement, cedar lap, stucco. Tight mitered corners, consistent reveal top to bottom.",
-      from: "$12/sqft",
-    },
-    {
-      n: "06",
-      icon: "wrench",
-      name: "Decks & hardscape",
-      desc: "IPE and composite decks, paver patios, retaining walls. Drainage engineered in.",
-      from: "$65/sqft",
-    },
-    {
-      n: "07",
-      icon: "level",
-      name: "Windows & doors",
-      desc: "Full-frame replacement, custom entry doors, structural openings cut and supported.",
-      from: "$1,200/opening",
-    },
-    {
-      n: "08",
-      icon: "hammer",
-      name: "Roofing · featured",
-      desc: "Asphalt, metal standing-seam, slate repair. Full tear-off or overlay, ice-shield to ridge cap. Our specialty.",
-      from: "$8/sqft",
-      featured: true,
-    },
-  ],
-};
 
 export const team: TeamMember[] = [
   { name: "Nelson Nieves", role: "Founder · Principal", tenure: "Est. 2009" },
