@@ -667,6 +667,57 @@ button { font-family: inherit; }
 }
 
 /* =============================================================
+ * Hero depth — scroll-linked parallax.
+ * Four tiers drift at declining rates over the first viewport of
+ * scroll, so the scene resolves into layers rather than sliding
+ * past as a sheet. Quiet on purpose — quiet reinforcement, not a
+ * gimmick. Disabled on mobile (touch scroll jitter) and when the
+ * user prefers reduced motion.
+ * ============================================================= */
+@supports (animation-timeline: scroll()) {
+  .nn-hero-split-right::before,
+  .nn-hero-split-right::after,
+  .nn-hero-stack-back,
+  .nn-hero-stack-front {
+    animation-timeline: scroll(root block);
+    animation-range: 0 100vh;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+  }
+  .nn-hero-split-right::before { animation-name: nn-hero-drift-atmos; }
+  .nn-hero-split-right::after  { animation-name: nn-hero-drift-pattern; }
+  .nn-hero-stack-back          { animation-name: nn-hero-drift-back; }
+  .nn-hero-stack-front         { animation-name: nn-hero-drift-front; }
+
+  @keyframes nn-hero-drift-atmos   { to { transform: translate3d(0, 36px, 0); } }
+  @keyframes nn-hero-drift-pattern { to { transform: translate3d(0, 28px, 0); } }
+  @keyframes nn-hero-drift-back    { to { transform: translate3d(0, 20px, 0); } }
+  @keyframes nn-hero-drift-front   { to { transform: translate3d(0, 8px,  0); } }
+}
+
+@media (max-width: 768px) {
+  .nn-hero-split-right::before,
+  .nn-hero-split-right::after,
+  .nn-hero-stack-back,
+  .nn-hero-stack-front {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-hero-split-right::before,
+  .nn-hero-split-right::after,
+  .nn-hero-stack-back,
+  .nn-hero-stack-front {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* =============================================================
  * Four pillars — quiet row
  * ============================================================= */
 .nn-pillars {
