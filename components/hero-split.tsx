@@ -9,8 +9,8 @@ interface HeroSplitProps {
 }
 
 export function HeroSplit({
-  backImageSrc = "/assets/projects/custom-window-install/04.webp",
-  backImageAlt = "NN Construction crew installing a window",
+  backImageSrc = "/assets/projects/primary-bath-renovation/04.webp",
+  backImageAlt = "Primary bathroom renovation, finished",
   frontImageSrc = "/assets/projects/standing-seam-reroof/12.webp",
   frontImageAlt = "Two-person crew laying standing-seam roofing",
 }: HeroSplitProps = {}) {
