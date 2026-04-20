@@ -576,13 +576,46 @@ button { font-family: inherit; }
   text-decoration: none; display: inline-block;
 }
 .nn-btn::after { display: none; }
-.nn-btn-primary { background: var(--nn-azure); color: var(--nn-paper); }
+.nn-btn-primary {
+  background: var(--nn-azure); color: var(--nn-paper);
+  position: relative; isolation: isolate; overflow: hidden;
+}
+.nn-btn-primary[data-glow]::before {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    200px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    color-mix(in oklab, var(--nn-azure-lift) 32%, transparent),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+  pointer-events: none;
+}
 @media (hover: hover) {
   .nn-btn-primary:hover {
     background: color-mix(in oklab, var(--nn-azure) 88%, black);
     color: var(--nn-paper);
     box-shadow: var(--shadow-1);
   }
+  .nn-btn-primary[data-glow]:hover::before { opacity: 1; }
+}
+
+/* Magnetic pull — [data-magnetic] elements drift toward the cursor when it
+   comes within ATTRACT_RADIUS of their bounds (see components/pointer-field.tsx).
+   will-change scoped to :hover so idle elements don't burn compositor budget. */
+@media (hover: hover) {
+  [data-magnetic] {
+    transition: transform var(--dur-fast) var(--ease-out);
+    transform: translate3d(
+      calc(var(--mag-x, 0) * 6px),
+      calc(var(--mag-y, 0) * 4px),
+      0
+    );
+  }
+  [data-magnetic]:hover { will-change: transform; }
 }
 .nn-btn-outline { background: transparent; color: var(--fg-1); border: 1px solid var(--line-strong); }
 @media (hover: hover) {

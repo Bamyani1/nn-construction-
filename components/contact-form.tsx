@@ -78,6 +78,8 @@ export function ContactForm() {
             <button
               className="nn-btn nn-btn-primary nn-btn-lg"
               type="submit"
+              data-magnetic
+              data-glow
             >
               Send request <span className="nn-btn-arrow" aria-hidden="true">→</span>
             </button>
