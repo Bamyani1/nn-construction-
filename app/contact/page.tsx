@@ -12,19 +12,39 @@ export default function ContactPage() {
   return (
     <>
       <section className="nn-page-head">
-        <div className="nn-container">
-          <div className="nn-page-eyebrow">
-            <span className="nn-label">Contact</span>
+        <div className="nn-container nn-page-head-grid">
+          <div className="nn-page-head-main">
+            <div className="nn-page-eyebrow">
+              <span className="nn-label">Contact</span>
+            </div>
+            <h1 className="nn-page-title">Start with a walk-through.</h1>
           </div>
-          <h1 className="nn-page-title">
-            Start with
-            <br />
-            a walk-through.
-          </h1>
-          <p className="nn-page-lead">
-            Free, in-person, typically within a week. Written estimate inside
-            five business days.
-          </p>
+
+          <aside
+            className="nn-titleblock"
+            aria-label="Request specifications"
+          >
+            <dl className="nn-titleblock-list">
+              <div className="nn-titleblock-row">
+                <dt>Estimate</dt>
+                <dd>5 business days</dd>
+              </div>
+              <div className="nn-titleblock-row">
+                <dt>Coverage</dt>
+                <dd>MD · DC · VA</dd>
+              </div>
+              <div className="nn-titleblock-row">
+                <dt>License</dt>
+                <dd>
+                  <span className="nn-mono">MHIC #{site.licenses.mhic}</span>
+                </dd>
+              </div>
+              <div className="nn-titleblock-row">
+                <dt>Warranty</dt>
+                <dd>25 years, workmanship</dd>
+              </div>
+            </dl>
+          </aside>
         </div>
       </section>
 
