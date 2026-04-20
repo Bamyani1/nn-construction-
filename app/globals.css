@@ -472,6 +472,37 @@ a:focus-visible::after,
   box-shadow: 0 1px 0 0 var(--nn-azure);
 }
 
+/* :active press feedback — fires on mouse click-down and touch tap.
+   Tighter timing (120ms) reads as snappier than the hover duration. */
+.nn-btn-primary:active {
+  background: color-mix(in oklab, var(--nn-azure) 78%, black);
+  transform: translateY(1px);
+  transition-duration: 120ms;
+}
+.nn-btn-outline:active {
+  border-color: var(--nn-azure-deep);
+  color: var(--nn-azure-deep);
+  background: color-mix(in oklab, var(--nn-azure) 10%, transparent);
+  transition-duration: 120ms;
+}
+.nn-btn-ghost:active::after {
+  height: 2px;
+}
+.nn-tab:active {
+  color: var(--nn-azure-deep);
+  border-color: var(--nn-azure-deep);
+  transition-duration: 120ms;
+}
+.nn-service-card:active,
+.nn-project-card:active,
+.nn-team-card:active {
+  transform: translateY(1px);
+}
+.nn-modal-close:active,
+.nn-modal-thumb:active {
+  transform: translateY(1px);
+}
+
 img, svg { display: block; max-width: 100%; }
 button { font-family: inherit; }
 
