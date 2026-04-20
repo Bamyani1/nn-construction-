@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NavLinks, type NavLinkItem } from "@/components/nav-links";
+import { MobileNav } from "@/components/mobile-nav";
 
 const navItems: NavLinkItem[] = [
   { label: "Home", href: "/" },
@@ -26,14 +27,17 @@ export function Nav() {
           <div className="nn-brand-word">NN Construction</div>
         </Link>
         <NavLinks items={navItems} />
-        <Link
-          className="nn-btn nn-btn-primary"
-          href="/contact"
-          data-magnetic
-          data-glow
-        >
-          Get a quote <span className="nn-btn-arrow" aria-hidden="true">→</span>
-        </Link>
+        <div className="nn-nav-right">
+          <Link
+            className="nn-btn nn-btn-primary nn-nav-cta"
+            href="/contact"
+            data-magnetic
+            data-glow
+          >
+            Get a quote <span className="nn-btn-arrow" aria-hidden="true">→</span>
+          </Link>
+          <MobileNav items={navItems} />
+        </div>
       </div>
     </nav>
   );
