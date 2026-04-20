@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HeroParallax } from "./hero-parallax";
 
 interface HeroSplitProps {
   backImageSrc?: string;
@@ -16,6 +17,7 @@ export function HeroSplit({
 }: HeroSplitProps = {}) {
   return (
     <section className="nn-hero-split">
+      <HeroParallax />
       <div className="nn-hero-split-left">
         <div className="nn-hero-split-copy" data-reveal-stagger>
           <h1

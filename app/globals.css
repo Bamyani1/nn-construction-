@@ -492,17 +492,32 @@ button { font-family: inherit; }
   height: 92vh;
   min-height: 760px;
   border-bottom: 1px solid var(--line-quiet);
-}
-.nn-hero-split-left {
+  position: relative;
   background-color: var(--nn-azure-deep);
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Tools-pattern watermark — a single layer spanning both panels so
+   the tile grid stays continuous across the 42%/58% seam. Drifts as
+   the "pattern" tier of the parallax. */
+.nn-hero-split::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background-image: url("/assets/img/tools-pattern-dark.svg");
   background-size: 480px 480px;
   background-repeat: repeat;
+}
+.nn-hero-split-left {
   color: var(--nn-paper);
   padding: 96px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 .nn-hero-split-copy { max-width: 520px; }
 .nn-hero-split-title {
@@ -552,15 +567,28 @@ button { font-family: inherit; }
 .nn-hero-split-cta:hover::after { background: var(--nn-paper); }
 .nn-hero-split-right {
   position: relative;
-  background-color: var(--nn-azure-deep);
-  background-image: url("/assets/img/tools-pattern-dark.svg");
-  background-size: 480px 480px;
-  background-repeat: repeat;
+  z-index: 1;
   overflow: hidden;
+}
+/* Atmospheric pool — a soft azure/ink radial behind just the image stack. */
+.nn-hero-split-right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 45%,
+      rgba(91, 145, 212, 0.14) 0%,
+      rgba(91, 145, 212, 0) 70%),
+    radial-gradient(ellipse 120% 80% at 50% 100%,
+      rgba(11, 26, 46, 0.35) 0%,
+      rgba(11, 26, 46, 0) 60%);
 }
 .nn-hero-stack {
   position: absolute;
   inset: 0;
+  z-index: 1;
 }
 .nn-hero-stack-back,
 .nn-hero-stack-front {
@@ -615,6 +643,14 @@ button { font-family: inherit; }
 .nn-hero-stack-front .nn-hero-stack-img {
   box-shadow: 0 32px 64px rgba(0, 0, 0, 0.45);
 }
+/* Narrow desktop / small-laptop: the 92px serif title overflows the
+   42%-wide copy column below ~1280px. Tighten the gutters and drop
+   the display type a step so the longest word still fits. */
+@media (max-width: 1280px) {
+  .nn-hero-split-left { padding: 72px 64px; }
+  .nn-hero-split-title { font-size: 64px; }
+  .nn-hero-split-title-accent { font-size: 44px; }
+}
 @media (max-width: 768px) {
   .nn-hero-split {
     grid-template-columns: 1fr;
@@ -639,6 +675,86 @@ button { font-family: inherit; }
     right: 22%;
     width: 60%;
     height: 56%;
+  }
+}
+
+/* =============================================================
+ * Hero depth — scroll-linked parallax.
+ * Four tiers drift at declining rates over the first viewport of
+ * scroll, so the scene resolves into layers rather than sliding
+ * past as a sheet. Quiet on purpose — quiet reinforcement, not a
+ * gimmick. Disabled on mobile (touch scroll jitter) and when the
+ * user prefers reduced motion.
+ * ============================================================= */
+@supports (animation-timeline: scroll()) {
+  .nn-hero-split::before,
+  .nn-hero-split-right::before,
+  .nn-hero-stack-back,
+  .nn-hero-stack-front {
+    animation-timeline: scroll(root block);
+    animation-range: 0 100vh;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+  }
+  .nn-hero-split::before       { animation-name: nn-hero-drift-pattern; }
+  .nn-hero-split-right::before { animation-name: nn-hero-drift-atmos; }
+  .nn-hero-stack-back          { animation-name: nn-hero-drift-back; }
+  .nn-hero-stack-front         { animation-name: nn-hero-drift-front; }
+
+  /* Drift amounts (atmos +100, pattern +70, back +30, front -30)
+     appear twice: the @keyframes below drive the CSS-timeline path,
+     and the calc() rules in @supports not (...) drive the JS
+     fallback. Keep the two lists in sync when tuning.
+
+     Positive y = the layer "lingers" (stays behind the scroll).
+     Negative y on front = the foreground exits FASTER than scroll,
+     matching the "foreground fastest" directive. The 130px spread
+     between atmos (+100) and front (-30) makes the depth read
+     clearly at normal scroll speed without needing a pin. */
+  @keyframes nn-hero-drift-atmos   { to { transform: translate3d(0, 100px, 0); } }
+  @keyframes nn-hero-drift-pattern { to { transform: translate3d(0, 70px,  0); } }
+  @keyframes nn-hero-drift-back    { to { transform: translate3d(0, 30px,  0); } }
+  @keyframes nn-hero-drift-front   { to { transform: translate3d(0, -30px, 0); } }
+}
+
+/* Fallback path: HeroParallax writes --nn-hero-scroll (0..1) on the
+   section as the hero exits the viewport. Gated on
+   [data-hero-scroll-ready] so SSR paint stays at the zero-drift
+   initial state until JS takes over. */
+@supports not (animation-timeline: scroll()) {
+  .nn-hero-split[data-hero-scroll-ready] .nn-hero-split-right::before {
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) *  100px), 0);
+  }
+  .nn-hero-split[data-hero-scroll-ready]::before {
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) *  70px),  0);
+  }
+  .nn-hero-split[data-hero-scroll-ready] .nn-hero-stack-back {
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) *  30px),  0);
+  }
+  .nn-hero-split[data-hero-scroll-ready] .nn-hero-stack-front {
+    transform: translate3d(0, calc(var(--nn-hero-scroll, 0) * -30px),  0);
+  }
+}
+
+/* Compositor promotion only while the hero is in view — HeroParallax's
+   IntersectionObserver toggles [data-hero-active]. */
+.nn-hero-split[data-hero-active]::before,
+.nn-hero-split[data-hero-active] .nn-hero-split-right::before,
+.nn-hero-split[data-hero-active] .nn-hero-stack-back,
+.nn-hero-split[data-hero-active] .nn-hero-stack-front {
+  will-change: transform;
+}
+
+/* Mobile: touch-scroll jitter kills the effect.
+   Reduced motion: honor the system preference. */
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .nn-hero-split::before,
+  .nn-hero-split-right::before,
+  .nn-hero-stack-back,
+  .nn-hero-stack-front {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
   }
 }
 
