@@ -114,7 +114,7 @@ html, body {
 }
 body {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   isolation: isolate;
 }
 
@@ -1493,7 +1493,7 @@ button { font-family: inherit; }
  * ============================================================= */
 .canvas-root {
   background: var(--bg-2);
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 72px 48px 96px;
 }
 .canvas-header {
