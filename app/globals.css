@@ -616,7 +616,8 @@ button { font-family: inherit; }
   transition: transform var(--dur-fast) var(--ease-out);
 }
 @media (hover: hover) {
-  .nn-btn:hover .nn-btn-arrow { transform: translateX(3px); }
+  .nn-btn:hover .nn-btn-arrow,
+  .nn-hero-split-cta:hover .nn-btn-arrow { transform: translateX(3px); }
 }
 
 /* =============================================================
