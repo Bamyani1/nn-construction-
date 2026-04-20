@@ -235,10 +235,6 @@ a::after, .nn-link::after {
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg-1); }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: smooth; }
-}
-
 /* Scroll progress indicator — 3px accent bar pinned to top of viewport. */
 .nn-scroll-progress {
   position: fixed; top: 0; left: 0; right: 0;
