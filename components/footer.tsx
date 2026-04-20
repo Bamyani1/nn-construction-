@@ -9,10 +9,10 @@ export function Footer() {
         <div className="nn-footer-brand">
           <Image
             className="nn-footer-mark"
-            src="/assets/logo.png"
+            src="/assets/nn-logo-with-text.png"
             alt="NN Construction"
-            width={296}
-            height={252}
+            width={241}
+            height={172}
           />
           <p className="nn-footer-blurb">
             Full-service construction. Residential &amp; commercial.
@@ -62,12 +62,6 @@ export function Footer() {
             {site.email}
           </div>
         </div>
-      </div>
-      <div className="nn-footer-base">
-        <span>© 2026 NN Construction BD Corporation</span>
-        <span>
-          MHIC #{site.licenses.mhic} · DC {site.licenses.dc} · VA {site.licenses.va}
-        </span>
       </div>
     </footer>
   );

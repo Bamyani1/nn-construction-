@@ -17,10 +17,10 @@ export function Nav() {
         <Link className="nn-brand" href="/">
           <Image
             className="nn-brand-mark-img"
-            src="/assets/logo.png"
+            src="/assets/nn-logo.png"
             alt="NN Construction"
-            width={296}
-            height={252}
+            width={172}
+            height={140}
             priority
           />
           <div className="nn-brand-word">NN Construction</div>

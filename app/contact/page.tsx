@@ -58,20 +58,6 @@ export default function ContactPage() {
             </div>
 
             <div className="nn-contact-aside-block">
-              <div className="nn-eyebrow">Licensure</div>
-              <div
-                className="nn-contact-mono"
-                style={{ color: "var(--fg-2)" }}
-              >
-                MHIC #{site.licenses.mhic}
-                <br />
-                DC {site.licenses.dc}
-                <br />
-                VA {site.licenses.va}
-              </div>
-            </div>
-
-            <div className="nn-contact-aside-block">
               <div className="nn-eyebrow">Hours</div>
               <div
                 className="nn-contact-mono"
