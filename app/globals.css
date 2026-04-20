@@ -408,13 +408,13 @@ button { font-family: inherit; }
 }
 .nn-hero-stack-back {
   top: 8%;
-  right: 6%;
+  right: calc(6% + 96px);
   width: 50%;
   height: 70%;
 }
 .nn-hero-stack-front {
   top: 24%;
-  right: 28%;
+  right: calc(28% + 96px);
   width: 42%;
   height: 62%;
 }
