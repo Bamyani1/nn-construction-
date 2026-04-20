@@ -270,6 +270,15 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
  *   "animation cut short" and "final state" stays smooth.
  * ============================================================= */
 
+/* Registered by pointer-field (see components/pointer-field.tsx).
+   Typed fallbacks keep calc() math cheap and avoid string parsing.
+   popover + CSS Anchor Positioning are reserved for future tooltips/
+   flyouts — the site has none today, so don't invent surfaces for them. */
+@property --mag-x  { syntax: "<number>"; inherits: false; initial-value: 0; }
+@property --mag-y  { syntax: "<number>"; inherits: false; initial-value: 0; }
+@property --glow-x { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --glow-y { syntax: "<length>"; inherits: false; initial-value: 0px; }
+
 @property --reveal-progress {
   syntax: "<number>";
   inherits: false;
