@@ -36,6 +36,7 @@ export function ContactForm() {
               id="cf-name"
               required
               type="text"
+              autoComplete="name"
               placeholder="Your name"
             />
             <span className="nn-field-hint">Please enter your name.</span>
@@ -46,6 +47,8 @@ export function ContactForm() {
               id="cf-email"
               required
               type="email"
+              autoComplete="email"
+              inputMode="email"
               placeholder="you@example.com"
             />
             <span className="nn-field-hint">Please enter a valid email address.</span>
@@ -55,6 +58,8 @@ export function ContactForm() {
             <input
               id="cf-phone"
               type="tel"
+              autoComplete="tel"
+              inputMode="tel"
               placeholder="(555) 555-5555"
             />
           </div>
