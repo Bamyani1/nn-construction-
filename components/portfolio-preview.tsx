@@ -4,9 +4,9 @@ import { projects } from "@/lib/data";
 
 const portfolioPreview = projects.slice(0, 3);
 
-export function PortfolioPreview() {
+export function PortfolioPreview({ id }: { id?: string } = {}) {
   return (
-    <section className="nn-section nn-section-raised">
+    <section id={id} className="nn-section nn-section-raised">
       <div className="nn-container">
         <div className="nn-section-head">
           <div className="nn-chapter">
