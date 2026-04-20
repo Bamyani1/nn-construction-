@@ -697,6 +697,27 @@ button { font-family: inherit; }
 .nn-page-title { font: 500 84px/1.02 var(--ff-sans); letter-spacing: -0.025em; margin: 0; max-width: 1040px; text-wrap: pretty; }
 .nn-page-lead { font: 400 24px/1.5 var(--ff-sans); color: var(--fg-2); margin-top: 32px; max-width: 720px; text-wrap: pretty; }
 
+/* Split page-head for the contact page: eyebrow+title on the left,
+ * blueprint title block on the right. */
+.nn-page-head-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 96px; align-items: end; }
+.nn-titleblock { border-top: 1px solid var(--nn-azure); }
+.nn-titleblock-list { margin: 0; display: grid; }
+.nn-titleblock-row {
+  display: grid; grid-template-columns: 120px 1fr; gap: 24px;
+  padding: 14px 2px;
+  border-bottom: 1px solid var(--line-quiet);
+  align-items: baseline;
+}
+.nn-titleblock-row dt {
+  font: 500 10px/1 var(--ff-sans); letter-spacing: .24em; text-transform: uppercase;
+  color: var(--nn-azure); margin: 0;
+}
+.nn-titleblock-row dd {
+  font: 400 13px/1.5 var(--ff-mono); color: var(--fg-1); letter-spacing: .02em;
+  margin: 0;
+}
+.nn-titleblock-row dd .nn-mono { font: inherit; color: inherit; letter-spacing: inherit; }
+
 /* =============================================================
  * Tabs
  * ============================================================= */
@@ -1094,6 +1115,7 @@ button { font-family: inherit; }
   .nn-two-col,
   .nn-two-col-narrow { grid-template-columns: 1fr; gap: 48px; }
   .nn-contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .nn-page-head-grid { grid-template-columns: 1fr; gap: 48px; align-items: start; }
   .nn-editorial { grid-template-columns: 1fr; gap: 48px; }
   .nn-footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
