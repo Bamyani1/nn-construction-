@@ -673,7 +673,7 @@ button { font-family: inherit; }
 .nn-hero-split {
   display: grid;
   grid-template-columns: 42% 1fr;
-  height: 92vh;
+  height: 92svh;
   min-height: 760px;
   border-bottom: 1px solid var(--line-quiet);
   position: relative;
@@ -845,11 +845,11 @@ button { font-family: inherit; }
   }
   .nn-hero-split-left {
     padding: 72px 32px;
-    min-height: 60vh;
+    min-height: 60dvh;
   }
   .nn-hero-split-title { font-size: 60px; }
   .nn-hero-split-title-accent { font-size: 42px; }
-  .nn-hero-split-right { min-height: 70vh; }
+  .nn-hero-split-right { min-height: 70dvh; }
   .nn-hero-stack-back {
     top: 8%;
     right: 8%;
@@ -925,7 +925,7 @@ button { font-family: inherit; }
   .nn-hero-stack-back,
   .nn-hero-stack-front {
     animation-timeline: scroll(root block);
-    animation-range: 0 100vh;
+    animation-range: 0 100lvh;
     animation-fill-mode: both;
     animation-timing-function: linear;
   }
