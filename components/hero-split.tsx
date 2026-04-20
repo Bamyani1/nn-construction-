@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HeroParallax } from "./hero-parallax";
+import { HeroTextReveal } from "./hero-text-reveal";
+import { HeroTitle } from "./hero-title";
 
 interface HeroSplitProps {
   backImageSrc?: string;
@@ -18,20 +20,17 @@ export function HeroSplit({
   return (
     <section className="nn-hero-split">
       <HeroParallax />
+      <HeroTextReveal />
       <div className="nn-hero-split-left">
         <div className="nn-hero-split-copy" data-reveal-stagger>
-          <h1
-            className="nn-hero-split-title"
-            data-reveal="fade-rise"
-            style={{ "--i": 0 } as React.CSSProperties}
-          >
-            {"Full\u2011service construction."}
-            <span className="nn-hero-split-title-accent">Done right.</span>
-          </h1>
+          <HeroTitle
+            main={"Full\u2011service construction."}
+            accent="Done right."
+          />
           <p
             className="nn-hero-split-lead"
             data-reveal="fade-rise"
-            style={{ "--i": 1 } as React.CSSProperties}
+            style={{ "--i": 14 } as React.CSSProperties}
           >
             Residential construction from framing to finish — plumb to the
             foundation, tight to the weather, finished appraisal-ready.
@@ -39,8 +38,8 @@ export function HeroSplit({
           <Link
             href="/services/interior"
             className="nn-hero-split-cta"
-            data-reveal="fade-rise"
-            style={{ "--i": 2 } as React.CSSProperties}
+            data-reveal="scale-settle"
+            style={{ "--i": 19 } as React.CSSProperties}
           >
             Explore services <span aria-hidden="true">→</span>
           </Link>
