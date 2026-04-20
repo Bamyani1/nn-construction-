@@ -477,6 +477,7 @@ a:focus-visible::after,
 .nn-btn-primary:active {
   background: color-mix(in oklab, var(--nn-azure) 78%, black);
   transform: translateY(1px);
+  box-shadow: none;
   transition-duration: 120ms;
 }
 .nn-btn-outline:active {
@@ -562,11 +563,19 @@ button { font-family: inherit; }
 .nn-btn::after { display: none; }
 .nn-btn-primary { background: var(--nn-azure); color: var(--nn-paper); }
 @media (hover: hover) {
-  .nn-btn-primary:hover { background: var(--nn-azure-deep); color: var(--nn-paper); }
+  .nn-btn-primary:hover {
+    background: color-mix(in oklab, var(--nn-azure) 88%, black);
+    color: var(--nn-paper);
+    box-shadow: var(--shadow-1);
+  }
 }
 .nn-btn-outline { background: transparent; color: var(--fg-1); border: 1px solid var(--line-strong); }
 @media (hover: hover) {
-  .nn-btn-outline:hover { border-color: var(--nn-azure); color: var(--nn-azure); }
+  .nn-btn-outline:hover {
+    border-color: var(--nn-azure);
+    color: var(--nn-azure);
+    background: color-mix(in oklab, var(--nn-azure) 6%, transparent);
+  }
 }
 .nn-btn-ghost {
   background: transparent; color: var(--fg-1);
@@ -583,6 +592,7 @@ button { font-family: inherit; }
   transition: right var(--dur-mid) var(--ease-out);
 }
 @media (hover: hover) {
+  .nn-btn-ghost:hover { color: var(--nn-azure); }
   .nn-btn-ghost:hover::after { right: 0; }
 }
 .nn-btn-lg { padding: 18px 28px; font-size: 13px; }
