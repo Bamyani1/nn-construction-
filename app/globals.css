@@ -260,8 +260,14 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
 
 /* =============================================================
  * Reveal system — scroll-driven entrance, one-shot latch.
- * Each section declares its variant via [data-reveal="..."].
- * Children of [data-reveal-stagger] shift their range via --i.
+ * Chrome: CSS view() timeline drives the entrance as the element
+ *   enters the viewport. For above-the-fold elements, the JS
+ *   observer swaps the timeline to wall-clock on mount, giving a
+ *   700ms time-based entrance using the same keyframes.
+ * Safari (no view() support): a transition defined in the
+ *   fallback block fires when the observer adds data-revealed.
+ * Latched rule keeps a short transition so that any snap between
+ *   "animation cut short" and "final state" stays smooth.
  * ============================================================= */
 
 @property --reveal-progress {
@@ -272,14 +278,21 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
 
 [data-reveal] {
   opacity: 0;
-  will-change: opacity, transform, filter, clip-path;
+  will-change: opacity, transform;
 }
+[data-reveal="fade-rise"]        { transform: translateY(24px); }
+[data-reveal="side-slide-left"]  { transform: translateX(-40px); }
+[data-reveal="side-slide-right"] { transform: translateX(40px); }
+[data-reveal="scale-settle"]     { transform: scale(0.96); }
+[data-reveal="blur-to-sharp"]    { filter: blur(12px); }
+[data-reveal="clip-reveal"]      { clip-path: inset(0 100% 0 0); }
+[data-reveal="mask-wipe"]        { clip-path: inset(100% 0 0 0); }
 
-/* Primary path: scroll-driven via view() timeline. Off main thread. */
+/* Primary (Chrome): scroll-driven via view() timeline. */
 @supports (animation-timeline: view()) {
   [data-reveal] {
     animation-timeline: view();
-    animation-range: entry 0% cover 25%;
+    animation-range: entry 0% entry 100%;
     animation-fill-mode: both;
     animation-timing-function: var(--ease-out);
   }
@@ -292,25 +305,14 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
   [data-reveal="mask-wipe"]        { animation-name: reveal-mask-wipe; }
 
   [data-reveal-stagger] [data-reveal] {
-    --nn-reveal-step: 4%;
     animation-range:
-      entry calc(var(--i, 0) * var(--nn-reveal-step))
-      cover calc(25% + var(--i, 0) * var(--nn-reveal-step));
-  }
-
-  /* Latched by the observer — drop the animation entirely and hold the end
-     state via explicit declarations. (Swapping animation-timeline to auto
-     would re-trigger fill-mode backwards and snap to the first keyframe.) */
-  [data-reveal][data-revealed] {
-    animation: none;
-    opacity: 1;
-    transform: none;
-    filter: none;
-    clip-path: inset(0);
+      entry calc(var(--i, 0) * 10%)
+      entry calc(80% + var(--i, 0) * 10%);
   }
 }
 
-/* Fallback path: time-based transition, triggered by observer latch. */
+/* Fallback (Safari and older browsers): transition-based. Fires
+   when the observer adds data-revealed. */
 @supports not (animation-timeline: view()) {
   [data-reveal] {
     transition:
@@ -319,26 +321,29 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
       filter var(--dur-slow) var(--ease-out),
       clip-path var(--dur-slow) var(--ease-out);
   }
-  [data-reveal="fade-rise"]        { transform: translateY(24px); }
-  [data-reveal="side-slide-left"]  { transform: translateX(-40px); }
-  [data-reveal="side-slide-right"] { transform: translateX(40px); }
-  [data-reveal="scale-settle"]     { transform: scale(0.96); }
-  [data-reveal="blur-to-sharp"]    { filter: blur(12px); }
-  [data-reveal="clip-reveal"]      { clip-path: inset(0 100% 0 0); }
-  [data-reveal="mask-wipe"]        { clip-path: inset(100% 0 0 0); }
-
   [data-reveal-stagger] [data-reveal] {
     transition-delay: calc(var(--i, 0) * 80ms);
   }
-
-  [data-reveal][data-revealed] {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    clip-path: inset(0);
-  }
 }
 
+/* Latched end state — animation off, final values pinned,
+   clip-path cleared so natural text overflow (descenders, font
+   metrics) isn't cut. Short transition smooths the snap when the
+   observer latches mid-animation. */
+[data-reveal][data-revealed] {
+  animation: none;
+  opacity: 1;
+  transform: none;
+  filter: none;
+  clip-path: none;
+  transition:
+    opacity 250ms var(--ease-out),
+    transform 250ms var(--ease-out),
+    filter 250ms var(--ease-out),
+    clip-path 250ms var(--ease-out);
+}
+
+/* Reduced motion: collapse to a minimal opacity fade. */
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     animation: none !important;
