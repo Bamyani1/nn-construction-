@@ -667,36 +667,6 @@ button { font-family: inherit; }
 }
 
 /* =============================================================
- * Hero pin — stick the hero for one viewport of scroll so the
- * parallax plays out while the scene is on screen, not while it's
- * exiting. The wrapper is 200vh tall; the hero inside is sticky
- * and 100vh tall (filling the viewport during pin). Root scroll
- * 0 → 100vh = pinning window (parallax plays), 100 → 200vh = hero
- * releases and scrolls off naturally.
- * ============================================================= */
-.nn-hero-pin {
-  position: relative;
-  height: 200vh;
-}
-.nn-hero-pin > .nn-hero-split {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  min-height: 0;
-}
-
-/* Mobile + reduced motion: no pinning. The hero flows naturally.
-   Its existing mobile rules (hero-split at line 618) take over. */
-@media (max-width: 768px), (prefers-reduced-motion: reduce) {
-  .nn-hero-pin {
-    height: auto;
-  }
-  .nn-hero-pin > .nn-hero-split {
-    position: static;
-  }
-}
-
-/* =============================================================
  * Hero depth — scroll-linked parallax.
  * Four tiers drift at declining rates over the first viewport of
  * scroll, so the scene resolves into layers rather than sliding
