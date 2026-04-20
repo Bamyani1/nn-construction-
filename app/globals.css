@@ -366,6 +366,24 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
   [data-reveal][data-revealed] { opacity: 1; }
 }
 
+/* Reduced motion for micro-interactions: strip transforms from hover /
+   active / magnetic states. Color, border, shadow, and focus cues remain
+   — they communicate state without motion. The FAQ rotate stays because
+   it's the only indicator of expand/collapse. */
+@media (prefers-reduced-motion: reduce) {
+  [data-magnetic] { transform: none; }
+  .nn-card-hover:hover { transform: none; }
+  .nn-project-card:hover .nn-project-img img { transform: none; }
+  .nn-btn:hover .nn-btn-arrow,
+  .nn-hero-split-cta:hover .nn-btn-arrow { transform: none; }
+  .nn-btn-primary:active,
+  .nn-service-card:active,
+  .nn-project-card:active,
+  .nn-team-card:active,
+  .nn-modal-close:active,
+  .nn-modal-thumb:active { transform: none; }
+}
+
 /* Primer for elements that mount already in-view (modals, expanded
    accordions). Use `data-reveal-enter` to fade them in on insertion. */
 [data-reveal-enter] {
