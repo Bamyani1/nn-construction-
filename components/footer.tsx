@@ -15,7 +15,7 @@ export function Footer() {
             height={252}
           />
           <p className="nn-footer-blurb">
-            Full-service construction. Residential &amp; commercial. Licensed MHIC #{site.licenses.mhic}.
+            Full-service construction. Residential &amp; commercial.
           </p>
         </div>
         <div>
