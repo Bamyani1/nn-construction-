@@ -418,6 +418,60 @@ html, body { margin: 0; padding: 0; background: var(--nn-paper); color: var(--fg
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* Shape-aware overrides. A 2px rectangle ring on a pill button reads as
+   browser chrome; these match each shape to the design language. */
+.nn-btn:focus-visible,
+.nn-tab:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--nn-azure) 35%, transparent),
+    0 0 0 1.5px var(--nn-azure);
+  border-radius: 2px;
+}
+
+.nn-service-card:focus-visible,
+.nn-project-card:focus-visible,
+.nn-team-card:focus-visible,
+.nn-faq:focus-visible {
+  outline: 2px solid var(--nn-azure);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Text links — reveal the pseudo-underline instead of adding a ring. */
+a:focus-visible,
+.nn-link:focus-visible,
+.nn-nav-link:focus-visible,
+.nn-hero-split-cta:focus-visible {
+  outline: none;
+}
+a:focus-visible::after,
+.nn-link:focus-visible::after,
+.nn-nav-link:focus-visible::after {
+  right: 0;
+}
+.nn-hero-split-cta:focus-visible::after {
+  background: var(--nn-paper);
+}
+
+.nn-footer-list a:focus-visible {
+  outline: none;
+  text-decoration: underline;
+  text-decoration-color: var(--nn-azure);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Form fields: existing azure border-bottom is the signal; replace the
+   global outline with a crisp shadow to avoid a doubled ring. */
+.nn-field input:focus-visible,
+.nn-field textarea:focus-visible,
+.nn-field select:focus-visible {
+  outline: none;
+  box-shadow: 0 1px 0 0 var(--nn-azure);
+}
+
 img, svg { display: block; max-width: 100%; }
 button { font-family: inherit; }
 
