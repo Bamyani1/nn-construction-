@@ -18,6 +18,8 @@ export function PortfolioBrowser({ projects }: PortfolioBrowserProps) {
   const [activeIdx, setActiveIdx] = useState(0);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const modalInnerRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const programmaticScrollRef = useRef(false);
 
   const visible =
     filter === "All" ? projects : projects.filter((p) => p.cat === filter);
@@ -82,6 +84,43 @@ export function PortfolioBrowser({ projects }: PortfolioBrowserProps) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [openProject, closeModal]);
+
+  // Mobile: sync swipe scroll position → activeIdx.
+  useEffect(() => {
+    if (!openProject) return;
+    const track = trackRef.current;
+    if (!track) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (programmaticScrollRef.current) return;
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            const idx = Number((entry.target as HTMLElement).dataset.idx);
+            if (!Number.isNaN(idx)) setActiveIdx(idx);
+          }
+        }
+      },
+      { root: track, threshold: [0.6] }
+    );
+    Array.from(track.children).forEach((c) => io.observe(c));
+    return () => io.disconnect();
+  }, [openProject]);
+
+  // activeIdx → scroll (thumb / arrow key driven). No-op on desktop where
+  // track has overflow: hidden.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    if (track.scrollWidth <= track.clientWidth) return;
+    const slide = track.children[activeIdx] as HTMLElement | undefined;
+    if (!slide) return;
+    programmaticScrollRef.current = true;
+    track.scrollTo({ left: slide.offsetLeft, behavior: "smooth" });
+    const t = window.setTimeout(() => {
+      programmaticScrollRef.current = false;
+    }, 450);
+    return () => window.clearTimeout(t);
+  }, [activeIdx, openProject]);
 
   return (
     <>
@@ -163,15 +202,32 @@ export function PortfolioBrowser({ projects }: PortfolioBrowserProps) {
             >
               Close ×
             </button>
-            <Image
-              src={`/assets/projects/${openProject.slug}/${openProject.images[activeIdx]}`}
-              alt={openProject.name}
-              width={1600}
-              height={1200}
-              sizes="(max-width: 900px) 100vw, 900px"
-              style={{ width: "100%", height: "auto", display: "block" }}
-              priority
-            />
+            <div
+              className="nn-modal-track"
+              ref={trackRef}
+              role="group"
+              aria-roledescription="carousel"
+              aria-label="Project images"
+            >
+              {openProject.images.map((img, i) => (
+                <div
+                  key={img}
+                  className="nn-modal-slide"
+                  data-idx={i}
+                  data-active={i === activeIdx ? "true" : "false"}
+                  aria-hidden={i === activeIdx ? undefined : true}
+                >
+                  <Image
+                    src={`/assets/projects/${openProject.slug}/${img}`}
+                    alt={i === 0 ? openProject.name : ""}
+                    width={1600}
+                    height={1200}
+                    sizes="(max-width: 900px) 100vw, 900px"
+                    priority={i === 0}
+                  />
+                </div>
+              ))}
+            </div>
             {openProject.images.length > 1 && (
               <div className="nn-modal-thumbs">
                 {openProject.images.map((img, i) => (
