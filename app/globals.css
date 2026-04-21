@@ -1688,6 +1688,27 @@ button { font-family: inherit; }
   .nn-team-grid,
   .nn-process,
   .nn-footer-inner { grid-template-columns: 1fr; }
+
+  /* Pillars / stats: kill the desktop "vertical-rule + left-padding" layout that
+     turns into awkward indents and oversized gaps when stacked. Reflow as a
+     compact list separated by quiet hairlines. */
+  .nn-pillar,
+  .nn-pillar:not(:first-child) {
+    padding: 24px 0;
+    border-left: 0;
+    border-top: 1px solid var(--line-quiet);
+  }
+  .nn-pillar:first-child { border-top: 0; padding-top: 0; }
+  .nn-pillar-desc { max-width: none; }
+
+  .nn-stat,
+  .nn-stat:first-child {
+    padding: 20px 0;
+    border-left: 0;
+    border-top: 1px solid var(--line-quiet);
+  }
+  .nn-stat:first-child { border-top: 0; padding-top: 0; }
+  .nn-stat-num { font-size: clamp(40px, 12vw, 56px); margin-top: 8px; }
   .nn-contact-form { grid-template-columns: 1fr; gap: 24px; padding: 32px 24px; }
   .nn-contact-form .nn-field-full,
   .nn-contact-form .nn-form-actions,
