@@ -2,12 +2,32 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { serviceBranches } from "@/lib/data";
+import { CtaBand } from "@/components/cta-band";
 
 export const metadata: Metadata = {
   title: "Services · NN Construction",
   description:
     "Interior, exterior, and roofing — three shops under one roof. Licensed, insured, 25-year workmanship warranty.",
 };
+
+const process = [
+  {
+    title: "Walk-through",
+    desc: "Free, in-person, typically within a week. We walk the space, talk scope, discuss constraints.",
+  },
+  {
+    title: "Written estimate",
+    desc: "Inside five business days. Line-item labor, materials, permits, timeline. No hidden contingencies.",
+  },
+  {
+    title: "Build",
+    desc: "One project manager. One crew. Daily clean-up. Change orders written, signed, priced before work.",
+  },
+  {
+    title: "Punch & warranty",
+    desc: "Clean hand-off, 25-year workmanship warranty. Reachable directly — no call centers.",
+  },
+];
 
 export default function ServicesHubPage() {
   return (
@@ -45,6 +65,14 @@ export default function ServicesHubPage() {
                 </div>
                 <h2 className="nn-service-hub-title">{b.name}</h2>
                 <p className="nn-service-hub-desc">{b.tagline}</p>
+                <div className="nn-service-hub-meta">
+                  <span>{b.startingAt}</span>
+                  <span aria-hidden="true">·</span>
+                  <span>
+                    {b.services.length} service
+                    {b.services.length === 1 ? "" : "s"}
+                  </span>
+                </div>
                 <span className="nn-service-hub-arrow">
                   View {b.name.toLowerCase()}{" "}
                   <span className="nn-btn-arrow" aria-hidden="true">
@@ -57,17 +85,26 @@ export default function ServicesHubPage() {
         </div>
       </section>
 
-      <section className="nn-cta-band">
-        <div className="nn-container nn-cta-inner">
-          <div>
-            <div className="nn-eyebrow">Summer &apos;26 · now scheduling</div>
-            <h2 className="nn-cta-title">Start with an estimate.</h2>
+      <section className="nn-section nn-section-raised">
+        <div className="nn-container">
+          <div className="nn-section-head">
+            <div className="nn-chapter">
+              <span className="nn-chapter-label">Process</span>
+            </div>
+            <h2 className="nn-section-title">How a project moves.</h2>
           </div>
-          <Link className="nn-btn nn-btn-primary nn-btn-lg" href="/contact">
-            Request estimate →
-          </Link>
+          <div className="nn-process">
+            {process.map((p) => (
+              <div key={p.title} className="nn-process-step">
+                <h3 className="nn-process-title">{p.title}</h3>
+                <p className="nn-process-desc">{p.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
+
+      <CtaBand />
     </>
   );
 }

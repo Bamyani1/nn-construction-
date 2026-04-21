@@ -1122,6 +1122,13 @@ button { font-family: inherit; }
   margin: 0 0 18px;
   max-width: 420px;
 }
+.nn-service-hub-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  font: 500 12px/1 var(--ff-mono);
+  letter-spacing: .06em;
+  color: var(--nn-azure-deep);
+  margin: 0 0 16px;
+}
 .nn-service-hub-arrow {
   display: inline-flex; align-items: center; gap: 8px;
   font: 500 11px/1 var(--ff-sans);
