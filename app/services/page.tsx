@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { serviceBranches } from "@/lib/data";
 import { CtaBand } from "@/components/cta-band";
 
@@ -34,11 +35,25 @@ export default function ServicesHubPage() {
     <>
       <section className="nn-page-head nn-services">
         <div className="nn-container">
-          <div className="nn-page-eyebrow">
+          <div
+            className="nn-page-eyebrow"
+            data-reveal="fade-rise"
+            style={{ "--i": 0 } as CSSProperties}
+          >
             <span className="nn-label">Services</span>
           </div>
-          <h1 className="nn-page-title">What we build.</h1>
-          <p className="nn-page-lead">
+          <h1
+            className="nn-page-title"
+            data-reveal="fade-rise"
+            style={{ "--i": 1 } as CSSProperties}
+          >
+            What we build.
+          </h1>
+          <p
+            className="nn-page-lead"
+            data-reveal="fade-rise"
+            style={{ "--i": 2 } as CSSProperties}
+          >
             Three shops under one roof — interior finish, exterior
             envelope, and roofing. One project manager on every job.
             Licensed, insured, 25-year workmanship warranty.
@@ -49,11 +64,13 @@ export default function ServicesHubPage() {
       <section className="nn-section">
         <div className="nn-container">
           <div className="nn-service-hub-grid">
-            {serviceBranches.map((b) => (
+            {serviceBranches.map((b, i) => (
               <Link
                 key={b.slug}
                 href={`/services/${b.slug}`}
                 className="nn-service-hub-card nn-card-hover"
+                data-reveal="fade-rise"
+                style={{ "--i": i } as CSSProperties}
               >
                 <div className="nn-service-hub-img">
                   <Image
@@ -88,14 +105,29 @@ export default function ServicesHubPage() {
       <section className="nn-section nn-section-raised">
         <div className="nn-container">
           <div className="nn-section-head">
-            <div className="nn-chapter">
+            <div
+              className="nn-chapter"
+              data-reveal="clip-reveal"
+              style={{ "--i": 0 } as CSSProperties}
+            >
               <span className="nn-chapter-label">Process</span>
             </div>
-            <h2 className="nn-section-title">How a project moves.</h2>
+            <h2
+              className="nn-section-title"
+              data-reveal="fade-rise"
+              style={{ "--i": 1 } as CSSProperties}
+            >
+              How a project moves.
+            </h2>
           </div>
           <div className="nn-process">
-            {process.map((p) => (
-              <div key={p.title} className="nn-process-step">
+            {process.map((p, i) => (
+              <div
+                key={p.title}
+                className="nn-process-step"
+                data-reveal="fade-rise"
+                style={{ "--i": i } as CSSProperties}
+              >
                 <h3 className="nn-process-title">{p.title}</h3>
                 <p className="nn-process-desc">{p.desc}</p>
               </div>
