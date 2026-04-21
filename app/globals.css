@@ -1306,36 +1306,33 @@ button { font-family: inherit; }
   margin-top: 24px;
   max-width: 560px;
 }
-.nn-page-head.nn-services .nn-tabs { margin-top: 32px; }
 .nn-page-head.nn-services .nn-page-head-img { margin-top: 40px; }
+
+/* Breadcrumb sits above the eyebrow on sub-pages. Small, quiet, purposeful. */
+.nn-breadcrumb {
+  display: inline-flex; align-items: center; gap: 6px;
+  font: 500 11px/1 var(--ff-sans);
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--fg-3);
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .nn-breadcrumb:hover { color: var(--nn-azure); }
+}
 
 @media (min-width: 1024px) {
   .nn-page-head.nn-services:has(.nn-page-head-img) .nn-container {
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    grid-template-rows: auto auto auto 1fr;
     column-gap: 64px;
-    align-items: start;
-  }
-  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-page-eyebrow {
-    grid-column: 1; grid-row: 1;
-  }
-  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-page-title {
-    grid-column: 1; grid-row: 2;
-  }
-  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-page-lead {
-    grid-column: 1; grid-row: 3;
-  }
-  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-tabs {
-    grid-column: 1; grid-row: 4;
-    align-self: end;
-    margin-top: 48px;
+    align-items: center;
   }
   .nn-page-head.nn-services:has(.nn-page-head-img) .nn-page-head-img {
-    grid-column: 2; grid-row: 1 / -1;
     margin-top: 0;
     aspect-ratio: 4 / 5;
-    height: 100%;
+    height: auto;
   }
 }
 
@@ -1413,9 +1410,8 @@ button { font-family: inherit; }
 .nn-roof-title { font: 500 24px/1.2 var(--ff-sans); margin: 0 0 14px; color: var(--fg-1); letter-spacing: -0.008em; }
 .nn-roof-desc { font: 400 15px/1.65 var(--ff-sans); color: var(--fg-2); }
 
-/* Roofing spec sheet */
+/* Spec sheet — reused by any services proof slot with kind === "spec". */
 .nn-spec-sheet {
-  margin-top: 96px;
   border-top: 1px solid var(--nn-azure);
   display: grid; grid-template-columns: 1fr 1fr 1fr;
 }
