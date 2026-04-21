@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { NavLinks, type NavLinkItem } from "@/components/nav-links";
 import { MobileNav } from "@/components/mobile-nav";
+import { NavCta } from "@/components/nav-cta";
 
 const navItems: NavLinkItem[] = [
   { label: "Home", href: "/" },
@@ -28,14 +29,7 @@ export function Nav() {
         </Link>
         <NavLinks items={navItems} />
         <div className="nn-nav-right">
-          <Link
-            className="nn-btn nn-btn-primary nn-nav-cta"
-            href="/contact"
-            data-magnetic
-            data-glow
-          >
-            Request estimate <span className="nn-btn-arrow" aria-hidden="true">→</span>
-          </Link>
+          <NavCta />
           <MobileNav items={navItems} />
         </div>
       </div>
