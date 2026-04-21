@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { serviceBranches } from "@/lib/data";
 import { ServicesTabs } from "@/components/services-tabs";
 
 export const metadata: Metadata = {
@@ -24,23 +25,7 @@ const roofingCells = [
   },
 ];
 
-const specSheet = [
-  {
-    label: "Installed since 2009",
-    value: "1,420,000",
-    unit: "square feet",
-  },
-  {
-    label: "Standing-seam material warranty",
-    value: "50 years",
-    unit: "manufacturer, pass-through",
-  },
-  {
-    label: "Workmanship warranty",
-    value: "25 years",
-    unit: "direct, no call centers",
-  },
-];
+const branch = serviceBranches.find((b) => b.slug === "roofing")!;
 
 export default function RoofingServicesPage() {
   return (
@@ -48,23 +33,22 @@ export default function RoofingServicesPage() {
       <section className="nn-page-head nn-services">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
-            <span className="nn-label">Services · Roofing</span>
+            <span className="nn-label">Services · {branch.name}</span>
           </div>
           <h1 className="nn-page-title">
-            Our proven
-            <br />
-            specialty.
+            {branch.pageTitle.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < branch.pageTitle.length - 1 ? <br /> : null}
+              </span>
+            ))}
           </h1>
-          <p className="nn-page-lead">
-            1.4 million square feet of roofing delivered since 2009.
-            Standing-seam metal, asphalt, and slate repair — full tear-off
-            or overlay, ice-shield to ridge cap.
-          </p>
+          <p className="nn-page-lead">{branch.pageLead}</p>
           <ServicesTabs active="roofing" />
           <div className="nn-page-head-img">
             <Image
-              src="/assets/projects/standing-seam-reroof/01.webp"
-              alt="Standing-seam re-roof"
+              src={branch.heroImage}
+              alt={branch.heroAlt}
               fill
               sizes="(max-width: 1200px) 100vw, 1200px"
               priority
@@ -91,17 +75,19 @@ export default function RoofingServicesPage() {
             ))}
           </div>
 
-          <div className="nn-spec-sheet" style={{ marginTop: 96 }}>
-            {specSheet.map((s) => (
-              <div key={s.label} className="nn-spec-cell">
-                <div className="nn-spec-label">{s.label}</div>
-                <div className="nn-spec-val">
-                  {s.value}
-                  <span className="nn-spec-unit">{s.unit}</span>
+          {branch.proof.kind === "spec" ? (
+            <div className="nn-spec-sheet" style={{ marginTop: 96 }}>
+              {branch.proof.cells.map((s) => (
+                <div key={s.label} className="nn-spec-cell">
+                  <div className="nn-spec-label">{s.label}</div>
+                  <div className="nn-spec-val">
+                    {s.value}
+                    <span className="nn-spec-unit">{s.unit}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
 

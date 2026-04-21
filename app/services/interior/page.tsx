@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { serviceBranches } from "@/lib/data";
 import { ServicesTabs } from "@/components/services-tabs";
 
 export const metadata: Metadata = {
@@ -8,33 +9,6 @@ export const metadata: Metadata = {
   description:
     "Kitchen, bath, millwork, flooring, framing. Stained-oak cabinetry, stone counters, tile set true.",
 };
-
-const interiorServices = [
-  {
-    title: "Kitchen & bath",
-    desc: "Custom cabinetry, stone counters, tile set true. Appliances, lighting, plumbing finished to spec. Structural wall removal with engineered LVL where needed.",
-    from: "From $38/sqft",
-    time: "8–14 wks",
-  },
-  {
-    title: "Custom built-ins",
-    desc: "Stained-oak millwork, floating shelves, integrated storage. Shop-built, site-finished. Mitred returns, continuous grain, hand-rubbed wax.",
-    from: "From $210/lf",
-    time: "3–6 wks",
-  },
-  {
-    title: "Flooring & stair",
-    desc: "Wide-plank white oak, tile, stone. Custom stair runs with closed or open risers — blackened-steel stringers and solid hardwood treads.",
-    from: "From $14/sqft",
-    time: "2–5 wks",
-  },
-  {
-    title: "Framing & structural",
-    desc: "New builds, additions, load-bearing work. Engineered to county code, plumb to the foundation. Permit submittal and inspection handled in-house.",
-    from: "From $42/sqft",
-    time: "6–16 wks",
-  },
-];
 
 const process = [
   {
@@ -55,29 +29,30 @@ const process = [
   },
 ];
 
+const branch = serviceBranches.find((b) => b.slug === "interior")!;
+
 export default function InteriorServicesPage() {
   return (
     <>
       <section className="nn-page-head nn-services">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
-            <span className="nn-label">Services · Interior</span>
+            <span className="nn-label">Services · {branch.name}</span>
           </div>
           <h1 className="nn-page-title">
-            Inside work,
-            <br />
-            finished appraisal-ready.
+            {branch.pageTitle.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < branch.pageTitle.length - 1 ? <br /> : null}
+              </span>
+            ))}
           </h1>
-          <p className="nn-page-lead">
-            Kitchen, bath, millwork, flooring, framing. Stained-oak cabinetry,
-            stone counters, tile set true to reveal. Structural work permitted
-            and inspected.
-          </p>
+          <p className="nn-page-lead">{branch.pageLead}</p>
           <ServicesTabs active="interior" />
           <div className="nn-page-head-img">
             <Image
-              src="/assets/projects/primary-bath-renovation/01.webp"
-              alt="Primary bath renovation"
+              src={branch.heroImage}
+              alt={branch.heroAlt}
               fill
               sizes="(max-width: 1200px) 100vw, 1200px"
               priority
@@ -89,7 +64,7 @@ export default function InteriorServicesPage() {
       <section className="nn-section">
         <div className="nn-container">
           <div className="nn-service-grid">
-            {interiorServices.map((s) => (
+            {branch.services.map((s) => (
               <div key={s.title} className="nn-service-card">
                 <h2 className="nn-service-title">{s.title}</h2>
                 <p className="nn-service-desc">{s.desc}</p>
@@ -126,13 +101,15 @@ export default function InteriorServicesPage() {
         <div className="nn-container">
           <div className="nn-pull-quote">
             <p className="nn-pull-quote-text">
-              &ldquo;The level of finish carpentry you get from Marta&apos;s
-              team is honestly the reason we&apos;ll use them again. Every miter
-              is tight. Every reveal is consistent.&rdquo;
+              &ldquo;
+              {branch.proof.kind === "quote" ? branch.proof.text : null}
+              &rdquo;
             </p>
-            <div className="nn-pull-quote-cap">
-              David Hollister · Takoma Park, MD
-            </div>
+            {branch.proof.kind === "quote" ? (
+              <div className="nn-pull-quote-cap">
+                {branch.proof.name} · {branch.proof.loc}
+              </div>
+            ) : null}
           </div>
         </div>
       </section>

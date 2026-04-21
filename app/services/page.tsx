@@ -1,39 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { serviceBranches } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Services · NN Construction",
   description:
     "Interior, exterior, and roofing — three shops under one roof. Licensed, insured, 25-year workmanship warranty.",
 };
-
-const branches = [
-  {
-    title: "Interior",
-    href: "/services/interior",
-    summary:
-      "Kitchen, bath, millwork, flooring, framing. Stained-oak cabinetry, stone counters, tile set true.",
-    image: "/assets/projects/primary-bath-renovation/01.webp",
-    alt: "Primary bath renovation",
-  },
-  {
-    title: "Exterior",
-    href: "/services/exterior",
-    summary:
-      "Siding, decks, windows, doors. Tight mitered corners, consistent reveal, drainage engineered in.",
-    image: "/assets/projects/foundation-waterproofing/01.webp",
-    alt: "Foundation waterproofing",
-  },
-  {
-    title: "Roofing",
-    href: "/services/roofing",
-    summary:
-      "Our specialty since 2009. Standing-seam metal, asphalt, and slate repair — ice-shield to ridge cap.",
-    image: "/assets/projects/standing-seam-reroof/01.webp",
-    alt: "Standing-seam re-roof",
-  },
-];
 
 export default function ServicesHubPage() {
   return (
@@ -45,9 +19,9 @@ export default function ServicesHubPage() {
           </div>
           <h1 className="nn-page-title">What we build.</h1>
           <p className="nn-page-lead">
-            Three shops under one roof — interior finish, exterior envelope,
-            and roofing. One project manager on every job. Licensed,
-            insured, 25-year workmanship warranty.
+            Three shops under one roof — interior finish, exterior
+            envelope, and roofing. One project manager on every job.
+            Licensed, insured, 25-year workmanship warranty.
           </p>
         </div>
       </section>
@@ -55,24 +29,24 @@ export default function ServicesHubPage() {
       <section className="nn-section">
         <div className="nn-container">
           <div className="nn-service-hub-grid">
-            {branches.map((b) => (
+            {serviceBranches.map((b) => (
               <Link
-                key={b.href}
-                href={b.href}
+                key={b.slug}
+                href={`/services/${b.slug}`}
                 className="nn-service-hub-card nn-card-hover"
               >
                 <div className="nn-service-hub-img">
                   <Image
-                    src={b.image}
-                    alt={b.alt}
+                    src={b.heroImage}
+                    alt={b.heroAlt}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
-                <h2 className="nn-service-hub-title">{b.title}</h2>
-                <p className="nn-service-hub-desc">{b.summary}</p>
+                <h2 className="nn-service-hub-title">{b.name}</h2>
+                <p className="nn-service-hub-desc">{b.tagline}</p>
                 <span className="nn-service-hub-arrow">
-                  View {b.title.toLowerCase()}{" "}
+                  View {b.name.toLowerCase()}{" "}
                   <span className="nn-btn-arrow" aria-hidden="true">
                     →
                   </span>

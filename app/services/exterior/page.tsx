@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { serviceBranches } from "@/lib/data";
 import { ServicesTabs } from "@/components/services-tabs";
 
 export const metadata: Metadata = {
@@ -9,26 +10,7 @@ export const metadata: Metadata = {
     "Siding, decks, windows, and doors. Tight mitered corners, consistent reveal top to bottom, drainage engineered in.",
 };
 
-const exteriorServices = [
-  {
-    title: "Siding & trim",
-    desc: "Fiber-cement, cedar lap, stucco. Tight mitered corners, consistent reveal top to bottom. Full tear-off or overlay with proper flashing.",
-    from: "From $12/sqft",
-    time: "4–8 wks",
-  },
-  {
-    title: "Decks & hardscape",
-    desc: "IPE and composite decks, paver patios, retaining walls. Drainage engineered in. Structural posts to frost depth.",
-    from: "From $65/sqft",
-    time: "3–6 wks",
-  },
-  {
-    title: "Windows & doors",
-    desc: "Full-frame replacement, custom entry doors, structural openings cut and supported. Rough-openings squared before install, every time.",
-    from: "From $1,200/opening",
-    time: "1–3 wks",
-  },
-];
+const branch = serviceBranches.find((b) => b.slug === "exterior")!;
 
 export default function ExteriorServicesPage() {
   return (
@@ -36,23 +18,22 @@ export default function ExteriorServicesPage() {
       <section className="nn-page-head nn-services">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
-            <span className="nn-label">Services · Exterior</span>
+            <span className="nn-label">Services · {branch.name}</span>
           </div>
           <h1 className="nn-page-title">
-            Outside work
-            <br />
-            that holds weather.
+            {branch.pageTitle.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < branch.pageTitle.length - 1 ? <br /> : null}
+              </span>
+            ))}
           </h1>
-          <p className="nn-page-lead">
-            Siding, decks, windows, and doors. Tight mitered corners,
-            consistent reveal top to bottom, drainage engineered in. For
-            roofing, see our dedicated specialty.
-          </p>
+          <p className="nn-page-lead">{branch.pageLead}</p>
           <ServicesTabs active="exterior" />
           <div className="nn-page-head-img">
             <Image
-              src="/assets/projects/foundation-waterproofing/01.webp"
-              alt="Foundation waterproofing"
+              src={branch.heroImage}
+              alt={branch.heroAlt}
               fill
               sizes="(max-width: 1200px) 100vw, 1200px"
               priority
@@ -64,7 +45,7 @@ export default function ExteriorServicesPage() {
       <section className="nn-section">
         <div className="nn-container">
           <div className="nn-service-grid">
-            {exteriorServices.map((s) => (
+            {branch.services.map((s) => (
               <div key={s.title} className="nn-service-card">
                 <h2 className="nn-service-title">{s.title}</h2>
                 <p className="nn-service-desc">{s.desc}</p>
