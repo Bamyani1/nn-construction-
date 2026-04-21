@@ -1089,6 +1089,51 @@ button { font-family: inherit; }
 }
 
 /* =============================================================
+ * Services hub — 3 peer branches
+ * ============================================================= */
+.nn-service-hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
+.nn-service-hub-card {
+  display: block; text-decoration: none; color: inherit;
+}
+.nn-service-hub-img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--nn-paper-raised);
+  margin-bottom: 22px;
+  border-radius: 4px;
+}
+.nn-service-hub-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 900ms var(--ease-out);
+}
+@media (hover: hover) {
+  .nn-service-hub-card:hover .nn-service-hub-img img { transform: scale(1.04); }
+}
+.nn-service-hub-title {
+  font: 500 28px/1.2 var(--ff-sans);
+  letter-spacing: -0.012em;
+  color: var(--fg-1);
+  margin: 0 0 10px;
+}
+.nn-service-hub-desc {
+  font: 400 16px/1.55 var(--ff-sans);
+  color: var(--fg-2);
+  margin: 0 0 18px;
+  max-width: 420px;
+}
+.nn-service-hub-arrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 500 11px/1 var(--ff-sans);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--nn-azure);
+}
+@media (hover: hover) {
+  .nn-service-hub-card:hover .nn-service-hub-arrow { color: var(--nn-azure-deep); }
+}
+
+/* =============================================================
  * Projects
  * ============================================================= */
 .nn-project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
@@ -1669,6 +1714,7 @@ button { font-family: inherit; }
   .nn-stats { grid-template-columns: repeat(2, 1fr); }
   .nn-project-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
   .nn-service-grid { grid-template-columns: 1fr; }
+  .nn-service-hub-grid { grid-template-columns: repeat(2, 1fr); }
   .nn-team-grid { grid-template-columns: repeat(2, 1fr); }
   .nn-roof-grid { grid-template-columns: 1fr; }
   .nn-process { grid-template-columns: repeat(2, 1fr); }
@@ -1685,6 +1731,7 @@ button { font-family: inherit; }
   .nn-pillars,
   .nn-stats,
   .nn-project-grid,
+  .nn-service-hub-grid,
   .nn-team-grid,
   .nn-process,
   .nn-footer-inner { grid-template-columns: 1fr; }

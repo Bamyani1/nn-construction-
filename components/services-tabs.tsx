@@ -25,10 +25,10 @@ export function ServicesTabs({ active }: ServicesTabsProps) {
       </Link>
       <Link
         className={`nn-tab${active === "roofing" ? " active" : ""}`}
-        href="/services/exterior#roofing"
+        href="/services/roofing"
         aria-current={active === "roofing" ? "page" : undefined}
       >
-        Roofing · specialty
+        Roofing
       </Link>
     </div>
   );

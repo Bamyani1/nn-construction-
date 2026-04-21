@@ -5,7 +5,7 @@ import { MobileNav } from "@/components/mobile-nav";
 
 const navItems: NavLinkItem[] = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services/interior", matchPrefix: "/services" },
+  { label: "Services", href: "/services", matchPrefix: "/services" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
