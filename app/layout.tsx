@@ -16,6 +16,7 @@ import "./globals.css";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
   themeColor: "#ECF1F7",
 };
 
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} ${playfairDisplay.variable}`}
     >
       <head>
+        <meta name="format-detection" content="telephone=no" />
         <noscript>
           {/* Safety for users with JS disabled: reveal targets stay visible. */}
           <style>{`[data-reveal],.nn-hero-word{opacity:1 !important;transform:none !important;filter:none !important;clip-path:inset(0) !important;}`}</style>

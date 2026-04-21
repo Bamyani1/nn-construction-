@@ -57,9 +57,9 @@ export function Footer() {
           <div className="nn-footer-office">
             {site.address}
             <br />
-            {site.phone}
+            <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}>{site.phone}</a>
             <br />
-            {site.email}
+            <a href={`mailto:${site.email}`}>{site.email}</a>
           </div>
         </div>
       </div>

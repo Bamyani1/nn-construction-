@@ -91,7 +91,7 @@ export default function InteriorServicesPage() {
           <div className="nn-service-grid">
             {interiorServices.map((s) => (
               <div key={s.title} className="nn-service-card">
-                <h3 className="nn-service-title">{s.title}</h3>
+                <h2 className="nn-service-title">{s.title}</h2>
                 <p className="nn-service-desc">{s.desc}</p>
                 <div className="nn-service-foot">
                   <span className="nn-service-from">{s.from}</span>
