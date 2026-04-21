@@ -34,7 +34,7 @@ export function Nav() {
             data-magnetic
             data-glow
           >
-            Get a quote <span className="nn-btn-arrow" aria-hidden="true">→</span>
+            Request estimate <span className="nn-btn-arrow" aria-hidden="true">→</span>
           </Link>
           <MobileNav items={navItems} />
         </div>

@@ -140,7 +140,7 @@ export function MobileNav({ items }: MobileNavProps) {
             className="nn-btn nn-btn-primary nn-mobile-cta"
             onClick={close}
           >
-            Get a quote{" "}
+            Request estimate{" "}
             <span className="nn-btn-arrow" aria-hidden="true">
               →
             </span>
