@@ -1089,6 +1089,62 @@ button { font-family: inherit; }
 }
 
 /* =============================================================
+ * Services hub — 3 peer branches
+ * ============================================================= */
+.nn-service-hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
+.nn-service-hub-card {
+  display: block; text-decoration: none; color: inherit;
+}
+.nn-service-hub-img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--nn-paper-raised);
+  margin-bottom: 22px;
+  border-radius: 4px;
+}
+.nn-service-hub-body { padding: 4px 8px 0; }
+@media (max-width: 1024px) {
+  .nn-service-hub-body { padding: 4px 16px 0; }
+}
+.nn-service-hub-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 900ms var(--ease-out);
+}
+@media (hover: hover) {
+  .nn-service-hub-card:hover .nn-service-hub-img img { transform: scale(1.02); }
+}
+.nn-service-hub-title {
+  font: 500 28px/1.2 var(--ff-sans);
+  letter-spacing: -0.012em;
+  color: var(--fg-1);
+  margin: 0 0 10px;
+}
+.nn-service-hub-desc {
+  font: 400 16px/1.55 var(--ff-sans);
+  color: var(--fg-2);
+  margin: 0 0 18px;
+  max-width: 420px;
+}
+.nn-service-hub-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  font: 500 12px/1 var(--ff-mono);
+  letter-spacing: .06em;
+  color: var(--nn-azure-deep);
+  margin: 0 0 16px;
+}
+.nn-service-hub-arrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 500 11px/1 var(--ff-sans);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--nn-azure);
+}
+@media (hover: hover) {
+  .nn-service-hub-card:hover .nn-service-hub-arrow { color: var(--nn-azure-deep); }
+}
+
+/* =============================================================
  * Projects
  * ============================================================= */
 .nn-project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
@@ -1248,6 +1304,54 @@ button { font-family: inherit; }
 }
 .nn-titleblock-row dd .nn-mono { font: inherit; color: inherit; letter-spacing: inherit; }
 
+/* Services page-head — tighter rhythm + 2-col hero at ≥1024px.
+ * Kills the accumulated vertical whitespace on the services flow without
+ * touching the global .nn-page-head used by other routes. */
+.nn-page-head.nn-services { padding: 96px 0 64px; }
+.nn-page-head.nn-services .nn-page-title {
+  font-size: clamp(36px, 6vw, 64px);
+  max-width: 640px;
+}
+.nn-page-head.nn-services .nn-page-lead {
+  font-size: 20px;
+  margin-top: 24px;
+  max-width: 560px;
+}
+.nn-page-head.nn-services .nn-page-head-img { margin-top: 40px; }
+
+/* Breadcrumb sits above the eyebrow on sub-pages. Small, quiet, purposeful. */
+.nn-breadcrumb {
+  display: inline-flex; align-items: center; gap: 6px;
+  font: 500 11px/1 var(--ff-sans);
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--fg-3);
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) {
+  .nn-breadcrumb:hover { color: var(--nn-azure); }
+}
+
+@media (min-width: 1024px) {
+  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    column-gap: 64px;
+    align-items: center;
+  }
+  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-page-head-img {
+    margin-top: 0;
+    aspect-ratio: 4 / 5;
+    height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .nn-page-head.nn-services { padding: 72px 0 48px; }
+  .nn-page-head.nn-services .nn-page-head-img { margin-top: 28px; }
+}
+
 /* =============================================================
  * Tabs
  * ============================================================= */
@@ -1317,9 +1421,8 @@ button { font-family: inherit; }
 .nn-roof-title { font: 500 24px/1.2 var(--ff-sans); margin: 0 0 14px; color: var(--fg-1); letter-spacing: -0.008em; }
 .nn-roof-desc { font: 400 15px/1.65 var(--ff-sans); color: var(--fg-2); }
 
-/* Roofing spec sheet */
+/* Spec sheet — reused by any services proof slot with kind === "spec". */
 .nn-spec-sheet {
-  margin-top: 96px;
   border-top: 1px solid var(--nn-azure);
   display: grid; grid-template-columns: 1fr 1fr 1fr;
 }
@@ -1669,6 +1772,7 @@ button { font-family: inherit; }
   .nn-stats { grid-template-columns: repeat(2, 1fr); }
   .nn-project-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
   .nn-service-grid { grid-template-columns: 1fr; }
+  .nn-service-hub-grid { grid-template-columns: repeat(2, 1fr); }
   .nn-team-grid { grid-template-columns: repeat(2, 1fr); }
   .nn-roof-grid { grid-template-columns: 1fr; }
   .nn-process { grid-template-columns: repeat(2, 1fr); }
@@ -1685,6 +1789,7 @@ button { font-family: inherit; }
   .nn-pillars,
   .nn-stats,
   .nn-project-grid,
+  .nn-service-hub-grid,
   .nn-team-grid,
   .nn-process,
   .nn-footer-inner { grid-template-columns: 1fr; }

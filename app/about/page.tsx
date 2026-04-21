@@ -199,7 +199,7 @@ export default function AboutPage() {
             <h2 className="nn-section-title">Words from the sites we&apos;ve finished.</h2>
           </div>
           <div style={{ marginTop: 48 }}>
-            {testimonials.slice(0, 3).map((t) => (
+            {testimonials.slice(0, 1).map((t) => (
               <figure key={t.name} className="nn-testimonial">
                 <div className="nn-testimonial-rule" />
                 <blockquote className="nn-testimonial-quote">
@@ -233,7 +233,7 @@ export default function AboutPage() {
             <h2 className="nn-section-title">Questions, answered plainly.</h2>
           </div>
           <div style={{ marginTop: 48 }}>
-            <FaqAccordion items={faqs.slice(0, 5)} />
+            <FaqAccordion items={faqs.slice(0, 2)} />
           </div>
           <div style={{ marginTop: 32 }}>
             <Link className="nn-link" href="/faq">

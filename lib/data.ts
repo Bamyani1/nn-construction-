@@ -33,6 +33,39 @@ export interface Stat {
   unit: string;
 }
 
+export interface ServiceCard {
+  title: string;
+  desc: string;
+  from: string;   // "From $12/sqft"
+  time: string;   // "4–8 wks"
+}
+
+export type ServiceProof =
+  | {
+      kind: "quote";
+      text: string;
+      name: string;
+      role: string;
+      loc: string;
+    }
+  | {
+      kind: "spec";
+      cells: { label: string; value: string; unit: string }[];
+    };
+
+export interface ServiceBranch {
+  slug: "interior" | "exterior" | "roofing";
+  name: string;
+  tagline: string;       // hub card summary (1 line)
+  pageTitle: string[];   // sub-page h1, one array entry per rendered line
+  pageLead: string;
+  heroImage: string;
+  heroAlt: string;
+  startingAt: string;    // "From $8/sqft" — shown on hub card
+  services: ServiceCard[];
+  proof: ServiceProof;
+}
+
 export const site = {
   name: "NN Construction",
   tagline: "Your dream · Our hardwork",
@@ -158,6 +191,158 @@ export const testimonials: Testimonial[] = [
     role: "Homeowner",
     loc: "Takoma Park, MD",
     project: "Custom Window Install",
+  },
+];
+
+export const serviceBranches: ServiceBranch[] = [
+  {
+    slug: "interior",
+    name: "Interior",
+    tagline:
+      "Kitchen, bath, millwork, flooring, framing. Stained-oak cabinetry, stone counters, tile set true.",
+    pageTitle: ["Inside work,", "finished appraisal-ready."],
+    pageLead:
+      "Kitchen, bath, millwork, flooring, framing. Stained-oak cabinetry, stone counters, tile set true to reveal. Structural work permitted and inspected.",
+    heroImage: "/assets/projects/primary-bath-renovation/01.webp",
+    heroAlt: "Primary bath renovation",
+    startingAt: "From $14/sqft",
+    services: [
+      {
+        title: "Kitchen & bath",
+        desc: "Custom cabinetry, stone counters, tile set true. Appliances, lighting, plumbing finished to spec. Structural wall removal with engineered LVL where needed.",
+        from: "From $38/sqft",
+        time: "8–14 wks",
+      },
+      {
+        title: "Custom built-ins",
+        desc: "Stained-oak millwork, floating shelves, integrated storage. Shop-built, site-finished. Mitred returns, continuous grain, hand-rubbed wax.",
+        from: "From $210/lf",
+        time: "3–6 wks",
+      },
+      {
+        title: "Flooring & stair",
+        desc: "Wide-plank white oak, tile, stone. Custom stair runs with closed or open risers — blackened-steel stringers and solid hardwood treads.",
+        from: "From $14/sqft",
+        time: "2–5 wks",
+      },
+      {
+        title: "Framing & structural",
+        desc: "New builds, additions, load-bearing work. Engineered to county code, plumb to the foundation. Permit submittal and inspection handled in-house.",
+        from: "From $42/sqft",
+        time: "6–16 wks",
+      },
+    ],
+    proof: {
+      kind: "quote",
+      text: "The level of finish carpentry you get from Marta's team is honestly the reason we'll use them again. Every miter is tight. Every reveal is consistent.",
+      name: "David Hollister",
+      role: "Homeowner",
+      loc: "Takoma Park, MD",
+    },
+  },
+  {
+    slug: "exterior",
+    name: "Exterior",
+    tagline:
+      "Siding, decks, windows, doors. Tight mitered corners, consistent reveal, drainage engineered in.",
+    pageTitle: ["Outside work", "that holds weather."],
+    pageLead:
+      "Siding, decks, windows, and doors. Tight mitered corners, consistent reveal top to bottom, drainage engineered in. For roofing, see our dedicated specialty.",
+    heroImage: "/assets/projects/foundation-waterproofing/01.webp",
+    heroAlt: "Foundation waterproofing",
+    startingAt: "From $12/sqft",
+    services: [
+      {
+        title: "Siding & trim",
+        desc: "Fiber-cement, cedar lap, stucco. Tight mitered corners, consistent reveal top to bottom. Full tear-off or overlay with proper flashing.",
+        from: "From $12/sqft",
+        time: "4–8 wks",
+      },
+      {
+        title: "Decks & hardscape",
+        desc: "IPE and composite decks, paver patios, retaining walls. Drainage engineered in. Structural posts to frost depth.",
+        from: "From $65/sqft",
+        time: "3–6 wks",
+      },
+      {
+        title: "Windows & doors",
+        desc: "Full-frame replacement, custom entry doors, structural openings cut and supported. Rough-openings squared before install, every time.",
+        from: "From $1,200/opening",
+        time: "1–3 wks",
+      },
+    ],
+    proof: {
+      kind: "spec",
+      cells: [
+        {
+          label: "In business since",
+          value: "2009",
+          unit: "seventeen years on",
+        },
+        {
+          label: "Service area",
+          value: "MD · DC · VA",
+          unit: "three-state license",
+        },
+        {
+          label: "Workmanship warranty",
+          value: "25 years",
+          unit: "direct, no call centers",
+        },
+      ],
+    },
+  },
+  {
+    slug: "roofing",
+    name: "Roofing",
+    tagline:
+      "Our specialty since 2009. Standing-seam metal, asphalt, and slate repair — ice-shield to ridge cap.",
+    pageTitle: ["Our proven", "specialty."],
+    pageLead:
+      "1.4 million square feet of roofing delivered since 2009. Standing-seam metal, asphalt, and slate repair — full tear-off or overlay, ice-shield to ridge cap.",
+    heroImage: "/assets/projects/standing-seam-reroof/01.webp",
+    heroAlt: "Standing-seam re-roof",
+    startingAt: "From $8/sqft",
+    services: [
+      {
+        title: "Full tear-off re-roof",
+        desc: "Decking inspected, ice & water shield applied at eaves and valleys, synthetic underlayment, hand-nailed asphalt or standing-seam metal. Proper step-flashing at every penetration.",
+        from: "From $8/sqft",
+        time: "1–3 wks",
+      },
+      {
+        title: "Repair & flashing",
+        desc: "Leak diagnosis, chimney and skylight flashing, valley replacement. Documented before-and-after for every repair, including infrared moisture scans where warranted.",
+        from: "By scope",
+        time: "1–2 days",
+      },
+      {
+        title: "Annual maintenance",
+        desc: "Semi-annual inspection, gutter cleaning, sealant refresh. Keeps the 25-year workmanship warranty live and catches small failures before they become expensive ones.",
+        from: "From $400/yr",
+        time: "1 day",
+      },
+    ],
+    proof: {
+      kind: "spec",
+      cells: [
+        {
+          label: "Installed since 2009",
+          value: "1,420,000",
+          unit: "square feet",
+        },
+        {
+          label: "Standing-seam material warranty",
+          value: "50 years",
+          unit: "manufacturer, pass-through",
+        },
+        {
+          label: "Workmanship warranty",
+          value: "25 years",
+          unit: "direct, no call centers",
+        },
+      ],
+    },
   },
 ];
 

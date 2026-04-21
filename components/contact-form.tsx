@@ -27,7 +27,7 @@ export function ContactForm() {
   }
 
   return (
-    <form className="nn-contact-form" onSubmit={handleSubmit}>
+    <form id="contact-form" className="nn-contact-form" onSubmit={handleSubmit}>
       {!sent ? (
         <div style={{ display: "contents" }}>
           <div className="nn-field">

@@ -28,7 +28,7 @@ export function Footer() {
               <Link href="/services/exterior">Exterior</Link>
             </li>
             <li>
-              <Link href="/services/exterior#roofing">Roofing</Link>
+              <Link href="/services/roofing">Roofing</Link>
             </li>
             <li>
               <Link href="/portfolio">Portfolio</Link>
