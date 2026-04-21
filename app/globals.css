@@ -1103,12 +1103,16 @@ button { font-family: inherit; }
   margin-bottom: 22px;
   border-radius: 4px;
 }
+.nn-service-hub-body { padding: 4px 8px 0; }
+@media (max-width: 1024px) {
+  .nn-service-hub-body { padding: 4px 16px 0; }
+}
 .nn-service-hub-img img {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 900ms var(--ease-out);
 }
 @media (hover: hover) {
-  .nn-service-hub-card:hover .nn-service-hub-img img { transform: scale(1.04); }
+  .nn-service-hub-card:hover .nn-service-hub-img img { transform: scale(1.02); }
 }
 .nn-service-hub-title {
   font: 500 28px/1.2 var(--ff-sans);

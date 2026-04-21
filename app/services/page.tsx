@@ -80,22 +80,24 @@ export default function ServicesHubPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
-                <h2 className="nn-service-hub-title">{b.name}</h2>
-                <p className="nn-service-hub-desc">{b.tagline}</p>
-                <div className="nn-service-hub-meta">
-                  <span>{b.startingAt}</span>
-                  <span aria-hidden="true">·</span>
-                  <span>
-                    {b.services.length} service
-                    {b.services.length === 1 ? "" : "s"}
+                <div className="nn-service-hub-body">
+                  <h2 className="nn-service-hub-title">{b.name}</h2>
+                  <p className="nn-service-hub-desc">{b.tagline}</p>
+                  <div className="nn-service-hub-meta">
+                    <span>{b.startingAt}</span>
+                    <span aria-hidden="true">·</span>
+                    <span>
+                      {b.services.length} service
+                      {b.services.length === 1 ? "" : "s"}
+                    </span>
+                  </div>
+                  <span className="nn-service-hub-arrow">
+                    View {b.name.toLowerCase()}{" "}
+                    <span className="nn-btn-arrow" aria-hidden="true">
+                      →
+                    </span>
                   </span>
                 </div>
-                <span className="nn-service-hub-arrow">
-                  View {b.name.toLowerCase()}{" "}
-                  <span className="nn-btn-arrow" aria-hidden="true">
-                    →
-                  </span>
-                </span>
               </Link>
             ))}
           </div>
