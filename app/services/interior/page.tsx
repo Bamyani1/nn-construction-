@@ -58,7 +58,7 @@ const process = [
 export default function InteriorServicesPage() {
   return (
     <>
-      <section className="nn-page-head">
+      <section className="nn-page-head nn-services">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
             <span className="nn-label">Services · Interior</span>

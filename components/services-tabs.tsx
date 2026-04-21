@@ -8,7 +8,7 @@ interface ServicesTabsProps {
 
 export function ServicesTabs({ active }: ServicesTabsProps) {
   return (
-    <div className="nn-tabs" style={{ marginTop: 48 }}>
+    <div className="nn-tabs">
       <Link
         className={`nn-tab${active === "interior" ? " active" : ""}`}
         href="/services/interior"

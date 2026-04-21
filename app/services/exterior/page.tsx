@@ -33,7 +33,7 @@ const exteriorServices = [
 export default function ExteriorServicesPage() {
   return (
     <>
-      <section className="nn-page-head">
+      <section className="nn-page-head nn-services">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
             <span className="nn-label">Services · Exterior</span>

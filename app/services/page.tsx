@@ -38,7 +38,7 @@ const branches = [
 export default function ServicesHubPage() {
   return (
     <>
-      <section className="nn-page-head">
+      <section className="nn-page-head nn-services">
         <div className="nn-container">
           <div className="nn-page-eyebrow">
             <span className="nn-label">Services</span>

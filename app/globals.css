@@ -1293,6 +1293,57 @@ button { font-family: inherit; }
 }
 .nn-titleblock-row dd .nn-mono { font: inherit; color: inherit; letter-spacing: inherit; }
 
+/* Services page-head — tighter rhythm + 2-col hero at ≥1024px.
+ * Kills the accumulated vertical whitespace on the services flow without
+ * touching the global .nn-page-head used by other routes. */
+.nn-page-head.nn-services { padding: 96px 0 64px; }
+.nn-page-head.nn-services .nn-page-title {
+  font-size: clamp(36px, 6vw, 64px);
+  max-width: 640px;
+}
+.nn-page-head.nn-services .nn-page-lead {
+  font-size: 20px;
+  margin-top: 24px;
+  max-width: 560px;
+}
+.nn-page-head.nn-services .nn-tabs { margin-top: 32px; }
+.nn-page-head.nn-services .nn-page-head-img { margin-top: 40px; }
+
+@media (min-width: 1024px) {
+  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: 64px;
+    align-items: start;
+  }
+  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-page-eyebrow {
+    grid-column: 1; grid-row: 1;
+  }
+  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-page-title {
+    grid-column: 1; grid-row: 2;
+  }
+  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-page-lead {
+    grid-column: 1; grid-row: 3;
+  }
+  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-tabs {
+    grid-column: 1; grid-row: 4;
+    align-self: end;
+    margin-top: 48px;
+  }
+  .nn-page-head.nn-services:has(.nn-page-head-img) .nn-page-head-img {
+    grid-column: 2; grid-row: 1 / -1;
+    margin-top: 0;
+    aspect-ratio: 4 / 5;
+    height: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .nn-page-head.nn-services { padding: 72px 0 48px; }
+  .nn-page-head.nn-services .nn-page-head-img { margin-top: 28px; }
+}
+
 /* =============================================================
  * Tabs
  * ============================================================= */
