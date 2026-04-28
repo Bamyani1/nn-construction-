@@ -8,6 +8,11 @@ export const metadata: Metadata = {
     "Request a free in-person walk-through and a written estimate inside five business days.",
 };
 
+const OFFICE_ADDRESS = "8420 Georgia Ave, Silver Spring, MD 20910";
+const MAP_QUERY = encodeURIComponent(OFFICE_ADDRESS);
+const MAP_EMBED_SRC = `https://www.google.com/maps?q=${MAP_QUERY}&output=embed`;
+const MAP_DIRECTIONS_HREF = `https://www.google.com/maps/dir/?api=1&destination=${MAP_QUERY}`;
+
 export default function ContactPage() {
   return (
     <>
@@ -91,6 +96,31 @@ export default function ContactPage() {
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section className="nn-section nn-map-section">
+        <div className="nn-container">
+          <div className="nn-map-head">
+            <div className="nn-eyebrow">Find us</div>
+            <a
+              className="nn-map-directions"
+              href={MAP_DIRECTIONS_HREF}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Get directions ↗
+            </a>
+          </div>
+          <div className="nn-map-frame">
+            <iframe
+              title="NN Construction office location"
+              src={MAP_EMBED_SRC}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
         </div>
       </section>
     </>
