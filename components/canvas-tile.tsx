@@ -25,7 +25,7 @@ export function CanvasTile({ label, note, href }: CanvasTileProps) {
     });
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, []);    
 
   return (
     <div className="canvas-cell">
